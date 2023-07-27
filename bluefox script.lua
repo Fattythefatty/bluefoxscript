@@ -72,8 +72,8 @@ local EnabledToggle = Section.NewToggle("Mute VIW Music",function(bool)
 		end
 	end
 end)
-local time, RBW_COL = 7
-1 = game:GetService('RunService').Heartbeat:Connect(function()
+local timergb, RBW_COL = 0.1
+rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
 	local hue = tick() % timergb / timergb
 	RBW_COL = Color3.fromHSV(hue,1,1)
 end)
@@ -683,7 +683,7 @@ _G.particlefade = false
 -- will fade from white to blue, cause first color is white
 local COLOR1 = Color3.fromRGB(255,255,255) -- first color
 local COLOR2 = Color3.fromRGB(0,0,0) -- second color
-local SPEED = 5
+local SPEED = 1
 -- .1 / .2 / .3 tho numbers, just without 0, like 0.3
 
 -- additional variables
@@ -781,5 +781,3 @@ local Button = Section.NewButton("Volcano",function()
 	local args = {[1] = "Spawn",[2] = "Volcano"}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
-
-print "unuiuxue#6291 is gay and you suck this nuts ;0 and peace mad lol (also syro is bad!11!!)"
