@@ -72,7 +72,7 @@ local EnabledToggle = Section.NewToggle("Mute VIW Music",function(bool)
 		end
 	end
 end)
-local timergb, RBW_COL = 0.1
+local timergb, RBW_COL = 30
 rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
 	local hue = tick() % timergb / timergb
 	RBW_COL = Color3.fromHSV(hue,1,1)
@@ -781,3 +781,5 @@ local Button = Section.NewButton("Volcano",function()
 	local args = {[1] = "Spawn",[2] = "Volcano"}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
+
+print "unuiuxue#6291 is gay and you suck this nuts ;0 and peace mad lol (also syro is bad!11!!)"
