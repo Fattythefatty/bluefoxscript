@@ -47,7 +47,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Main.Name = "Main"
 	Main.Parent = Library
-	Main.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Main.BackgroundColor3 = Color3.fromRGB(27,27,87)
 	Main.BorderSizePixel = 150
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.25, 0, 0.25, 0)
@@ -73,7 +73,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
-	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 27)
+	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 87)
 	FadeBackgroundFrame.BackgroundTransparency = 1.000
 	FadeBackgroundFrame.BorderSizePixel = 0
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
@@ -81,7 +81,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
-	LeftPart.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	LeftPart.BackgroundColor3 = Color3.fromRGB(27,27,87)
 	LeftPart.BorderSizePixel = 0
 	LeftPart.Size = UDim2.new(0, 218, 0, 451)
 
@@ -435,7 +435,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 		FadeFrame.Name = "FadeFrame"
 		FadeFrame.Parent = Frame
-		FadeFrame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+		FadeFrame.BackgroundColor3 = Color3.fromRGB(27,27,87)
 		FadeFrame.BackgroundTransparency = 0
 		FadeFrame.BorderSizePixel = 0
 		FadeFrame.Position = UDim2.new(0, 0, 0, 0)
@@ -1018,7 +1018,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Tsd.Name = placeholder
 				Tsd.Parent = Main
 				Tsd.AnchorPoint = Vector2.new(0.5, 0.5)
-				Tsd.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+				Tsd.BackgroundColor3 = Color3.fromRGB(27,27,87)
 				Tsd.BorderSizePixel = 0
 				Tsd.Position = UDim2.new(0.5, 0, 1.5, 0)
 				Tsd.Size = UDim2.new(0, 360, 0, 270)
