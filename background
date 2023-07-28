@@ -307,7 +307,7 @@ function UILibrary.Main(PrjName,HideKey)
 		Nofitication.Name = "Nofitication"
 		Nofitication.Parent = Main
 		Nofitication.AnchorPoint = Vector2.new(0.5, 0.5)
-		Nofitication.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		Nofitication.BackgroundColor3 = Color3.fromRGB(30,90,90)
 		Nofitication.BackgroundTransparency = 1
 		Nofitication.BorderSizePixel = 0
 		Nofitication.Position = UDim2.new(0.3, 0, 0.5, 0)
@@ -542,7 +542,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 			Section.Name = SectionName
 			Section.Parent = Elements
-			Section.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			Section.BackgroundColor3 = Color3.fromRGB(30,90,90)
 			Section.BackgroundTransparency = 1
 			Section.BorderSizePixel = 0
 			Section.Size = UDim2.new(0, 482, 0, 18)
@@ -653,7 +653,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				HideChecker.Name = "HideChecker"
 				HideChecker.Parent = Checker
-				HideChecker.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+				HideChecker.BackgroundColor3 = Color3.fromRGB(30,90,90)
 				HideChecker.BorderSizePixel = 0
 				HideChecker.AnchorPoint = Vector2.new(0.5,0.5)
 				HideChecker.Position = UDim2.new(0.5,0,0.5,0)
