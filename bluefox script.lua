@@ -6,7 +6,7 @@
 	Desc Modes:
 		Mode 1 - default typing
 		Mode 2 - erase typing
-		Mode 3 - glitchy 
+		Mode 3 - glitchy
 		Mode 4 - backward typing
 
 --]]
@@ -30,18 +30,18 @@ end)
 
 _G.rainbow = false
 local EnabledToggle = Section.NewToggle("Rainbow Toggle",function(bool)
-	if _G.rainbow then
-		local timergb, RBW_COL = 5
-		rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
-			local hue = tick() % timergb / timergb
-			RBW_COL = Color3.fromHSV(hue,1,1)
-		end)
 
-	end
 
 end)
-	
+if _G.rainbow then
 
+
+end
+local timergb, RBW_COL = 5
+rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
+	local hue = tick() % timergb / timergb
+	RBW_COL = Color3.fromHSV(hue,1,1)
+end)
 local Tab = Window.NewTab("Gamepasses")
 local Section = Tab.NewSection("BE FREE")
 local Button = Section.NewButton("Wings",function()
@@ -437,14 +437,11 @@ local EnabledToggle = Section.NewToggle("Rainbow wings",function(bool)
 		task.wait()
 			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
 			mk1:FireServer("customize", {[45] = "LegFluff",[8]="RightWingStart",[9]="RightWing2",[6]="LeftWing2",[5]="LeftWingStart",[22]="LeftLeg",[26]="RightArm",[23]="LeftEar",[10]="RightWing3",[7]="LeftWing3",[23]="LeftEar",[18]="LeftArm",[19]="RightEar",[16]="RightLeg",[19]="RightEar",[15]="Tail3",[13]="Tail1", },Color3.new(RBW_COL.R,RBW_COL.G,RBW_COL.B),"Body")
-	end
+		wait()
 			local force = "ForceField"
 	local SecondaryArgs={[1]="Material",[2]=force,[3]={[7]="LeftWing3",[10]="RightWing3",}}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
-	while _G.Rainbowwings do
-		task.wait()
-			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
-			mk1:FireServer("customize", {[8]="RightWingStart",[9]="RightWing2",[6]="LeftWing2",[5]="LeftWingStart",[22]="LeftLeg",[26]="RightArm",[23]="LeftEar",[23]="LeftEar",[18]="LeftArm",[10]="RightWing3",[7]="LeftWing3",[19]="RightEar",[16]="RightLeg",[19]="RightEar",[15]="Tail3",[13]="Tail1", },Color3.new(RBW_COL.R,RBW_COL.G,RBW_COL.B),"Body")
+
 	end
 	
 end,false)
@@ -476,6 +473,34 @@ local Button = Section.NewButton("all concrete",function()
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(PrimaryArgs))
     
+end)
+local Button = Section.NewButton("all Glass",function()
+    local airw = "Glass"
+    local Hair = {[1] = "AccessoryMaterial",[2] = airw,[3] = "HairF"}
+    local Torso = {[1] = "AccessoryMaterial",[2] = airw,[3] = "TorsoF"}
+    local Legs = {[1] = "AccessoryMaterial",[2] = airw,[3] = "FeetF"}
+    local SecondaryArgs={[1]="Material",[2]=airw,[3]={[1]="DragonSecondary",[2]="OceanSecondary",[3]="ChubbyCheeks",[4]="Fat",[5]="EarFluff",[6]="JawFluff",[7]="ChestFluff",[8]="LegFluff",[9]="Eyebrow1",[10]="Eyebrow2",[11]="Secondary",[12]="Jaw",[13]="RightShoulder",[14]="RightLowerLeg",[15]="RightLowerArm",[16]="RightLeg",[17]="RightFootPaw",[18]="LeftArm",[19]="LeftArmPaw",[20]="LeftCarpal",[21]="LeftFootPaw",[22]="LeftLeg",[23]="LeftLowerArm",[24]="LeftLowerLeg",[25]="LeftShoulder",[26]="RightArm",[27]="RightArmPaw",[28]="RightCarpal",[29]="DragonThird"}}
+    local PrimaryArgs={[1]="Material",[2]=airw,[3]={[1]="DragonPrimary",[2]="OceanPrimary",[3]="BackFluff",[4]="TailFluff",[5]="LeftWingStart",[6]="LeftWing2",[7]="LeftWing3",[8]="RightWingStart",[9]="RightWing2",[10]="RightWing3",[11]="EyeLid",[12]="Torso",[13]="Tail1",[14]="Tail2",[15]="Tail3",[16]="Tail5",[17]="Tail6",[18]="RightThigh",[19]="RightEar",[20]="EyeLid",[21]="Head",[22]="Hip",[23]="LeftEar",[24]="LeftThigh",[25]="Muzzle",[26]="Neck",[27]="NeckReal",[28]="Nose",}}
+    --
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Hair))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Torso))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Legs))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(PrimaryArgs))
+end)
+local Button = Section.NewButton("all water",function()
+    local airww = "Water"
+    local Hair = {[1] = "AccessoryMaterial",[2] = airww,[3] = "HairF"}
+    local Torso = {[1] = "AccessoryMaterial",[2] = airww,[3] = "TorsoF"}
+    local Legs = {[1] = "AccessoryMaterial",[2] = airww,[3] = "FeetF"}
+    local SecondaryArgs={[1]="Material",[2]=airww,[3]={[1]="DragonSecondary",[2]="OceanSecondary",[3]="ChubbyCheeks",[4]="Fat",[5]="EarFluff",[6]="JawFluff",[7]="ChestFluff",[8]="LegFluff",[9]="Eyebrow1",[10]="Eyebrow2",[11]="Secondary",[12]="Jaw",[13]="RightShoulder",[14]="RightLowerLeg",[15]="RightLowerArm",[16]="RightLeg",[17]="RightFootPaw",[18]="LeftArm",[19]="LeftArmPaw",[20]="LeftCarpal",[21]="LeftFootPaw",[22]="LeftLeg",[23]="LeftLowerArm",[24]="LeftLowerLeg",[25]="LeftShoulder",[26]="RightArm",[27]="RightArmPaw",[28]="RightCarpal",[29]="DragonThird"}}
+    local PrimaryArgs={[1]="Material",[2]=airww,[3]={[1]="DragonPrimary",[2]="OceanPrimary",[3]="BackFluff",[4]="TailFluff",[5]="LeftWingStart",[6]="LeftWing2",[7]="LeftWing3",[8]="RightWingStart",[9]="RightWing2",[10]="RightWing3",[11]="EyeLid",[12]="Torso",[13]="Tail1",[14]="Tail2",[15]="Tail3",[16]="Tail5",[17]="Tail6",[18]="RightThigh",[19]="RightEar",[20]="EyeLid",[21]="Head",[22]="Hip",[23]="LeftEar",[24]="LeftThigh",[25]="Muzzle",[26]="Neck",[27]="NeckReal",[28]="Nose",}}
+    --
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Hair))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Torso))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Legs))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(PrimaryArgs))
 end)
 local Button = Section.NewButton("all ForceField",function()
     local ForceField = "ForceField"
