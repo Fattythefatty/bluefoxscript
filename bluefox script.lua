@@ -17,10 +17,10 @@ local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
 
 _G.text = false
-local EnabledToggle = Section.NewToggle("Click to clear",function(bool)
+local EnabledToggle = Section.NewToggle("Click to",function(bool)
 	if _G.text then
 	else
-		local mode_ = Section.Newtextbox('Rainbow Speed',function(self,value)
+		local mode_ = Section.Newtextbox('Click to clear',function(self,value)
 		end)
 	end
 
