@@ -52,7 +52,7 @@ function UILibrary.Main(PrjName,HideKey)
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.25, 0, 0.25, 0)
 	Main.Size = UDim2.new(0,725,0,450)
-	Main.Visible = false
+	Main.Visible = true
 
 	HideMain.Name = "Main"
 	HideMain.Parent = Main
@@ -231,7 +231,7 @@ function UILibrary.Main(PrjName,HideKey)
 	UIPageLayout.Padding = UDim.new(0, 25)
 	UIPageLayout.TweenTime = 0
 	UIPageLayout.ScrollWheelInputEnabled = false
-	UIPageLayout.Animated = false
+	UIPageLayout.Animated = true
 
 	local UISizer = Instance.new("UIScale")
 	UISizer.Parent = Library
@@ -340,7 +340,7 @@ function UILibrary.Main(PrjName,HideKey)
 		NofiticationButton.BorderSizePixel = 0
 		NofiticationButton.Position = UDim2.new(0.5, 0, 0.560000002, 0)
 		NofiticationButton.Size = UDim2.new(0, 330, 0, 36)
-		NofiticationButton.AutoButtonColor = false
+		NofiticationButton.AutoButtonColor = true
 		NofiticationButton.Font = Enum.Font.GothamSemibold
 		NofiticationButton.Text = "OK"
 		NofiticationButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -467,7 +467,7 @@ function UILibrary.Main(PrjName,HideKey)
 		TabButton.BorderSizePixel = 0
 		TabButton.Position = UDim2.new(0.0412844047, 0, 0, 0)
 		TabButton.Size = UDim2.new(0, 200, 0, 38)
-		TabButton.AutoButtonColor = false
+		TabButton.AutoButtonColor = true
 		TabButton.Font = Enum.Font.SourceSansSemibold
 		TabButton.Text = ""
 		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -601,7 +601,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Toggle.BorderSizePixel = 0
 				Toggle.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Toggle.Size = UDim2.new(1, 0, 0, 40)
-				Toggle.AutoButtonColor = false
+				Toggle.AutoButtonColor = true
 				Toggle.Font = Enum.Font.SourceSans
 				Toggle.Text = ""
 				Toggle.TextColor3 = Color3.fromRGB(255,127,0)
@@ -779,7 +779,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Slider.BorderSizePixel = 0
 				Slider.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Slider.Size = UDim2.new(1, 0, 0, 40)
-				Slider.AutoButtonColor = false
+				Slider.AutoButtonColor = true
 				Slider.Font = Enum.Font.SourceSans
 				Slider.Text = ""
 				Slider.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -965,7 +965,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Dropdown.ClipsDescendants = true
 				Dropdown.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Dropdown.Size = UDim2.new(1, 0, 0, 40)
-				Dropdown.AutoButtonColor = false
+				Dropdown.AutoButtonColor = true
 				Dropdown.Font = Enum.Font.GothamSemibold
 				Dropdown.Text = ""
 				Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1137,7 +1137,7 @@ function UILibrary.Main(PrjName,HideKey)
 					SelectableButton.BorderSizePixel = 0
 					SelectableButton.Position = UDim2.new(0.0412844047, 0, 0, 0)
 					SelectableButton.Size = UDim2.new(1, 0, 0, 40)
-					SelectableButton.AutoButtonColor = false
+					SelectableButton.AutoButtonColor = true
 					SelectableButton.Font = Enum.Font.SourceSansSemibold
 					SelectableButton.Text = ""
 					SelectableButton.TextColor3 = Color3.fromRGB(255, 255, 255)
