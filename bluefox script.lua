@@ -34,8 +34,8 @@ local EnabledToggle = Section.NewToggle("Rainbow Toggle",function(bool)
 
 end)
 
-end)
-local timergb, RBW_COL = col1
+
+local timergb, RBW_COL = 4
 rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
 	local hue = tick() % timergb / timergb
 	RBW_COL = Color3.fromHSV(hue,1,1)
