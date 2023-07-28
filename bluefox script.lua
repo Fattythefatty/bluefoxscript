@@ -6,7 +6,7 @@
 	Desc Modes:
 		Mode 1 - default typing
 		Mode 2 - erase typing
-		Mode 3 - glitchy
+		Mode 3 - glitchy 
 		Mode 4 - backward typing
 
 --]]
