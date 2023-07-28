@@ -90,7 +90,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ProjectName.Name = "ProjectName"
 	ProjectName.Parent = LeftPart
-	ProjectName.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	ProjectName.BackgroundColor3 = Color3.fromRGB(31,93,93)
 	ProjectName.BackgroundTransparency = 1
 	ProjectName.BorderSizePixel = 0
 	ProjectName.Size = UDim2.new(0, 218, 0, 40)
@@ -122,7 +122,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ButtonsTab.Name = "ButtonsTab"
 	ButtonsTab.Parent = LeftPart
-	ButtonsTab.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	ButtonsTab.BackgroundColor3 = Color3.fromRGB(31,93,93)
 	ButtonsTab.BorderSizePixel = 0
 	ButtonsTab.Position = UDim2.new(0, 0, 0.184829056, 0)
 	ButtonsTab.Size = UDim2.new(0, 218, 0, 362)
@@ -566,7 +566,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 			SectionElements.Name = "SectionElements"
 			SectionElements.Parent = Section
-			SectionElements.BackgroundColor3 = Color3.fromRGB(30,30,30)
+			SectionElements.BackgroundColor3 = Color3.fromRGB(30,90,90)
 			SectionElements.BackgroundTransparency = 0
 			SectionElements.BorderSizePixel = 0
 			SectionElements.ClipsDescendants = true
@@ -597,7 +597,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Toggle.Name = ToggleText
 				Toggle.Parent = SectionElements
-				Toggle.BackgroundColor3 = Color3.fromRGB(31,31,31)
+				Toggle.BackgroundColor3 = Color3.fromRGB(31,93,93)
 				Toggle.BorderSizePixel = 0
 				Toggle.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Toggle.Size = UDim2.new(1, 0, 0, 40)
@@ -609,7 +609,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 
 				DownLine.Parent = Toggle
-				DownLine.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				DownLine.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				DownLine.BorderSizePixel = 0
 				DownLine.Size = UDim2.new(1,0,0,1)
 				DownLine.AnchorPoint = Vector2.new(0.5,0)
@@ -775,7 +775,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Slider.Name = SliderText
 				Slider.Parent = SectionElements
-				Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+				Slider.BackgroundColor3 = Color3.fromRGB(31,93,93)
 				Slider.BorderSizePixel = 0
 				Slider.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Slider.Size = UDim2.new(1, 0, 0, 40)
@@ -786,7 +786,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Slider.TextSize = 14.000
 
 				Frame.Parent = Slider
-				Frame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				Frame.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				Frame.BorderSizePixel = 0
 				Frame.AnchorPoint = Vector2.new(0.5,0)
 				Frame.Position = UDim2.new(0.53, 0, 1, 0)
@@ -960,7 +960,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Dropdown.Name = "Dropdown"
 				Dropdown.Parent = SectionElements
-				Dropdown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+				Dropdown.BackgroundColor3 = Color3.fromRGB(31,93,93)
 				Dropdown.BorderSizePixel = 0
 				Dropdown.ClipsDescendants = true
 				Dropdown.Position = UDim2.new(0.286780387, 0, 0, 0)
@@ -972,7 +972,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Dropdown.TextSize = 14.000
 
 				Frame.Parent = Dropdown
-				Frame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				Frame.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				Frame.BorderSizePixel = 0
 				Frame.Position = UDim2.new(0, 5, 1, -1)
 				Frame.Size = UDim2.new(1.10000002, 0, 0, 1)
@@ -997,7 +997,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Frame_2.Parent = DropdownBox
 				Frame_2.AnchorPoint = Vector2.new(0.5, 0)
-				Frame_2.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				Frame_2.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				Frame_2.BorderSizePixel = 0
 				Frame_2.Position = UDim2.new(0.53, 0, 1, 0)
 				Frame_2.Size = UDim2.new(1, 0, 0, 1)
@@ -1083,14 +1083,14 @@ function UILibrary.Main(PrjName,HideKey)
 
 				DropdownLineTop.Parent = Tsd
 				DropdownLineTop.AnchorPoint = Vector2.new(0.5, 0)
-				DropdownLineTop.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				DropdownLineTop.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				DropdownLineTop.BorderSizePixel = 0
 				DropdownLineTop.Position = UDim2.new(0.5, 0, 0, 54)
 				DropdownLineTop.Size = UDim2.new(1, 0, 0, 1)
 
 				DropdownLineBottom.Parent = Tsd
 				DropdownLineBottom.AnchorPoint = Vector2.new(0.5, 0)
-				DropdownLineBottom.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				DropdownLineBottom.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				DropdownLineBottom.BorderSizePixel = 0
 				DropdownLineBottom.Position = UDim2.new(0.5, 0, 0, 265)
 				DropdownLineBottom.Size = UDim2.new(1, 0, 0, 1)
@@ -1162,7 +1162,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 					SecFrame.Parent = SelectableButton
 					SecFrame.AnchorPoint = Vector2.new(0.5, 0)
-					SecFrame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+					SecFrame.BackgroundColor3 = Color3.fromRGB(132,132,132)
 					SecFrame.BorderSizePixel = 0
 					SecFrame.Position = UDim2.new(0.5, 24, 1, 0)
 					SecFrame.Size = UDim2.new(1, 0, 0, 1)
@@ -1207,7 +1207,7 @@ function UILibrary.Main(PrjName,HideKey)
 					ChoosedCircleStroke.LineJoinMode = Enum.LineJoinMode.Round
 					ChoosedCircleStroke.Thickness = 1.3
 					ChoosedCircleStroke.Transparency = 0
-					ChoosedCircleStroke.Color = Color3.fromRGB(44, 44, 44)
+					ChoosedCircleStroke.Color = Color3.fromRGB(132,132,132)
 
 
 					IsSelectableChoosed.Name = "IsChoosedVal"
@@ -1347,7 +1347,7 @@ TextBox.FocusLost:Connect(function()
 
 				SecFrame.Parent = Button
 				SecFrame.AnchorPoint = Vector2.new(0.5, 0)
-				SecFrame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+				SecFrame.BackgroundColor3 = Color3.fromRGB(132,132,132)
 				SecFrame.BorderSizePixel = 0
 				SecFrame.Position = UDim2.new(0.53, 0, 1, 0)
 				SecFrame.Size = UDim2.new(1, 0, 0, 1)
