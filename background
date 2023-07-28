@@ -812,7 +812,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Sliding.Name = "Sliding"
 				Sliding.Parent = Slider
-				Sliding.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+				Sliding.BackgroundColor3 = Color3.fromRGB(43,129,129)
 				Sliding.BorderSizePixel = 0
 				Sliding.Position = UDim2.new(0.58, 0, 0.421052635, 0)
 				Sliding.Size = UDim2.new(0, 166, 0, 6)
@@ -833,7 +833,7 @@ function UILibrary.Main(PrjName,HideKey)
 				CircleStroke.Parent = Circle
 				CircleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 				CircleStroke.Thickness = 2
-				CircleStroke.Color = Color3.fromRGB(43,43,43)
+				CircleStroke.Color = Color3.fromRGB(43,129,129)
 
 				ValueLabel.Name = "ValueLabel"
 				ValueLabel.Parent = Circle
@@ -851,7 +851,7 @@ function UILibrary.Main(PrjName,HideKey)
 				HideColor.Name = "HideColor"
 				HideColor.Parent = Circle
 				HideColor.AnchorPoint = Vector2.new(0.5, 0.5)
-				HideColor.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+				HideColor.BackgroundColor3 = Color3.fromRGB(43,129,129)
 				HideColor.BorderSizePixel = 0
 				HideColor.Position = UDim2.new(0.5, 0, 0.5, 0)
 				HideColor.Size = UDim2.new(1, 1, 1, 1)
