@@ -493,7 +493,7 @@ function UILibrary.Main(PrjName,HideKey)
 		local function ReColorOtherBtns()
 			for _,Button in next,List:GetDescendants() do
 				if Button.Name == "bd" and Button.Parent.Name ~= TabButton.Name then
-					TweenService:Create(Button.Parent,TweenInfo.new(0.1),{BackgroundTransparency = 1,BackgroundColor3 = Color3.fromRGB(255,255,255)}):Play()
+					TweenService:Create(Button.Parent,TweenInfo.new(0.1),{BackgroundTransparency = 1,BackgroundColor3 = Color3.fromRGB(0,255,255)}):Play()
 					Button.Value = false	
 				end
 			end
@@ -1357,9 +1357,9 @@ TextBox.FocusLost:Connect(function()
 				Button.MouseButton1Click:Connect(function()
 					spawn(function() func() end)
 					if not IsMouseOn then
-						TweenService:Create(Button,TweenInfo.new(0.25),{BackgroundTransparency = 1,BackgroundColor3 = Color3.fromRGB(255,255,255)}):Play()
+						TweenService:Create(Button,TweenInfo.new(0.25),{BackgroundTransparency = 1,BackgroundColor3 = Color3.fromRGB(0,255,255)}):Play()
 					else
-						TweenService:Create(Button,TweenInfo.new(0.25),{BackgroundTransparency = 0.98,BackgroundColor3 = Color3.fromRGB(255,255,255)}):Play()
+						TweenService:Create(Button,TweenInfo.new(0.25),{BackgroundTransparency = 0.98,BackgroundColor3 = Color3.fromRGB(0,255,255)}):Play()
 					end
 				end)
 
