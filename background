@@ -103,21 +103,21 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Line.Name = "Line"
 	Line.Parent = ProjectName
-	Line.BackgroundColor3 = Color3.fromRGB(81, 255, 81)
+	Line.BackgroundColor3 = Color3.fromRGB(255, 255,255)
 	Line.BorderSizePixel = 0
 	Line.Position = UDim2.new(0, 0, 1, 0)
 	Line.Size = UDim2.new(1, 0, 0, 1)
 
 	Line_2.Name = "Line"
 	Line_2.Parent = LeftPart
-	Line_2.BackgroundColor3 = Color3.fromRGB(81, 255, 81)
+	Line_2.BackgroundColor3 = Color3.fromRGB(255, 255,255)
 	Line_2.BorderSizePixel = 0
 	Line_2.Position = UDim2.new(0, 0, 0.182, 0)
 	Line_2.Size = UDim2.new(1, 0, 0, 1)
 
 	Line_3.Name = "Line"
 	Line_3.Parent = LeftPart
-	Line_3.BackgroundColor3 = Color3.fromRGB(81, 255, 81)
+	Line_3.BackgroundColor3 = Color3.fromRGB(255, 255,255)
 	Line_3.BorderSizePixel = 0
 	Line_3.Position = UDim2.new(1, 0, 0, 0)
 	Line_3.Size = UDim2.new(0, 1, 1, 0)
@@ -217,8 +217,8 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Pages.Name = "Pages"
 	Pages.Parent = Main
-	Pages.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Pages.BackgroundTransparency = 1.000
+	Pages.BackgroundColor3 = Color3.fromRGB(0,0,0)
+	Pages.BackgroundTransparency = 0.7
 	Pages.BorderSizePixel = 0
 	Pages.Position = UDim2.new(0.307838351, -4, 0, 10)
 	Pages.Size = UDim2.new(0, 506, 1, -10)
@@ -263,7 +263,7 @@ function UILibrary.Main(PrjName,HideKey)
 			Circle.Name = "Circle"
 			Circle.Parent = Circles
 			Circle.AnchorPoint = Vector2.new(0, 0.5)
-			Circle.BackgroundColor3 = Color3.fromRGB(255,127,0)
+			Circle.BackgroundColor3 = Color3.fromRGB(255, 255,255)
 			Circle.BorderSizePixel = 0
 			Circle.Position = UDim2.new(0, (i - 1) * 13, 0.5, 0)
 			Circle.Size = UDim2.new(0, 12, 0, 12)
