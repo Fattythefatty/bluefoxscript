@@ -98,7 +98,7 @@ function UILibrary.Main(PrjName,HideKey)
 	ProjectName.Size = UDim2.new(0, 218, 0, 40)
 	ProjectName.Font = Enum.Font.GothamBold
 	ProjectName.Text = PrjName
-	ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ProjectName.TextColor3 = Color3.fromRGB(0, 0, 0)
 	ProjectName.TextSize = 20.000
 
 	Line.Name = "Line"
@@ -124,7 +124,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ButtonsTab.Name = "ButtonsTab"
 	ButtonsTab.Parent = LeftPart
-	ButtonsTab.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	ButtonsTab.BackgroundColor3 = Color3.fromRGB(31, 15, 255)
 	ButtonsTab.BorderSizePixel = 0
 	ButtonsTab.Position = UDim2.new(0, 0, 0.184829056, 0)
 	ButtonsTab.Size = UDim2.new(0, 218, 0, 362)
@@ -138,7 +138,7 @@ function UILibrary.Main(PrjName,HideKey)
 	List.Size = UDim2.new(0.998000026, 0, 1, 0)
 	List.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	List.ScrollBarThickness = 2
-	List.ScrollBarImageColor3 = Color3.fromRGB(255,127,0)
+	List.ScrollBarImageColor3 = Color3.fromRGB(0,0,255)
 	List.ScrollBarImageTransparency = 0.5
 	List.CanvasSize = UDim2.new(0,0,0,0)
 
