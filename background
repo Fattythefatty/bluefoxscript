@@ -328,7 +328,7 @@ function UILibrary.Main(PrjName,HideKey)
 		NofiticationLabel.Size = UDim2.new(0, 350, 0, 25)
 		NofiticationLabel.Font = Enum.Font.GothamSemibold
 		NofiticationLabel.Text = Text
-		NofiticationLabel.TextColor3 = Color3.fromRGB(41, 127, 255)
+		NofiticationLabel.TextColor3 = Color3.fromRGB(0,0,0)
 		NofiticationLabel.TextSize = 22.000
 		NofiticationLabel.TextWrapped = true
 		NofiticationLabel.TextTransparency = 1
@@ -345,7 +345,7 @@ function UILibrary.Main(PrjName,HideKey)
 		NofiticationButton.AutoButtonColor = false
 		NofiticationButton.Font = Enum.Font.GothamSemibold
 		NofiticationButton.Text = "OK"
-		NofiticationButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		NofiticationButton.TextColor3 = Color3.fromRGB(0,0,0)
 		NofiticationButton.TextSize = 16.000
 		NofiticationButton.TextTransparency = 1
 
@@ -418,7 +418,7 @@ function UILibrary.Main(PrjName,HideKey)
 		TabLabel.Size = UDim2.new(0, 127, 0, 18)
 		TabLabel.Font = Enum.Font.GothamBold
 		TabLabel.Text = TabName
-		TabLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabLabel.TextColor3 = Color3.fromRGB(0,0,0)
 		TabLabel.TextSize = 21
 		TabLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -472,7 +472,7 @@ function UILibrary.Main(PrjName,HideKey)
 		TabButton.AutoButtonColor = false
 		TabButton.Font = Enum.Font.SourceSansSemibold
 		TabButton.Text = ""
-		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabButton.TextColor3 = Color3.fromRGB(0,0,0)
 		TabButton.TextSize = 19.000
 
 		TabButtonText.Name = "TabButtonText"
@@ -484,7 +484,7 @@ function UILibrary.Main(PrjName,HideKey)
 		TabButtonText.Size = UDim2.new(0.920000017, 0, 1, 0)
 		TabButtonText.Font = Enum.Font.SourceSansSemibold
 		TabButtonText.Text = TabName
-		TabButtonText.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabButtonText.TextColor3 = Color3.fromRGB(0,0,0)
 		TabButtonText.TextSize = 23.000
 		TabButtonText.TextWrapped = true
 		TabButtonText.TextXAlignment = Enum.TextXAlignment.Left
@@ -562,7 +562,7 @@ function UILibrary.Main(PrjName,HideKey)
 			SectionLabel.Size = UDim2.new(0, 127, 0, 18)
 			SectionLabel.Font = Enum.Font.GothamBold
 			SectionLabel.Text = SectionName
-			SectionLabel.TextColor3 = Color3.fromRGB(209, 209, 209)
+			SectionLabel.TextColor3 = Color3.fromRGB(0,0,0)
 			SectionLabel.TextSize = 16.000
 			SectionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -606,7 +606,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Toggle.AutoButtonColor = false
 				Toggle.Font = Enum.Font.SourceSans
 				Toggle.Text = ""
-				Toggle.TextColor3 = Color3.fromRGB(255,127,0)
+				Toggle.TextColor3 = Color3.fromRGB(0,0,0)
 				Toggle.TextSize = 14.000
 
 
@@ -627,7 +627,7 @@ function UILibrary.Main(PrjName,HideKey)
 				ToggleLabel.Size = UDim2.new(0.949999988, 0, 1, 0)
 				ToggleLabel.Font = Enum.Font.GothamSemibold
 				ToggleLabel.Text = ToggleText
-				ToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+				ToggleLabel.TextColor3 = Color3.fromRGB(0,0,0)
 				ToggleLabel.TextSize = 16.000
 				ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -715,7 +715,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Label.Font = Enum.Font.GothamSemibold
 				Label.Text = LabelText
 				Label.TextSize = LabelTextSize or 14
-				Label.TextColor3 = LabelTextColor or Color3.fromRGB(255, 255, 255)
+				Label.TextColor3 = LabelTextColor or Color3.fromRGB(0,0,0)
 				Label.TextScaled = IsScaled or false
 				Label.TextXAlignment = Enum.TextXAlignment.Left
 				return Label;
@@ -736,7 +736,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Label.Font = Enum.Font.GothamSemibold
 				Label.Text = LabelText
 				Label.TextSize = LabelTextSize or 14
-				Label.TextColor3 = LabelTextColor or Color3.fromRGB(255, 255, 255)
+				Label.TextColor3 = LabelTextColor or Color3.fromRGB(0,0,0)
 				Label.TextScaled = IsScaled or false
 				Label.TextXAlignment = Enum.TextXAlignment.Left
 				Label.TextYAlignment = Enum.TextYAlignment.Top
@@ -750,7 +750,7 @@ function UILibrary.Main(PrjName,HideKey)
 				DateMes.Size = UDim2.new(0.970777929, 0, -0.0263157897, 17)
 				DateMes.Font = Enum.Font.GothamSemibold
 				DateMes.Text = CommentText
-				DateMes.TextColor3 = Color3.fromRGB(197, 197, 197)
+				DateMes.TextColor3 = Color3.fromRGB(0,0,0)
 				DateMes.TextSize = 12.000
 				DateMes.TextXAlignment = Enum.TextXAlignment.Left
 				return Label;
@@ -804,7 +804,7 @@ function UILibrary.Main(PrjName,HideKey)
 				SliderLabel.Size = UDim2.new(0.949999988, 0, 1, 0)
 				SliderLabel.Font = Enum.Font.GothamSemibold
 				SliderLabel.Text = SliderText
-				SliderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+				SliderLabel.TextColor3 = Color3.fromRGB(0,0,0)
 				SliderLabel.TextSize = 16.000
 				SliderLabel.TextXAlignment = Enum.TextXAlignment.Left
 
