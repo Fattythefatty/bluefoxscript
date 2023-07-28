@@ -41,16 +41,14 @@ function UILibrary.Main(PrjName,HideKey)
 
 	--Properties:
 
-	
-
 	Library.Name = "Library"
 	Library.Parent = PARENT
 	Library.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Main.Name = "Main"
 	Main.Parent = Library
-	Main.BackgroundColor3 = Color3.fromRGB(0, 125, 255)
-	Main.BorderSizePixel = 0
+	Main.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Main.BorderSizePixel = 150
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.25, 0, 0.25, 0)
 	Main.Size = UDim2.new(0,725,0,450)
@@ -58,7 +56,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	HideMain.Name = "Main"
 	HideMain.Parent = Main
-	HideMain.BackgroundColor3 = Color3.fromRGB(0,0,0)
+	HideMain.BackgroundColor3 = Color3.fromRGB(255,127,0)
 	HideMain.BorderSizePixel = 0
 	HideMain.ClipsDescendants = true
 	HideMain.Position = UDim2.new(0, 0, 0, 0)
@@ -76,14 +74,14 @@ function UILibrary.Main(PrjName,HideKey)
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
 	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 27)
-	FadeBackgroundFrame.BackgroundTransparency = 1
+	FadeBackgroundFrame.BackgroundTransparency = 1.000
 	FadeBackgroundFrame.BorderSizePixel = 0
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
 	FadeBackgroundFrame.ZIndex = 3
 
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
-	LeftPart.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+	LeftPart.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 	LeftPart.BorderSizePixel = 0
 	LeftPart.Size = UDim2.new(0, 218, 0, 451)
 
@@ -92,39 +90,39 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ProjectName.Name = "ProjectName"
 	ProjectName.Parent = LeftPart
-	ProjectName.BackgroundColor3 = Color3.fromRGB(01, 01, 01)
+	ProjectName.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 	ProjectName.BackgroundTransparency = 1
 	ProjectName.BorderSizePixel = 0
 	ProjectName.Size = UDim2.new(0, 218, 0, 40)
 	ProjectName.Font = Enum.Font.GothamBold
 	ProjectName.Text = PrjName
-	ProjectName.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
 	ProjectName.TextSize = 20.000
 
 	Line.Name = "Line"
 	Line.Parent = ProjectName
-	Line.BackgroundColor3 = Color3.fromRGB(255, 255,255)
+	Line.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
 	Line.BorderSizePixel = 0
 	Line.Position = UDim2.new(0, 0, 1, 0)
 	Line.Size = UDim2.new(1, 0, 0, 1)
 
 	Line_2.Name = "Line"
 	Line_2.Parent = LeftPart
-	Line_2.BackgroundColor3 = Color3.fromRGB(255, 255,255)
+	Line_2.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
 	Line_2.BorderSizePixel = 0
 	Line_2.Position = UDim2.new(0, 0, 0.182, 0)
 	Line_2.Size = UDim2.new(1, 0, 0, 1)
 
 	Line_3.Name = "Line"
 	Line_3.Parent = LeftPart
-	Line_3.BackgroundColor3 = Color3.fromRGB(255, 255,255)
+	Line_3.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
 	Line_3.BorderSizePixel = 0
 	Line_3.Position = UDim2.new(1, 0, 0, 0)
 	Line_3.Size = UDim2.new(0, 1, 1, 0)
 
 	ButtonsTab.Name = "ButtonsTab"
 	ButtonsTab.Parent = LeftPart
-	ButtonsTab.BackgroundColor3 = Color3.fromRGB(255,255,255)
+	ButtonsTab.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 	ButtonsTab.BorderSizePixel = 0
 	ButtonsTab.Position = UDim2.new(0, 0, 0.184829056, 0)
 	ButtonsTab.Size = UDim2.new(0, 218, 0, 362)
@@ -138,7 +136,7 @@ function UILibrary.Main(PrjName,HideKey)
 	List.Size = UDim2.new(0.998000026, 0, 1, 0)
 	List.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	List.ScrollBarThickness = 2
-	List.ScrollBarImageColor3 = Color3.fromRGB(0,0,255)
+	List.ScrollBarImageColor3 = Color3.fromRGB(255,127,0)
 	List.ScrollBarImageTransparency = 0.5
 	List.CanvasSize = UDim2.new(0,0,0,0)
 
@@ -217,8 +215,8 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Pages.Name = "Pages"
 	Pages.Parent = Main
-	Pages.BackgroundColor3 = Color3.fromRGB(0,0,0)
-	Pages.BackgroundTransparency = 1
+	Pages.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Pages.BackgroundTransparency = 1.000
 	Pages.BorderSizePixel = 0
 	Pages.Position = UDim2.new(0.307838351, -4, 0, 10)
 	Pages.Size = UDim2.new(0, 506, 1, -10)
@@ -263,7 +261,7 @@ function UILibrary.Main(PrjName,HideKey)
 			Circle.Name = "Circle"
 			Circle.Parent = Circles
 			Circle.AnchorPoint = Vector2.new(0, 0.5)
-			Circle.BackgroundColor3 = Color3.fromRGB(255, 255,255)
+			Circle.BackgroundColor3 = Color3.fromRGB(255,127,0)
 			Circle.BorderSizePixel = 0
 			Circle.Position = UDim2.new(0, (i - 1) * 13, 0.5, 0)
 			Circle.Size = UDim2.new(0, 12, 0, 12)
@@ -328,7 +326,7 @@ function UILibrary.Main(PrjName,HideKey)
 		NofiticationLabel.Size = UDim2.new(0, 350, 0, 25)
 		NofiticationLabel.Font = Enum.Font.GothamSemibold
 		NofiticationLabel.Text = Text
-		NofiticationLabel.TextColor3 = Color3.fromRGB(0,0,0)
+		NofiticationLabel.TextColor3 = Color3.fromRGB(41, 127, 255)
 		NofiticationLabel.TextSize = 22.000
 		NofiticationLabel.TextWrapped = true
 		NofiticationLabel.TextTransparency = 1
@@ -340,12 +338,12 @@ function UILibrary.Main(PrjName,HideKey)
 		NofiticationButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NofiticationButton.BackgroundTransparency = 1.000
 		NofiticationButton.BorderSizePixel = 0
-		NofiticationButton.Position = UDim2.new(0.5, 0, 0.200002, 0)
+		NofiticationButton.Position = UDim2.new(0.5, 0, 0.560000002, 0)
 		NofiticationButton.Size = UDim2.new(0, 330, 0, 36)
 		NofiticationButton.AutoButtonColor = false
 		NofiticationButton.Font = Enum.Font.GothamSemibold
 		NofiticationButton.Text = "OK"
-		NofiticationButton.TextColor3 = Color3.fromRGB(0,0,0)
+		NofiticationButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		NofiticationButton.TextSize = 16.000
 		NofiticationButton.TextTransparency = 1
 
@@ -418,7 +416,7 @@ function UILibrary.Main(PrjName,HideKey)
 		TabLabel.Size = UDim2.new(0, 127, 0, 18)
 		TabLabel.Font = Enum.Font.GothamBold
 		TabLabel.Text = TabName
-		TabLabel.TextColor3 = Color3.fromRGB(0,0,0)
+		TabLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabLabel.TextSize = 21
 		TabLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -432,12 +430,12 @@ function UILibrary.Main(PrjName,HideKey)
 		Elements.CanvasSize = UDim2.new(0,0,0,0)
 		Elements.AutomaticCanvasSize = Enum.AutomaticSize.Y
 		Elements.ScrollBarThickness = 2
-		Elements.ScrollBarImageColor3 = Color3.fromRGB(0,255,255)
+		Elements.ScrollBarImageColor3 = Color3.fromRGB(255,127,0)
 		Elements.ScrollBarImageTransparency = 0.5
 
 		FadeFrame.Name = "FadeFrame"
 		FadeFrame.Parent = Frame
-		FadeFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
+		FadeFrame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 		FadeFrame.BackgroundTransparency = 0
 		FadeFrame.BorderSizePixel = 0
 		FadeFrame.Position = UDim2.new(0, 0, 0, 0)
@@ -454,7 +452,7 @@ function UILibrary.Main(PrjName,HideKey)
 			if page.Name ~= "UIPageLayout" and (page.Name == Frame.Name and index == 2) then
 				IsTabOpened.Value = true
 				TweenService:Create(FadeFrame,TweenInfo.new(1.3),{BackgroundTransparency = 1}):Play()
-				TweenService:Create(TabButton,TweenInfo.new(0.25),{BackgroundTransparency = 0.3,BackgroundColor3 = Color3.fromRGB(0,255,255)}):Play()	
+				TweenService:Create(TabButton,TweenInfo.new(0.25),{BackgroundTransparency = 0.3,BackgroundColor3 = Color3.fromRGB(255,127,0)}):Play()	
 			elseif page.Name ~= "UIPageLayout" and (page.Name == Frame.Name and index ~= 2) then
 				IsTabOpened.Value = false
 			end
@@ -472,19 +470,19 @@ function UILibrary.Main(PrjName,HideKey)
 		TabButton.AutoButtonColor = false
 		TabButton.Font = Enum.Font.SourceSansSemibold
 		TabButton.Text = ""
-		TabButton.TextColor3 = Color3.fromRGB(0,0,0)
+		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButton.TextSize = 19.000
 
 		TabButtonText.Name = "TabButtonText"
 		TabButtonText.Parent = TabButton
-		TabButtonText.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+		TabButtonText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TabButtonText.BackgroundTransparency = 1.000
 		TabButtonText.BorderSizePixel = 0
 		TabButtonText.Position = UDim2.new(0.0799999982, 0, 0, 0)
 		TabButtonText.Size = UDim2.new(0.920000017, 0, 1, 0)
 		TabButtonText.Font = Enum.Font.SourceSansSemibold
 		TabButtonText.Text = TabName
-		TabButtonText.TextColor3 = Color3.fromRGB(0,0,0)
+		TabButtonText.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButtonText.TextSize = 23.000
 		TabButtonText.TextWrapped = true
 		TabButtonText.TextXAlignment = Enum.TextXAlignment.Left
@@ -510,7 +508,7 @@ function UILibrary.Main(PrjName,HideKey)
 		TabButton.MouseButton1Click:Connect(function()
 			IsTabOpened.Value = true
 			UIPageLayout:JumpTo(Frame)
-			TweenService:Create(TabButton,TweenInfo.new(0.25),{BackgroundTransparency = 0.3,BackgroundColor3 = Color3.fromRGB(0,0,0)}):Play()
+			TweenService:Create(TabButton,TweenInfo.new(0.25),{BackgroundTransparency = 0.3,BackgroundColor3 = Color3.fromRGB(255,127,0)}):Play()
 			TweenService:Create(FadeFrame,TweenInfo.new(0.5),{BackgroundTransparency = 1}):Play()
 			ReColorOtherBtns()
 		end)
@@ -562,7 +560,7 @@ function UILibrary.Main(PrjName,HideKey)
 			SectionLabel.Size = UDim2.new(0, 127, 0, 18)
 			SectionLabel.Font = Enum.Font.GothamBold
 			SectionLabel.Text = SectionName
-			SectionLabel.TextColor3 = Color3.fromRGB(0,0,0)
+			SectionLabel.TextColor3 = Color3.fromRGB(209, 209, 209)
 			SectionLabel.TextSize = 16.000
 			SectionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -606,7 +604,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Toggle.AutoButtonColor = false
 				Toggle.Font = Enum.Font.SourceSans
 				Toggle.Text = ""
-				Toggle.TextColor3 = Color3.fromRGB(0,0,0)
+				Toggle.TextColor3 = Color3.fromRGB(255,127,0)
 				Toggle.TextSize = 14.000
 
 
@@ -621,13 +619,13 @@ function UILibrary.Main(PrjName,HideKey)
 				ToggleLabel.Parent = Toggle
 				ToggleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				ToggleLabel.BackgroundTransparency = 1.000
-				ToggleLabel.BorderColor3 = Color3.fromRGB(0,255,255)
+				ToggleLabel.BorderColor3 = Color3.fromRGB(255,127,0)
 				ToggleLabel.BorderSizePixel = 0
 				ToggleLabel.Position = UDim2.new(0.0500000007, 0, 0, 0)
 				ToggleLabel.Size = UDim2.new(0.949999988, 0, 1, 0)
 				ToggleLabel.Font = Enum.Font.GothamSemibold
 				ToggleLabel.Text = ToggleText
-				ToggleLabel.TextColor3 = Color3.fromRGB(0,0,0)
+				ToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ToggleLabel.TextSize = 16.000
 				ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -638,7 +636,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Checker.Name = "Checker"
 				Checker.Parent = Toggle
 				Checker.AnchorPoint = Vector2.new(0, 0.5)
-				Checker.BackgroundColor3 = Color3.fromRGB(0,255,255)
+				Checker.BackgroundColor3 = Color3.fromRGB(255,127,0)
 				Checker.BorderSizePixel = 0
 				Checker.Position = UDim2.new(0.935, 0, 0.5, 0)
 				Checker.Size = UDim2.new(0, 22, 0, 22)
@@ -715,7 +713,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Label.Font = Enum.Font.GothamSemibold
 				Label.Text = LabelText
 				Label.TextSize = LabelTextSize or 14
-				Label.TextColor3 = LabelTextColor or Color3.fromRGB(0,0,0)
+				Label.TextColor3 = LabelTextColor or Color3.fromRGB(255, 255, 255)
 				Label.TextScaled = IsScaled or false
 				Label.TextXAlignment = Enum.TextXAlignment.Left
 				return Label;
@@ -736,7 +734,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Label.Font = Enum.Font.GothamSemibold
 				Label.Text = LabelText
 				Label.TextSize = LabelTextSize or 14
-				Label.TextColor3 = LabelTextColor or Color3.fromRGB(0,0,0)
+				Label.TextColor3 = LabelTextColor or Color3.fromRGB(255, 255, 255)
 				Label.TextScaled = IsScaled or false
 				Label.TextXAlignment = Enum.TextXAlignment.Left
 				Label.TextYAlignment = Enum.TextYAlignment.Top
@@ -750,7 +748,7 @@ function UILibrary.Main(PrjName,HideKey)
 				DateMes.Size = UDim2.new(0.970777929, 0, -0.0263157897, 17)
 				DateMes.Font = Enum.Font.GothamSemibold
 				DateMes.Text = CommentText
-				DateMes.TextColor3 = Color3.fromRGB(0,0,0)
+				DateMes.TextColor3 = Color3.fromRGB(197, 197, 197)
 				DateMes.TextSize = 12.000
 				DateMes.TextXAlignment = Enum.TextXAlignment.Left
 				return Label;
@@ -798,13 +796,13 @@ function UILibrary.Main(PrjName,HideKey)
 				SliderLabel.Parent = Slider
 				SliderLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				SliderLabel.BackgroundTransparency = 1.000
-				SliderLabel.BorderColor3 = Color3.fromRGB(0,255,255)
+				SliderLabel.BorderColor3 = Color3.fromRGB(255,127,0)
 				SliderLabel.BorderSizePixel = 0
 				SliderLabel.Position = UDim2.new(0.0500000007, 0, 0, 0)
 				SliderLabel.Size = UDim2.new(0.949999988, 0, 1, 0)
 				SliderLabel.Font = Enum.Font.GothamSemibold
 				SliderLabel.Text = SliderText
-				SliderLabel.TextColor3 = Color3.fromRGB(0,0,0)
+				SliderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 				SliderLabel.TextSize = 16.000
 				SliderLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -826,7 +824,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Circle.Name = "Circle"
 				Circle.Parent = Progress
 				Circle.AnchorPoint = Vector2.new(0, 0.5)
-				Circle.BackgroundColor3 = Color3.fromRGB(0,255,255)
+				Circle.BackgroundColor3 = Color3.fromRGB(255,127,0)
 				Circle.BorderSizePixel = 0
 				Circle.Position = UDim2.new(1, 0, 0.5, 0)
 				Circle.Size = UDim2.new(0, 12, 0, 12)
@@ -847,7 +845,7 @@ function UILibrary.Main(PrjName,HideKey)
 				ValueLabel.Size = UDim2.new(0, 25, 0, 18)
 				ValueLabel.Font = Enum.Font.GothamSemibold
 				ValueLabel.Text = (precise and string.format("%.1f", tostring(defvalue))) or (math.floor(defvalue))
-				ValueLabel.TextColor3 = Color3.fromRGB(0,0,0)
+				ValueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ValueLabel.TextSize = 14.000
 
 				HideColor.Name = "HideColor"
@@ -869,7 +867,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Progress.Name = "Progress"
 				Progress.Parent = Sliding
-				Progress.BackgroundColor3 = Color3.fromRGB(0,255,255)
+				Progress.BackgroundColor3 = Color3.fromRGB(255,127,0)
 				Progress.BorderSizePixel = 0
 				Progress.Size = UDim2.new(0.5, 0, 1, 0)
 
@@ -970,7 +968,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Dropdown.AutoButtonColor = false
 				Dropdown.Font = Enum.Font.GothamSemibold
 				Dropdown.Text = ""
-				Dropdown.TextColor3 = Color3.fromRGB(0,0,0)
+				Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
 				Dropdown.TextSize = 14.000
 
 				Frame.Parent = Dropdown
@@ -993,7 +991,7 @@ function UILibrary.Main(PrjName,HideKey)
 				DropdownBox.Size = UDim2.new(0.95, 0, 0, 40)
 				DropdownBox.Font = Enum.Font.GothamSemibold
 				DropdownBox.Text = placeholder
-				DropdownBox.TextColor3 = Color3.fromRGB(0,0,0)
+				DropdownBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 				DropdownBox.TextSize = 15.000
 				DropdownBox.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1038,7 +1036,7 @@ function UILibrary.Main(PrjName,HideKey)
 				CloseButton.Size = UDim2.new(0, 60, 0, 39)
 				CloseButton.Font = Enum.Font.GothamSemibold
 				CloseButton.Text = "Close"
-				CloseButton.TextColor3 = Color3.fromRGB(0,0,0)
+				CloseButton.TextColor3 = Color3.fromRGB(255,127,0)
 				CloseButton.TextSize = 15.000
 				CloseButton.ZIndex = 4
 
@@ -1058,7 +1056,7 @@ function UILibrary.Main(PrjName,HideKey)
 				DropdownListHeader.BackgroundTransparency = 1
 				DropdownListHeader.Size = UDim2.new(0, 334, 0, 39)
 				DropdownListHeader.Font = Enum.Font.GothamSemibold
-				DropdownListHeader.TextColor3 = Color3.fromRGB(0,0,0)
+				DropdownListHeader.TextColor3 = Color3.fromRGB(255, 255, 255)
 				DropdownListHeader.TextSize = 17.000
 				DropdownListHeader.Text = "  " .. placeholder
 				DropdownListHeader.TextXAlignment = Enum.TextXAlignment.Left
@@ -1142,7 +1140,7 @@ function UILibrary.Main(PrjName,HideKey)
 					SelectableButton.AutoButtonColor = false
 					SelectableButton.Font = Enum.Font.SourceSansSemibold
 					SelectableButton.Text = ""
-					SelectableButton.TextColor3 = Color3.fromRGB(0,0,0)
+					SelectableButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 					SelectableButton.TextSize = 16.000
 
 					SelectableText.Name = "SelectableText"
@@ -1154,7 +1152,7 @@ function UILibrary.Main(PrjName,HideKey)
 					SelectableText.Size = UDim2.new(0.920000017, 0, 1, 0)
 					SelectableText.Font = Enum.Font.SourceSansSemibold
 					SelectableText.Text = "    " .. Text
-					SelectableText.TextColor3 = Color3.fromRGB(0,0,0)
+					SelectableText.TextColor3 = Color3.fromRGB(255, 255, 255)
 					SelectableText.TextSize = 18.000
 					SelectableText.TextWrapped = true
 					SelectableText.TextXAlignment = Enum.TextXAlignment.Left
@@ -1179,7 +1177,7 @@ function UILibrary.Main(PrjName,HideKey)
 					ChoosedCircle.Name = "ChoosedCircle"
 					ChoosedCircle.Parent = SelectableButton
 					ChoosedCircle.AnchorPoint = Vector2.new(0,0.5)
-					ChoosedCircle.BackgroundColor3 = Color3.fromRGB(0,255,255)
+					ChoosedCircle.BackgroundColor3 = Color3.fromRGB(255,127,0)
 					ChoosedCircle.BackgroundTransparency = 1.000
 					ChoosedCircle.BorderSizePixel = 0
 					ChoosedCircle.Position = UDim2.new(0, 5, 0.5, 0)
@@ -1188,7 +1186,7 @@ function UILibrary.Main(PrjName,HideKey)
 					InnerCircle.Name = "InnerCircle"
 					InnerCircle.Parent = ChoosedCircle
 					InnerCircle.AnchorPoint = Vector2.new(0.5, 0.5)
-					InnerCircle.BackgroundColor3 = Color3.fromRGB(0,255,255)
+					InnerCircle.BackgroundColor3 = Color3.fromRGB(255,127,0)
 					InnerCircle.BackgroundTransparency = 1.000
 					InnerCircle.BorderSizePixel = 0
 					InnerCircle.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -1300,7 +1298,7 @@ function UILibrary.Main(PrjName,HideKey)
 				TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
 				TextBox.TextSize = 14.000
 				TextBox.PlaceholderText = btnText
-				TextBox.TextColor3 = Color3.new(0,0,0)
+				TextBox.TextColor3 = Color3.new(1,1,1)
 				UICorner.Parent = TextBox
 TextBox.FocusLost:Connect(function() 
 
@@ -1327,7 +1325,7 @@ TextBox.FocusLost:Connect(function()
 				Button.AutoButtonColor = false
 				Button.Font = Enum.Font.SourceSansSemibold
 				Button.Text = ""
-				Button.TextColor3 = Color3.fromRGB(0,0,0)
+				Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 				Button.TextSize = 19.000
 
 				ButtonText.Name = "ButtonText"
@@ -1339,7 +1337,7 @@ TextBox.FocusLost:Connect(function()
 				ButtonText.Size = UDim2.new(1, 0, 1, 0)
 				ButtonText.Font = Enum.Font.SourceSansSemibold
 				ButtonText.Text = btnText
-				ButtonText.TextColor3 = Color3.fromRGB(0,0,0)
+				ButtonText.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ButtonText.TextSize = 18
 				ButtonText.TextWrapped = true
 				ButtonText.TextXAlignment = Enum.TextXAlignment.Left
@@ -1366,7 +1364,7 @@ TextBox.FocusLost:Connect(function()
 				end)
 
 				Button.MouseButton1Down:Connect(function()
-					TweenService:Create(Button,TweenInfo.new(0.25),{BackgroundTransparency = 0.3,BackgroundColor3 = Color3.fromRGB(0,255,255)}):Play()
+					TweenService:Create(Button,TweenInfo.new(0.25),{BackgroundTransparency = 0.3,BackgroundColor3 = Color3.fromRGB(255,127,0)}):Play()
 				end)
 
 				Button.MouseEnter:Connect(function()
