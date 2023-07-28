@@ -15,7 +15,19 @@ Window = Library.Main("Bluefox Script","RightShift")
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
+
+_G.text = false
+local EnabledToggle = Section.NewToggle("save text",function(bool)
+	if _G.text then
+	else
+		local mode_ = Section.Newtextbox('Rainbow Speed',function(self,value)
+		end)
+	end
+
+end)
+_G.rainbow = false
 local Section = Tab.NewSection("Rainbow Speed (WIP)")
+
 
 _G.move = {
 	dmd = 15, -- mode 1-4
