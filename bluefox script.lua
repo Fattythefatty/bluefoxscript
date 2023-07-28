@@ -12,7 +12,52 @@
 --]]
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Syr0nix/UI-lib-NEW/main/WL"))()
 Window = Library.Main("Bluefox Script","RightShift")
-local Tab = Window.NewTab("Gampeass")
+_G.Rainbowwings = false
+local Tab = Window.NewTab("Settings")
+local Section = Tab.NewSection("Stuff")
+local Section = Tab.NewSection("Rainbow Speed (WIP)")
+
+_G.move = {
+	dmd = 15, -- mode 1-4
+
+	}
+
+local mode_ = Section.Newtextbox('Rainbow Speed',function(self,value)
+	if tonumber(value) ~= nil then
+		_G.move.dmd = tonumber(value)
+	end
+end)
+
+_G.rainbow = false
+local EnabledToggle = Section.NewToggle("Rainbow Toggle",function(bool)
+	if _G.rainbow then
+		local timergb, RBW_COL = 5
+		rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
+			local hue = tick() % timergb / timergb
+			RBW_COL = Color3.fromHSV(hue,1,1)
+		end)
+
+	end
+
+end)
+local Section = Tab.NewSection("Rainbow Speed (WIP)") 
+
+local Target = GetPlayer(Args[1]);
+local Delay = tonumber(Args[2]);
+for i, v in next, Target do
+	if (Delay) then
+		wait(Delay);
+	end
+	if (Caller ~= LocalPlayer) then
+		ExecuteCommand("bring", {Caller.Name, v.Name}, LocalPlayer)
+	else
+		GetRoot().CFrame = GetRoot(v).CFrame * CFrameNew(-5, 0, 0);
+	end
+end
+
+	
+
+local Tab = Window.NewTab("Gamepasses")
 local Section = Tab.NewSection("BE FREE")
 local Button = Section.NewButton("Wings",function()
 	local args = {[1] = "Wings",[2] = 0,[3] = "\230\139\154\230\136\172i\235\156\146(\238\138\155\201\172XD"}
@@ -72,11 +117,7 @@ local EnabledToggle = Section.NewToggle("Mute VIW Music",function(bool)
 		end
 	end
 end)
-local timergb, RBW_COL = 10
-rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
-	local hue = tick() % timergb / timergb
-	RBW_COL = Color3.fromHSV(hue,1,1)
-end)
+
 _G.cocktuning = {
 	dmod = 1, -- mode 1-4
 	desc = 'Example Title', -- auto description text
@@ -92,19 +133,7 @@ local mode_ = Section.Newtextbox('Description Mode',function(self,value)
 		_G.cocktuning.dmod = tonumber(value)
 	end
 end)
---[[
-Usage:
-    to change mod or text u should just change in _G.cocktuning
-    Example:
-        dmod = 2,
-        desc = 'SOME ANOTHER TEXT TO WHAT U WANT'
-    
-    DO NOT TOUCH FUCKING WAITS IN _G.cocktuning IF YOU DONT KNOW WHAT THEY MEAN!!
-    Cause I don't want to be like sucker when y'all use my script wrongly.. :sob:
-    
-    Mady by: Unix
-    Included to syronix script.
---]]
+
 _G.PROVODASUKAB = false
 local cfg = {key = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153",eventname = "ChangeDesc",mk = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')}
 local Button = Section.NewToggle("Auto Description",function()
@@ -782,4 +811,4 @@ local Button = Section.NewButton("Volcano",function()
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
 
-print "unuiuxue#6291 is gay and you suck this nuts ;0 and peace mad lol (also syro is bad!11!!)"
+print "Oh Daddy UwU"
