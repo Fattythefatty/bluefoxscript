@@ -124,7 +124,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ButtonsTab.Name = "ButtonsTab"
 	ButtonsTab.Parent = LeftPart
-	ButtonsTab.BackgroundColor3 = Color3.fromRGB(0, 15, 255)
+	ButtonsTab.BackgroundColor3 = Color3.fromRGB(255,255,255)
 	ButtonsTab.BorderSizePixel = 0
 	ButtonsTab.Position = UDim2.new(0, 0, 0.184829056, 0)
 	ButtonsTab.Size = UDim2.new(0, 218, 0, 362)
@@ -340,7 +340,7 @@ function UILibrary.Main(PrjName,HideKey)
 		NofiticationButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NofiticationButton.BackgroundTransparency = 1.000
 		NofiticationButton.BorderSizePixel = 0
-		NofiticationButton.Position = UDim2.new(0.5, 0, 0.560000002, 0)
+		NofiticationButton.Position = UDim2.new(0.5, 0, 0.200002, 0)
 		NofiticationButton.Size = UDim2.new(0, 330, 0, 36)
 		NofiticationButton.AutoButtonColor = false
 		NofiticationButton.Font = Enum.Font.GothamSemibold
@@ -437,7 +437,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 		FadeFrame.Name = "FadeFrame"
 		FadeFrame.Parent = Frame
-		FadeFrame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+		FadeFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
 		FadeFrame.BackgroundTransparency = 0
 		FadeFrame.BorderSizePixel = 0
 		FadeFrame.Position = UDim2.new(0, 0, 0, 0)
@@ -477,7 +477,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 		TabButtonText.Name = "TabButtonText"
 		TabButtonText.Parent = TabButton
-		TabButtonText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TabButtonText.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
 		TabButtonText.BackgroundTransparency = 1.000
 		TabButtonText.BorderSizePixel = 0
 		TabButtonText.Position = UDim2.new(0.0799999982, 0, 0, 0)
