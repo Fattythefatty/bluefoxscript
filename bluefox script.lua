@@ -33,11 +33,9 @@ local EnabledToggle = Section.NewToggle("Rainbow Toggle",function(bool)
 
 
 end)
-if _G.rainbow then
 
-
-end
-local timergb, RBW_COL = 5
+end)
+local timergb, RBW_COL = col1
 rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
 	local hue = tick() % timergb / timergb
 	RBW_COL = Color3.fromHSV(hue,1,1)
@@ -431,10 +429,13 @@ local EnabledToggle = Section.NewToggle("Rainbow wings",function(bool)
 		_G.Rainbowwings = true
 	end	
 		local Mat = "Neon"
+		task.wait()
+		wait()
 	local SecondaryArgs={[1]="Material",[2]=Mat,[3]={[8]="RightWingStart",[24] = "Tail5",[45] = "LegFluff",[9]="RightWing2",[6]="LeftWing2",[5]="LeftWingStart",[22]="LeftLeg",[26]="RightArm",[23]="LeftEar",[18]="LeftArm",[19]="RightEar",[16]="RightLeg",[23]="LeftEar",[19]="RightEar",[15]="Tail3",[13]="Tail1",}}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
 	while _G.Rainbowwings do
 		task.wait()
+		
 			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
 			mk1:FireServer("customize", {[45] = "LegFluff",[8]="RightWingStart",[9]="RightWing2",[6]="LeftWing2",[5]="LeftWingStart",[22]="LeftLeg",[26]="RightArm",[23]="LeftEar",[10]="RightWing3",[7]="LeftWing3",[23]="LeftEar",[18]="LeftArm",[19]="RightEar",[16]="RightLeg",[19]="RightEar",[15]="Tail3",[13]="Tail1", },Color3.new(RBW_COL.R,RBW_COL.G,RBW_COL.B),"Body")
 		wait()
