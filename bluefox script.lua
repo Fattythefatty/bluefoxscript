@@ -40,21 +40,6 @@ local EnabledToggle = Section.NewToggle("Rainbow Toggle",function(bool)
 	end
 
 end)
-local Section = Tab.NewSection("Rainbow Speed (WIP)") 
-
-local Target = GetPlayer(Args[1]);
-local Delay = tonumber(Args[2]);
-for i, v in next, Target do
-	if (Delay) then
-		wait(Delay);
-	end
-	if (Caller ~= LocalPlayer) then
-		ExecuteCommand("bring", {Caller.Name, v.Name}, LocalPlayer)
-	else
-		GetRoot().CFrame = GetRoot(v).CFrame * CFrameNew(-5, 0, 0);
-	end
-end
-
 	
 
 local Tab = Window.NewTab("Gamepasses")
