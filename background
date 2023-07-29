@@ -68,9 +68,33 @@ function UILibrary.Main(PrjName,HideKey)
 	Main.Visible = true
 	UICorner.Parent = Main
 	UICorner.CornerRadius = UDim.new(0,8)
-	local Main = -- Your parent GUI object (e.g., ScreenGui, Frame, etc.)
-	local FadeBackgroundFrame = Instance.new("Frame")
+	local TweenService = game:GetService("TweenService")
+
+	local Main = -- Your Main frame here
 	
+	-- Function to create a rainbow color
+	local function createRainbowColor(t)
+		local frequency = 1
+		local center = 128
+		local width = 127
+		local r = math.sin(frequency*t + 0) * width + center
+		local g = math.sin(frequency*t + (2*math.pi/3)) * width + center
+		local b = math.sin(frequency*t + (4*math.pi/3)) * width + center
+		return Color3.fromRGB(r, g, b)
+	end
+	
+	-- Animate rainbow colors
+	local duration = 10 -- Total duration of the rainbow effect in seconds
+	local startTime = tick()
+	
+	game:GetService("RunService").RenderStepped:Connect(function()
+		local elapsedTime = tick() - startTime
+		local t = elapsedTime % duration / duration
+		local currentColor = createRainbowColor(t)
+		FadeBackgroundFrame.BackgroundColor3 = currentColor
+	end)
+	
+	local FadeBackgroundFrame = Instance.new("Frame")
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
 	FadeBackgroundFrame.BackgroundTransparency = 1.000
@@ -78,25 +102,10 @@ function UILibrary.Main(PrjName,HideKey)
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
 	FadeBackgroundFrame.ZIndex = 3
 	
-	local function RainbowColor(t)
-		local frequency = 1 -- Change this value to adjust the speed of the rainbow effect
-		local center = 128
-		local width = 127
+	-- Start the animation immediately
+	local initialColor = createRainbowColor(0)
+	FadeBackgroundFrame.BackgroundColor3 = initialColor
 	
-		local r = math.sin(frequency * t + 0) * width + center
-		local g = math.sin(frequency * t + (2 * math.pi / 3)) * width + center
-		local b = math.sin(frequency * t + (4 * math.pi / 3)) * width + center
-	
-		return Color3.fromRGB(r, g, b)
-	end
-	
-	while true do
-		for t = 0, 1, 0.01 do
-			local color = RainbowColor(t)
-			FadeBackgroundFrame.BackgroundColor3 = color
-			wait(0.1) -- Change this value to adjust the speed of the rainbow effect
-		end
-	end
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
 	LeftPart.BackgroundColor3 = Color3.fromRGB(27,27,87)
