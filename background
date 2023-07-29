@@ -70,16 +70,16 @@ function UILibrary.Main(PrjName,HideKey)
 	UICorner.CornerRadius = UDim.new(0,8)
 	local TweenService = game:GetService("TweenService")
 
-	local Main = -- Your Main frame here
+	local Main = --[[Your Main frame here--]]
 	
 	-- Function to create a rainbow color
 	local function createRainbowColor(t)
 		local frequency = 1
 		local center = 128
 		local width = 127
-		local r = math.sin(frequency*t + 0) * width + center
-		local g = math.sin(frequency*t + (2*math.pi/3)) * width + center
-		local b = math.sin(frequency*t + (4*math.pi/3)) * width + center
+		local r = math.sin(frequency * t + 0) * width + center
+		local g = math.sin(frequency * t + (2 * math.pi / 3)) * width + center
+		local b = math.sin(frequency * t + (4 * math.pi / 3)) * width + center
 		return Color3.fromRGB(r, g, b)
 	end
 	
