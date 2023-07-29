@@ -83,17 +83,6 @@ function UILibrary.Main(PrjName,HideKey)
 		return Color3.fromRGB(r, g, b)
 	end
 	
-	-- Animate rainbow colors
-	local duration = 10 -- Total duration of the rainbow effect in seconds
-	local startTime = tick()
-	
-	game:GetService("RunService").RenderStepped:Connect(function()
-		local elapsedTime = tick() - startTime
-		local t = elapsedTime % duration / duration
-		local currentColor = createRainbowColor(t)
-		FadeBackgroundFrame.BackgroundColor3 = currentColor
-	end)
-	
 	local FadeBackgroundFrame = Instance.new("Frame")
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
@@ -102,9 +91,21 @@ function UILibrary.Main(PrjName,HideKey)
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
 	FadeBackgroundFrame.ZIndex = 3
 	
+	-- Function to update the color
+	local function updateColor()
+		local elapsedTime = tick() - startTime
+		local t = elapsedTime % duration / duration
+		local currentColor = createRainbowColor(t)
+		FadeBackgroundFrame.BackgroundColor3 = currentColor
+	end
+	
+	local duration = 10 -- Total duration of the rainbow effect in seconds
+	local startTime = tick()
+	
 	-- Start the animation immediately
-	local initialColor = createRainbowColor(0)
-	FadeBackgroundFrame.BackgroundColor3 = initialColor
+	updateColor()
+	
+	game:GetService("RunService").Heartbeat:Connect(updateColor)
 	
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
