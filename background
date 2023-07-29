@@ -47,7 +47,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Main.Name = "Main"
 	Main.Parent = Library
-	Main.BackgroundColor3 = Color3.fromRGB(27,27,87)
+	Main.BackgroundColor3 = Color3.fromRGB(27,27,187)
 	Main.BorderSizePixel = 0
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.25, 0, 0.25, 0)
@@ -73,7 +73,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
-	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,157, 157)
+	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 87)
 	FadeBackgroundFrame.BackgroundTransparency = 1.000
 	FadeBackgroundFrame.BorderSizePixel = 0
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
