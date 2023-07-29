@@ -68,45 +68,17 @@ function UILibrary.Main(PrjName,HideKey)
 	Main.Visible = true
 	UICorner.Parent = Main
 	UICorner.CornerRadius = UDim.new(0,8)
-	local TweenService = game:GetService("TweenService")
 
-	local Main = --[[Your Main frame here--]]
-	
-	-- Function to create a rainbow color
-	local function createRainbowColor(t)
-		local frequency = 1
-		local center = 128
-		local width = 127
-		local r = math.sin(frequency * t + 0) * width + center
-		local g = math.sin(frequency * t + (2 * math.pi / 3)) * width + center
-		local b = math.sin(frequency * t + (4 * math.pi / 3)) * width + center
-		return Color3.fromRGB(r, g, b)
-	end
-	
 	local FadeBackgroundFrame = Instance.new("Frame")
+
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
+	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 87)
 	FadeBackgroundFrame.BackgroundTransparency = 1.000
 	FadeBackgroundFrame.BorderSizePixel = 0
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
 	FadeBackgroundFrame.ZIndex = 3
-	
-	-- Function to update the color
-	local function updateColor()
-		local elapsedTime = tick() - startTime
-		local t = elapsedTime % duration / duration
-		local currentColor = createRainbowColor(t)
-		FadeBackgroundFrame.BackgroundColor3 = currentColor
-	end
-	
-	local duration = 10 -- Total duration of the rainbow effect in seconds
-	local startTime = tick()
-	
-	-- Start the animation immediately
-	updateColor()
-	
-	game:GetService("RunService").Heartbeat:Connect(updateColor)
-	
+
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
 	LeftPart.BackgroundColor3 = Color3.fromRGB(27,27,87)
