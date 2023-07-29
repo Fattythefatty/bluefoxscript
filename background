@@ -47,7 +47,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Main.Name = "Main"
 	Main.Parent = Library
-	Main.BackgroundColor3 = Color3.fromRGB(27,127,187)
+	Main.BackgroundColor3 = Color3.fromRGB(27,27,87)
 	Main.BorderSizePixel = 0
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.25, 0, 0.25, 0)
@@ -1018,7 +1018,7 @@ function UILibrary.Main(PrjName,HideKey)
 				Tsd.Name = placeholder
 				Tsd.Parent = Main
 				Tsd.AnchorPoint = Vector2.new(0.5, 0.5)
-				Tsd.BackgroundColor3 = Color3.fromRGB(27,27,87)
+				Tsd.BackgroundColor3 = Color3.fromRGB(27,127,187)
 				Tsd.BorderSizePixel = 0
 				Tsd.Position = UDim2.new(0.5, 0, 1.5, 0)
 				Tsd.Size = UDim2.new(0, 360, 0, 270)
