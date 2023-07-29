@@ -68,35 +68,62 @@ function UILibrary.Main(PrjName,HideKey)
 	Main.Visible = true
 	UICorner.Parent = Main
 	UICorner.CornerRadius = UDim.new(0,8)
-	local Main = --[[ Your Main object goes here ]]
+local Main = --[[ Your Main object goes here ]]
 
-	local FadeBackgroundFrame = Instance.new("Frame")
-	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
-	FadeBackgroundFrame.Parent = Main
-	FadeBackgroundFrame.BackgroundTransparency = 1.000
-	FadeBackgroundFrame.BorderSizePixel = 0
-	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
-	FadeBackgroundFrame.ZIndex = 3
-	
-	local function rainbowColor(step)
-		local r = math.sin(step + 0) * 127 + 128
-		local g = math.sin(step + 2) * 127 + 128
-		local b = math.sin(step + 4) * 127 + 128
-		return Color3.fromRGB(r, g, b)
-	end
-	
-	local step = 0
-	local stepIncrement = 0.01 -- You can adjust the speed of the rainbow effect here
-	
-	while true do
-		step = step + stepIncrement
-		if step >= 2 * math.pi then
-			step = step - 2 * math.pi
-		end
-		FadeBackgroundFrame.BackgroundColor3 = rainbowColor(step)
-		wait() -- Adjust the wait time here for smoother or faster animation
-	end
-	
+local FadeBackgroundFrame = Instance.new("Frame")
+FadeBackgroundFrame.Name = "FadeBackgroundFrame"
+FadeBackgroundFrame.Parent = Main
+FadeBackgroundFrame.BackgroundTransparency = 1.000
+FadeBackgroundFrame.BorderSizePixel = 0
+FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
+FadeBackgroundFrame.ZIndex = 3
+
+local function rainbowColor(step)
+    local r = math.sin(step + 0) * 127 + 128
+    local g = math.sin(step + 2) * 127 + 128
+    local b = math.sin(step + 4) * 127 + 128
+    return Color3.fromRGB(r, g, b)
+end
+
+local step = 0
+local stepIncrement = 0.01 -- You can adjust the speed of the rainbow effect here
+
+while true do
+    step = step + stepIncrement
+    if step >= 2 * math.pi then
+        step = step - 2 * math.pi
+    end
+    FadeBackgroundFrame.BackgroundColor3 = rainbowColor(step)
+    wait() -- Adjust the wait time here for smoother or faster animation
+end
+local Main = --[[ Your Main object goes here ]]
+
+local FadeBackgroundFrame = Instance.new("Frame")
+FadeBackgroundFrame.Name = "FadeBackgroundFrame"
+FadeBackgroundFrame.Parent = Main
+FadeBackgroundFrame.BackgroundTransparency = 1.000
+FadeBackgroundFrame.BorderSizePixel = 0
+FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
+FadeBackgroundFrame.ZIndex = 3
+
+local function rainbowColor(step)
+    local r = math.sin(step + 0) * 127 + 128
+    local g = math.sin(step + 2) * 127 + 128
+    local b = math.sin(step + 4) * 127 + 128
+    return Color3.fromRGB(r, g, b)
+end
+
+local step = 0
+local stepIncrement = 0.01 -- You can adjust the speed of the rainbow effect here
+
+while true do
+    step = step + stepIncrement
+    if step >= 2 * math.pi then
+        step = step - 2 * math.pi
+    end
+    FadeBackgroundFrame.BackgroundColor3 = rainbowColor(step)
+    wait() -- Adjust the wait time here for smoother or faster animation
+end
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
 	LeftPart.BackgroundColor3 = Color3.fromRGB(27,27,87)
