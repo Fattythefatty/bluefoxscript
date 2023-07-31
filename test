@@ -21,8 +21,8 @@ local Section = Tab.NewSection("Text")
 local chatBotEnabled = false
 local chatBotPrefix = "!"
 
-Section.NewToggle("Chatbot", function(bool)
-    chatBotEnabled = bool
+
+    chatBotEnabled = true
 end)
 
 -- Table of intents and their corresponding responses
