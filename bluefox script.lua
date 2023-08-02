@@ -220,9 +220,9 @@ local intervalTextbox = Section.Newtextbox('Speed Change Interval (seconds)', fu
     end
 end)
 
-local customColorSpeedTextbox = Section.Newtextbox('Custom Color Speed (1-50)', function(self, value)
+local customColorSpeedTextbox = Section.Newtextbox('Custom Color Speed (1-300)', function(self, value)
     if tonumber(value) then
-        customColorSpeed = math.clamp(tonumber(value), 1, 50)
+        customColorSpeed = math.clamp(tonumber(value), 1, 300)
     end
 end)
 
