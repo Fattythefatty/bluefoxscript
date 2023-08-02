@@ -1,44 +1,22 @@
---[[
-	Instruction for script:
-		Description Mode - only 1-4 mods
-		Description Text - text which will be automated in ur desc
-	
-	Desc Modes:
-		Mode 1 - default typing
-		Mode 2 - erase typing
-		Mode 3 - glitchy
-		Mode 4 - backward typing
-
---]]
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
 Window = Library.Main("Bluefox Script","RightShift")
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
-
-
-
 local Section = Tab.NewSection("Stuff")
-
 _G.textboxes = {}
 local isFocused = false
-
 local function createTextBox()
-    local textBox = Section.Newtextbox('Click to edit', function(self, value)
-      
+    local textBox = Section.Newtextbox('Click to edit', function(self, value)      
         if value ~= "" then
             _G.textboxes[#_G.textboxes + 1] = value
         end
-    end)
-
-   
+    end)   
     if not isFocused then
         textBox:SetFocus()
         isFocused = true
     end
-
     _G.textboxes[#_G.textboxes + 1] = ""
 end
-
 local EnabledToggle = Section.NewToggle("Click to add box", function(bool)
     if bool then
         createTextBox()
@@ -50,14 +28,10 @@ local EnabledToggle = Section.NewToggle("Click to add box", function(bool)
         isFocused = false
     end
 end)
-local Section = Tab.NewSection("Rainbow")
-
 _G.move = {
     dmd = 15,
 }
-
 local timergb, RBW_COL = _G.move.dmd
-
 local function updateRainbowColor()
     local hue = tick() % timergb / timergb
     if hue == 0 then
@@ -67,22 +41,50 @@ local function updateRainbowColor()
         RBW_COL = Color3.fromHSV(hue, 1, 1)
     end
 end
-
 local rgb1 = nil
 local isRainbowEffectOn = false
 local isManualColorSet = false
 local currentSpeedSetting = "set" -- "set" or "random"
 local targetSpeed = _G.move.dmd -- Store the target speed
-
+local isBlackToWhiteMode = false
+local currentBlackToWhiteModeColor = 0
+local blackToWhiteStep = 0.01
+local isCustomColorMode = false
+local fromColor = Color3.new(1, 0, 0) -- Red color
+local toColor = Color3.new(0, 1, 0) -- Green color
+local customColorStep = 0
+local customColorSpeed = 15
 local function startRainbowEffect()
     if not isManualColorSet and not isRainbowEffectOn then
         rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
-            updateRainbowColor()
+            if isBlackToWhiteMode then
+                currentBlackToWhiteModeColor = currentBlackToWhiteModeColor + blackToWhiteStep
+                if currentBlackToWhiteModeColor >= 1 then
+                    currentBlackToWhiteModeColor = 1
+                    blackToWhiteStep = -blackToWhiteStep
+                elseif currentBlackToWhiteModeColor <= 0 then
+                    currentBlackToWhiteModeColor = 0
+                    blackToWhiteStep = -blackToWhiteStep
+                end
+                RBW_COL = Color3.new(currentBlackToWhiteModeColor, currentBlackToWhiteModeColor, currentBlackToWhiteModeColor)
+            elseif isCustomColorMode then
+                customColorStep = customColorStep + (1 / customColorSpeed)
+                if customColorStep >= 1 then
+                    customColorStep = 0
+                end
+                local stepColor = Color3.new(
+                    fromColor.r + (toColor.r - fromColor.r) * customColorStep,
+                    fromColor.g + (toColor.g - fromColor.g) * customColorStep,
+                    fromColor.b + (toColor.b - fromColor.b) * customColorStep
+                )
+                RBW_COL = stepColor
+            else
+                updateRainbowColor()
+            end
         end)
         isRainbowEffectOn = true
     end
 end
-
 local function stopRainbowEffect()
     if isRainbowEffectOn then
         if rgb1 then
@@ -92,28 +94,23 @@ local function stopRainbowEffect()
         isRainbowEffectOn = false
     end
 end
-
 local function smoothChangeSpeed(newSpeed)
     local currentSpeed = _G.move.dmd
     local timeToChange = 1.5 -- Transition time in seconds
     local steps = 60 -- Number of steps in the transition
-
     for i = 1, steps do
         local stepSpeed = currentSpeed + (newSpeed - currentSpeed) * (i / steps)
         _G.move.dmd = stepSpeed
         timergb = stepSpeed
         wait(timeToChange / steps)
     end
-
     _G.move.dmd = newSpeed
     timergb = newSpeed
 end
-
 local function smoothChangeColor(newRed, newGreen, newBlue)
     local currentColor = RBW_COL
     local timeToChange = 1.5 -- Transition time in seconds
     local steps = 60 -- Number of steps in the transition
-
     for i = 1, steps do
         local stepColor = Color3.new(
             currentColor.r + (newRed - currentColor.r) * (i / steps),
@@ -123,12 +120,9 @@ local function smoothChangeColor(newRed, newGreen, newBlue)
         RBW_COL = stepColor
         wait(timeToChange / steps)
     end
-
     RBW_COL = Color3.new(newRed, newGreen, newBlue)
 end
-
 local speedChangeInterval = 5
-
 local function randomizeRainbowSpeed()
     local seedGenerator = Random.new(tick())
     while true do
@@ -226,6 +220,12 @@ local intervalTextbox = Section.Newtextbox('Speed Change Interval (seconds)', fu
     end
 end)
 
+local customColorSpeedTextbox = Section.Newtextbox('Custom Color Speed (1-50)', function(self, value)
+    if tonumber(value) then
+        customColorSpeed = math.clamp(tonumber(value), 1, 50)
+    end
+end)
+
 Section.NewToggle("Manual Color Setting", function(bool)
     isManualColorSet = bool
     if isManualColorSet then
@@ -236,8 +236,200 @@ Section.NewToggle("Manual Color Setting", function(bool)
     end
 end)
 
+Section.NewToggle("Black To White Mode", function(bool)
+    if bool then
+        isBlackToWhiteMode = true
+        blackToWhiteStep = 0.01
+        stopRainbowEffect()
+        currentBlackToWhiteModeColor = 0
+        RBW_COL = Color3.new(0, 0, 0)
+        wait(0.5) -- Wait for a moment before starting the transition
+        startRainbowEffect()
+    else
+        isBlackToWhiteMode = false
+        startRainbowEffect()
+    end
+end)
+
+local customColorToggle = Section.NewToggle("Custom Color Mode", function(bool)
+    if bool then
+        isCustomColorMode = true
+        customColorStep = 0
+        stopRainbowEffect()
+        RBW_COL = fromColor
+        wait(0.5) -- Wait for a moment before starting the transition
+        startRainbowEffect()
+    else
+        isCustomColorMode = false
+        startRainbowEffect()
+    end
+end)
+
+local fromColorTextbox = Section.Newtextbox('From Color (R,G,B)', function(self, value)
+    local components = {}
+    for s in value:gmatch('%d+') do
+        table.insert(components, tonumber(s))
+    end
+
+    if #components == 3 then
+        fromColor = Color3.new(
+            math.clamp(components[1] / 255, 0, 1),
+            math.clamp(components[2] / 255, 0, 1),
+            math.clamp(components[3] / 255, 0, 1)
+        )
+        if isCustomColorMode then
+            stopRainbowEffect()
+            RBW_COL = fromColor
+            customColorStep = 0
+            wait(0.5) -- Wait for a moment before starting the transition
+            startRainbowEffect()
+        end
+    end
+end)
+
+local toColorTextbox = Section.Newtextbox('To Color (R,G,B)', function(self, value)
+    local components = {}
+    for s in value:gmatch('%d+') do
+        table.insert(components, tonumber(s))
+    end
+
+    if #components == 3 then
+        toColor = Color3.new(
+            math.clamp(components[1] / 255, 0, 1),
+            math.clamp(components[2] / 255, 0, 1),
+            math.clamp(components[3] / 255, 0, 1)
+        )
+        if isCustomColorMode then
+            stopRainbowEffect()
+            customColorStep = 0
+            wait(0.5) -- Wait for a moment before starting the transition
+            startRainbowEffect()
+        end
+    end
+end)
+
 spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
 
+
+-- Function to send a message to the chat
+local function sendChatMessageToChatBot(player, message)
+    local prefix = "[Bot]"
+    local fullMessage = prefix .. " " .. message
+
+    -- Fire the SayMessageRequest event to send the message to the chat
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+end
+
+-- Chatbot script
+local Tab = Window.NewTab("Chatbot")
+local Section = Tab.NewSection("Simple is only available atm")
+
+local chatBotEnabled = false
+local chatBotPrefix = "@"
+
+Section.NewToggle("Chatbot", function(bool)
+    chatBotEnabled = bool
+end)
+
+-- Table of intents and their corresponding responses
+local chatResponses = {
+    greetings = {
+        "Hi, how are you?",
+        "Hello!",
+        "Hey there!",
+        "Greetings!",
+    },
+    how_are_you = {
+        "I'm doing well, thank you! How can I assist you?",
+        "Feeling great! How can I help?",
+        "I'm good, thanks for asking!",
+    },
+    name = {
+        "My name is ThunderBot.",
+        "I'm ThunderBot, nice to meet you!",
+        "Call me ThunderBot!",
+    },
+    sad = {
+        "I'm sorry to hear that. Is there anything I can do to make you feel better?",
+        "I'm here for you. Let's talk and try to cheer you up!",
+        "Remember, tough times don't last. Stay strong!",
+    },
+    happy = {
+        "That's wonderful to hear! Keep spreading positivity!",
+        "Great to know you're happy! Share the happiness with others too!",
+        "Happiness is contagious! Keep smiling!",
+    },
+    bored = {
+        "Boredom is an opportunity to try something new. What interests you?",
+        "Let's find something fun to do together!",
+        "Boredom is the mother of creativity. Let's explore new ideas!",
+    },
+    stressed = {
+        "Take a deep breath and try to relax. Everything will be okay!",
+        "Remember to take breaks and care for yourself.",
+        "Stress is temporary. You've got this!",
+    },
+    lonely = {
+        "Remember that you're not alone. There are people who care about you.",
+        "Reach out to friends or family to connect.",
+        "I'm here to keep you company!",
+    },
+    default = {
+        "I'm not sure how to respond to that.",
+        "Could you please clarify what you mean?",
+        "I'm still learning, but I'm here to chat with you!",
+    },
+}
+
+-- Function to handle chat messages from all players
+local function onChatted(player, message)
+    if chatBotEnabled then
+        local lowercaseMessage = string.lower(message)
+        if lowercaseMessage:sub(1, 1) == chatBotPrefix then
+            local command = lowercaseMessage:sub(2)
+            local response = nil
+
+            -- Check for specific intents
+            if string.find(command, "hello", 1, true) then
+                response = chatResponses.greetings[math.random(1, #chatResponses.greetings)]
+            elseif string.find(command, "how are you", 1, true) then
+                response = chatResponses.how_are_you[math.random(1, #chatResponses.how_are_you)]
+            elseif string.find(command, "name", 1, true) then
+                response = chatResponses.name[math.random(1, #chatResponses.name)]
+            elseif string.find(command, "sad", 1, true) then
+                response = chatResponses.sad[math.random(1, #chatResponses.sad)]
+            elseif string.find(command, "happy", 1, true) then
+                response = chatResponses.happy[math.random(1, #chatResponses.happy)]
+            elseif string.find(command, "bored", 1, true) then
+                response = chatResponses.bored[math.random(1, #chatResponses.bored)]
+            elseif string.find(command, "stress", 1, true) then
+                response = chatResponses.stressed[math.random(1, #chatResponses.stressed)]
+            elseif string.find(command, "lonely", 1, true) then
+                response = chatResponses.lonely[math.random(1, #chatResponses.lonely)]
+            end
+
+            -- If the command does not match any intents, use the default response
+            if not response then
+                response = chatResponses.default[math.random(1, #chatResponses.default)]
+            end
+
+            sendChatMessageToChatBot(player, response)
+        else
+            -- Handle player's response to the chatbot
+            if string.sub(lowercaseMessage, 1, #chatBotPrefix + 1) == chatBotPrefix .. " " then
+                local playerResponse = string.sub(lowercaseMessage, #chatBotPrefix + 2)
+                sendChatMessageToChatBot(player, "You said: \"" .. playerResponse .. "\"")
+            end
+        end
+    end
+end
+
+-- Connect the onChatted function to the Chatted event for all players
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(msg)
+        onChatted(player, msg)
+    end)
+end
 
 local Tab = Window.NewTab("Gamepasses")
 local Section = Tab.NewSection("BE FREE")
@@ -299,7 +491,6 @@ local EnabledToggle = Section.NewToggle("Mute VIW Music",function(bool)
 		end
 	end
 end)
-
 _G.cocktuning = {
 	dmod = 1, -- mode 1-4
 	desc = 'Example Title', -- auto description text
@@ -315,7 +506,6 @@ local mode_ = Section.Newtextbox('Description Mode',function(self,value)
 		_G.cocktuning.dmod = tonumber(value)
 	end
 end)
-
 _G.PROVODASUKAB = false
 local cfg = {key = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153",eventname = "ChangeDesc",mk = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')}
 local Button = Section.NewToggle("Auto Description",function()
@@ -388,7 +578,6 @@ local Button = Section.NewButton("Teleport all",function()
 		game:GetService("ReplicatedStorage").CarryNewborn:FireServer(G_1)
 		wait(0.2)
 	end
-
 end)
 local Button = Section.NewButton("INF CASH",function()
 	local args = {[1] = "Coins",[2] = math.huge,[3] = "\226\135\154\225\155\157i\220\176\219\173\230\155\157u"}
@@ -614,10 +803,9 @@ end)
 local Button = Section.NewButton("Explorer",function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/DEX-Synapse-Edition/main/DEX'))();
 end)
-
 local Tab = Window.NewTab("rainbow")
-local Section = Tab.NewSection("selection")
-
+local ToggleSection = Tab.NewSection("Toggle")
+local PartSection = Tab.NewSection("Parts")
 local partsToRainbow = {
     "LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
     "LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
@@ -627,7 +815,6 @@ local partsToRainbow = {
     "Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
     "Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
 }
-
 local partToggles = {} -- Store toggles for each part
 local originalColors = {} -- Store original colors for each part
 local isNeon = {} -- Store whether each part is neon or not
@@ -642,7 +829,6 @@ local function getOriginalColor(part)
     end
     return Color3.new(1, 1, 1) -- Default white color
 end
-
 local function makePartNeon(part)
     local character = game.Players.LocalPlayer.Character
     if character and character:FindFirstChild(part) then
@@ -653,16 +839,14 @@ local function makePartNeon(part)
         end
     end
 end
-
 local function makePartRainbow(part)
     if isNeon[part] then
         local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
         mk1:FireServer("customize", { part }, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
     end
 end
-
 for i, part in ipairs(partsToRainbow) do
-    local partToggle = Section.NewToggle("Rainbow " .. part, function(bool)
+    local partToggle = PartSection.NewToggle("Rainbow " .. part, function(bool)
         if bool then
             partToggles[part] = true
             if not isNeon[part] then
@@ -687,49 +871,150 @@ for i, part in ipairs(partsToRainbow) do
     originalColors[part] = getOriginalColor(part) -- Store the original color
     isNeon[part] = false -- Initialize all parts to not neon
 end
-
 local rainbowEnabled = false
+local selectedNeonEnabled = false
 
 local function enableRainbowEffect()
+    local delayTime = 0.05 -- Time between transitions for each part
     while rainbowEnabled do
-        task.wait()
-
-        local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
-        local partArgs = {}
-
         for part, enabled in pairs(partToggles) do
             if enabled and isNeon[part] then
-                partArgs[#partArgs + 1] = part
+                makePartRainbow(part)
+                task.wait(delayTime)
             end
-        end
-
-        if #partArgs > 0 then
-            mk1:FireServer("customize", partArgs, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
         end
     end
 end
-
-Section.NewToggle("Rainbow Toggle", function(bool)
+ToggleSection.NewToggle("Rainbow Toggle", function(bool)
     rainbowEnabled = bool
     if rainbowEnabled then
         enableRainbowEffect()
+    end
+end)
+PartSection.NewToggle("Selected Neon", function(bool)
+    selectedNeonEnabled = bool
+    if selectedNeonEnabled then
+        for part, enabled in pairs(partToggles) do
+            if enabled and not isNeon[part] then
+                makePartNeon(part)
+            end
+        end
     else
         for part, enabled in pairs(partToggles) do
-            if not enabled then
-                local character = game.Players.LocalPlayer.Character
-                if character and character:FindFirstChild(part) then
-                    local partInstance = character[part]
-                    if partInstance:IsA("BasePart") then
-                        partInstance.Material = Enum.Material.Concrete
-                        partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
-                    end
-                end
+            if enabled and isNeon[part] then
+                makePartNeon(part)
+                makePartRainbow(part)
             end
         end
     end
 end)
-
-
+spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
+	local Tab = Window.NewTab("Random Rainbow")
+	local Section = Tab.NewSection("Selection")
+	local partsToRainbow = {
+		"LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+		"LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+		"RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+		"LeftLowerLeg", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+		"RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+		"Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+		"Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+	}
+	local partToggles = {} -- Store toggles for each part
+	local originalColors = {} -- Store original colors for each part
+	local isNeon = {} -- Store whether each part is neon or not
+	
+	local function getOriginalColor(part)
+		local character = game.Players.LocalPlayer.Character
+		if character and character:FindFirstChild(part) then
+			local partInstance = character[part]
+			if partInstance:IsA("BasePart") then
+				return partInstance.Color
+			end
+		end
+		return Color3.new(1, 1, 1) -- Default white color
+	end
+	local function makePartNeon(part)
+		local character = game.Players.LocalPlayer.Character
+		if character and character:FindFirstChild(part) then
+			local partInstance = character[part]
+			if partInstance:IsA("BasePart") then
+				partInstance.Material = Enum.Material.Neon
+				isNeon[part] = true
+			end
+		end
+	end
+	local function makePartRainbow(part)
+		if isNeon[part] then
+			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+			mk1:FireServer("customize", { part }, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+		end
+	end
+	for i, part in ipairs(partsToRainbow) do
+		local partToggle = Section.NewToggle("Rainbow " .. part, function(bool)
+			if bool then
+				partToggles[part] = true
+				if not isNeon[part] then
+					makePartNeon(part)
+				end
+				if rainbowEnabled then
+					makePartRainbow(part)
+				end
+			else
+				partToggles[part] = false
+				local character = game.Players.LocalPlayer.Character
+				if character and character:FindFirstChild(part) then
+					local partInstance = character[part]
+					if partInstance:IsA("BasePart") then
+						partInstance.Material = Enum.Material.Concrete
+						partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+					end
+				end
+			end
+		end)
+		partToggles[part] = false -- Initialize all toggles to false (disabled)
+		originalColors[part] = getOriginalColor(part) -- Store the original color
+		isNeon[part] = false -- Initialize all parts to not neon
+	end
+	local rainbowEnabled = false
+	
+	local function enableRainbowEffect()
+		while rainbowEnabled do
+			task.wait()
+	
+			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+			local partArgs = {}
+	
+			for part, enabled in pairs(partToggles) do
+				if enabled and isNeon[part] then
+					partArgs[#partArgs + 1] = part
+				end
+			end
+	
+			if #partArgs > 0 then
+				mk1:FireServer("customize", partArgs, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+			end
+		end
+	end
+	Section.NewToggle("Rainbow Toggle", function(bool)
+		rainbowEnabled = bool
+		if rainbowEnabled then
+			enableRainbowEffect()
+		else
+			for part, enabled in pairs(partToggles) do
+				if not enabled then
+					local character = game.Players.LocalPlayer.Character
+					if character and character:FindFirstChild(part) then
+						local partInstance = character[part]
+						if partInstance:IsA("BasePart") then
+							partInstance.Material = Enum.Material.Concrete
+							partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+						end
+					end
+				end
+			end
+		end
+	end)
 local Tab = Window.NewTab("presets")
 local Section = Tab.NewSection("presets")
 
@@ -759,8 +1044,7 @@ local Button = Section.NewButton("all concrete",function()
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Torso))
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(Legs))
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
-    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(PrimaryArgs))
-    
+    game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(PrimaryArgs))    
 end)
 local Button = Section.NewButton("all Glass",function()
     local airw = "Glass"
@@ -874,14 +1158,10 @@ local Button = Section.NewButton("all Sandstone", function()
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(SecondaryArgs))
     game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(PrimaryArgs))
 end)
-
-
-
 local Button = Section.NewButton("Neon Toungue",function()
 	--Made by syr0nix
 	local args = {[1] = "Material",[2] = "Neon",[3] = {[29] = "Toungue1",[30] = "Toungue2"}}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-	
+	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))	
 end)
 local Tab = Window.NewTab("Info")
 local Section = Tab.NewSection("Basic Information about bluefoxes")
@@ -1079,9 +1359,6 @@ _G.particlefade = false
 local COLOR1 = Color3.fromRGB(255,255,255) 
 local COLOR2 = Color3.fromRGB(0,0,0) 
 local SPEED = 1
-
-
--- additional variables
 local Remote = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')
 local KEY = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"
 local first_color = Instance.new('Color3Value') -- first value
@@ -1091,7 +1368,6 @@ first_color.Value = COLOR2
 local current_color = Instance.new('Color3Value') -- fading value
 current_color.Value = first_color.value
 local TweenService = game:GetService('TweenService') -- get tween service
-
 local EnabledToggle = Section.NewToggle("particlefade",function(bool)
 	if _G.particlefade then
 		_G.particlefade = false
@@ -1176,5 +1452,4 @@ local Button = Section.NewButton("Volcano",function()
 	local args = {[1] = "Spawn",[2] = "Volcano"}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
-
 print "Oh Daddy UwU"
