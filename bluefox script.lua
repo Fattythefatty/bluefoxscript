@@ -313,7 +313,7 @@ spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run c
 
 -- Function to send a message to the chat
 local function sendChatMessageToChatBot(player, message)
-    local prefix = "[Bot]"
+    local prefix = "[SimpleBot]"
     local fullMessage = prefix .. " " .. message
 
     -- Fire the SayMessageRequest event to send the message to the chat
