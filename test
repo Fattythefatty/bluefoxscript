@@ -7,7 +7,7 @@ end
 
 -- Chatbot script
 
-local chatBotPrefix = "@"
+local chatBotPrefix = "!"
 
 -- List of words that indicate the opposite feeling
 local oppositeIndicators = {
