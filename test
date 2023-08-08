@@ -1,1 +1,216 @@
-local Config={enabled=false,}local function sendChatMessageToChatBot(player,message)local prefix="[ThunderBot]"local fullMessage=prefix.." "..message;game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage,"All")end;local chatBotEnabled=false;local chatBotPrefix="!";local chatResponses={greetings={"Hi, how are you?","Hello!","Hey there!","Greetings!",},how_are_you={"I'm doing well, thank you! How can I assist you?","Feeling great! How can I help?","I'm good, thanks for asking!",},name={"My name is ThunderBot.","I'm ThunderBot, nice to meet you!","Call me ThunderBot!",},sad={"I'm sorry to hear that. Is there anything I can do to make you feel better?","I'm here for you. Let's talk and try to cheer you up!","Remember, tough times don't last. Stay strong!","It's okay to feel sad sometimes. Take your time.",},happy={"That's wonderful to hear! Keep spreading positivity!","Great to know you're happy! Share the happiness with others too!","Happiness is contagious! Keep smiling!","Keep the good vibes coming!",},bored={"Boredom is an opportunity to try something new. What interests you?","Let's find something fun to do together!","Boredom is the mother of creativity. Let's explore new ideas!","Feeling bored? Let's turn it around and have some fun!",},stressed={"Take a deep breath and try to relax. Everything will be okay!","Remember to take breaks and care for yourself.","Stress is temporary. You've got this!","Focus on the positive and take one step at a time.",},lonely={"Remember that you're not alone. There are people who care about you.","Reach out to friends or family to connect.","I'm here to keep you company!","You've got a friend in me!",},default={"I'm not sure how to respond to that.","Could you please clarify what you mean?","I'm still learning, but I'm here to chat with you!","I'm all ears! Feel free to share more.",},};local oppositePrompts={happy="sad",sad="happy",bored="excited",stressed="relaxed",lonely="connected",};local lastChatbotResponse=nil;local function onChatted(player,message)if chatBotEnabled then local lowercaseMessage=string.lower(message)if lowercaseMessage:sub(1,1)==chatBotPrefix then local command=lowercaseMessage:sub(2)local response=nil;if string.find(command,"hello",1,true)then response=chatResponses.greetings[math.random(1,#chatResponses.greetings)]elseif string.find(command,"how are you",1,true)then response=chatResponses.how_are_you[math.random(1,#chatResponses.how_are_you)]elseif string.find(command,"name",1,true)then response=chatResponses.name[math.random(1,#chatResponses.name)]elseif string.find(command,"sad",1,true)then response=chatResponses.sad[math.random(1,#chatResponses.sad)]elseif string.find(command,"happy",1,true)then response=chatResponses.happy[math.random(1,#chatResponses.happy)]elseif string.find(command,"bored",1,true)then response=chatResponses.bored[math.random(1,#chatResponses.bored)]elseif string.find(command,"stress",1,true)then response=chatResponses.stressed[math.random(1,#chatResponses.stressed)]elseif string.find(command,"lonely",1,true)then response=chatResponses.lonely[math.random(1,#chatResponses.lonely)]else for feeling,opposite in pairs(oppositePrompts)do if string.find(command,"opposite "..feeling,1,true)or string.find(command,"not "..feeling,1,true)or string.find(command,"dont "..feeling,1,true)or string.find(command,"cant "..feeling,1,true)or string.find(command,"aint "..feeling,1,true)then response=chatResponses[opposite][math.random(1,#chatResponses[opposite])]break end end if not response then response=chatResponses.default[math.random(1,#chatResponses.default)]end end lastChatbotResponse=response sendChatMessageToChatBot(player,response)else if string.sub(lowercaseMessage,1,#chatBotPrefix+1)==chatBotPrefix.." "then local playerResponse=string.sub(lowercaseMessage,#chatBotPrefix+2)if lastChatbotResponse then sendChatMessageToChatBot(player,"You said: \""..playerResponse.."\"")else sendChatMessageToChatBot(player,"Sorry, I cannot go back further unless you say \"hello\" again.")end end end end end;for _,player in ipairs(game.Players:GetPlayers())do player.Chatted:Connect(function(msg)onChatted(player,msg)end)end;
+local function sendChatMessageToChatBot(player, message)
+    local prefix = "[ThunderBot]"
+    local fullMessage = prefix .. " " .. message
+
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+end
+
+-- Chatbot script
+
+local chatBotPrefix = "@"
+
+-- List of words that indicate the opposite feeling
+local oppositeIndicators = {
+    "not",
+    "dont",
+    "cant",
+    "aint",
+    "opposite",
+    "never",
+    "without",
+}
+
+-- Table of intents and their corresponding responses
+local chatResponses = {
+    greetings = {
+        "Hi, how are you?",
+    },
+    how_are_you = {
+        "I'm doing well, thank you! How can I assist you?",
+    },
+    name = {
+        "My name is ThunderBot.",
+    },
+    sad = {
+        "I'm sorry to hear that. Is there anything I can do to make you feel better?",
+    },
+    happy = {
+        "That's wonderful to hear! Keep spreading positivity!",
+    },
+    bored = {
+        "Boredom is an opportunity to try something new. What interests you?",
+    },
+    stress = {
+        "Take a deep breath and try to relax. Everything will be okay!",
+    },
+    lonely = {
+        "Remember that you're not alone. There are people who care about you.",
+    },
+    good = {
+        "That's good to hear!",
+    },
+    bad = {
+        "I'm sorry to hear that. Is there something I can do to help?",
+    },
+    love = {
+        "Love is a wonderful feeling.",
+    },
+    like = {
+        "Liking something is a positive thing!",
+    },
+    dislike = {
+        "We all have things we don't like.",
+    },
+    hate = {
+        "Hate is a strong emotion.",
+    },
+    cool = {
+        "Cool! That sounds interesting.",
+    },
+    interesting = {
+        "That's fascinating!",
+    },
+    fun = {
+        "Fun activities are great for relaxation.",
+    },
+    excited = {
+        "Excitement is a wonderful feeling!",
+    },
+    anxious = {
+        "Anxiety can be tough, but you're not alone.",
+    },
+    tired = {
+        "It sounds like you need some rest.",
+    },
+    busy = {
+        "Being busy can be both rewarding and overwhelming.",
+    },
+    sick = {
+        "I'm sorry to hear that you're not feeling well.",
+    },
+    energetic = {
+        "Having energy is great for getting things done!",
+    },
+    what_to_do = {
+        "How about reading a book or watching a movie?",
+    },
+    tell_joke = {
+        "Why don't scientists trust atoms? Because they make up everything!",
+    },
+    answer_question = {
+        "I'm here to help with your questions!",
+    },
+    who_is_player = {
+        "I don't have information about that player.",
+    },
+    default = {
+        "I'm not sure how to respond to that.",
+    },
+}
+
+-- Variable to keep track of the last chatbot response
+local lastChatbotResponse = nil
+
+-- Function to handle chat messages from all players
+local function onChatted(player, message)
+    local lowercaseMessage = string.lower(message)
+    if lowercaseMessage:sub(1, 1) == chatBotPrefix then
+        local command = lowercaseMessage:sub(2)
+        local response = nil
+
+        -- Check for opposite keywords
+        for _, indicator in ipairs(oppositeIndicators) do
+            if string.find(command, indicator .. " ", 1, true) then
+                local oppositePrompt = string.gsub(command, indicator .. " ", "")
+                if chatResponses[oppositePrompt] then
+                    response = chatResponses[oppositePrompt][1]
+                    break
+                end
+            end
+        end
+
+        if not response then
+            -- Check for specific intent
+            if string.find(command, "hello", 1, true) then
+                response = chatResponses.greetings[1]
+            elseif string.find(command, "how are you", 1, true) then
+                response = chatResponses.how_are_you[1]
+            elseif string.find(command, "name", 1, true) then
+                response = chatResponses.name[1]
+            elseif string.find(command, "sad", 1, true) then
+                response = chatResponses.sad[1]
+            elseif string.find(command, "happy", 1, true) then
+                response = chatResponses.happy[1]
+            elseif string.find(command, "bored", 1, true) then
+                response = chatResponses.bored[1]
+            elseif string.find(command, "stress", 1, true) then
+                response = chatResponses.stress[1]
+            elseif string.find(command, "lonely", 1, true) then
+                response = chatResponses.lonely[1]
+            elseif string.find(command, "good", 1, true) then
+                response = chatResponses.good[1]
+            elseif string.find(command, "bad", 1, true) then
+                response = chatResponses.bad[1]
+            elseif string.find(command, "love", 1, true) then
+                response = chatResponses.love[1]
+            elseif string.find(command, "like", 1, true) then
+                response = chatResponses.like[1]
+            elseif string.find(command, "dislike", 1, true) then
+                response = chatResponses.dislike[1]
+            elseif string.find(command, "hate", 1, true) then
+                response = chatResponses.hate[1]
+            elseif string.find(command, "cool", 1, true) then
+                response = chatResponses.cool[1]
+            elseif string.find(command, "interesting", 1, true) then
+                response = chatResponses.interesting[1]
+            elseif string.find(command, "fun", 1, true) then
+                response = chatResponses.fun[1]
+            elseif string.find(command, "excited", 1, true) then
+                response = chatResponses.excited[1]
+            elseif string.find(command, "anxious", 1, true) then
+                response = chatResponses.anxious[1]
+            elseif string.find(command, "tired", 1, true) then
+                response = chatResponses.tired[1]
+            elseif string.find(command, "busy", 1, true) then
+                response = chatResponses.busy[1]
+            elseif string.find(command, "sick", 1, true) then
+                response = chatResponses.sick[1]
+            elseif string.find(command, "energetic", 1, true) then
+                response = chatResponses.energetic[1]
+            elseif string.find(command, "what should i do", 1, true) then
+                response = chatResponses.what_to_do[1]
+            elseif string.find(command, "tell me a joke", 1, true) then
+                response = chatResponses.tell_joke[1]
+            elseif string.find(command, "answer a question", 1, true) then
+                response = chatResponses.answer_question[1]
+            elseif string.find(command, "who am i", 1, true) or string.find(command, "do you know me", 1, true) then
+                response = string.format(chatResponses.who_am_i[1], player.Name)
+            elseif string.find(command, "who is ", 1, true) then
+                local playerName = string.match(command, "who is (.*)")
+                if playerName == player.Name then
+                    response = "That's you!"
+                else
+                    response = "I don't know much about " .. playerName .. "."
+                end
+            end
+        end
+
+        lastChatbotResponse = response
+        sendChatMessageToChatBot(player, response)
+    else
+        if string.sub(lowercaseMessage, 1, #chatBotPrefix + 1) == chatBotPrefix .. " " then
+            local playerResponse = string.sub(lowercaseMessage, #chatBotPrefix + 2)
+            if lastChatbotResponse then
+                sendChatMessageToChatBot(player, "You said: \"" .. playerResponse .. "\"")
+            else
+                sendChatMessageToChatBot(player, "Sorry, I cannot go back further unless you say \"hello\" again.")
+            end
+        end
+    end
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(msg)
+        onChatted(player, msg)
+    end)
+end
