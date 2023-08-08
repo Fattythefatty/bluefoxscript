@@ -325,7 +325,7 @@ local Tab = Window.NewTab("Chatbot")
 local Section = Tab.NewSection("Simple is only available atm")
 
 local chatBotEnabled = false
-local chatBotPrefix = "@"
+local chatBotPrefix = "!"
 
 Section.NewToggle("Chatbot", function(bool)
     chatBotEnabled = bool
