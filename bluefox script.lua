@@ -3,35 +3,14 @@ Window = Library.Main("Bluefox Script","RightShift")
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
-_G.textboxes = {}
-local isFocused = false
-local function createTextBox()
-    local textBox = Section.Newtextbox('Click to edit', function(self, value)      
-        if value ~= "" then
-            _G.textboxes[#_G.textboxes + 1] = value
-        end
-    end)   
-    if not isFocused then
-        textBox:SetFocus()
-        isFocused = true
-    end
-    _G.textboxes[#_G.textboxes + 1] = ""
-end
-local EnabledToggle = Section.NewToggle("Click to add box", function(bool)
-    if bool then
-        createTextBox()
-    else
-      
-        for _, textBox in ipairs(_G.textboxes) do
-            textBox:ReleaseFocus()
-        end
-        isFocused = false
-    end
-end)
+
+
 _G.move = {
     dmd = 15,
 }
+
 local timergb, RBW_COL = _G.move.dmd
+
 local function updateRainbowColor()
     local hue = tick() % timergb / timergb
     if hue == 0 then
@@ -41,19 +20,35 @@ local function updateRainbowColor()
         RBW_COL = Color3.fromHSV(hue, 1, 1)
     end
 end
+
 local rgb1 = nil
 local isRainbowEffectOn = false
 local isManualColorSet = false
 local currentSpeedSetting = "set" -- "set" or "random"
 local targetSpeed = _G.move.dmd -- Store the target speed
+
 local isBlackToWhiteMode = false
 local currentBlackToWhiteModeColor = 0
 local blackToWhiteStep = 0.01
+
 local isCustomColorMode = false
 local fromColor = Color3.new(1, 0, 0) -- Red color
 local toColor = Color3.new(0, 1, 0) -- Green color
 local customColorStep = 0
-local customColorSpeed = 15
+local customSpeed = _G.move.dmd
+
+local customColors = {
+    Color3.new(1, 0, 0), -- Red
+    Color3.new(0, 1, 0), -- Green
+    Color3.new(0, 0, 1), -- Blue
+    Color3.new(1, 1, 0), -- Yellow
+    Color3.new(1, 0, 1), -- Magenta
+    Color3.new(0, 1, 1)  -- Cyan
+}
+
+local customColorIndex = 1
+local customColorTransitionTime = 5 -- seconds for each color transition
+
 local function startRainbowEffect()
     if not isManualColorSet and not isRainbowEffectOn then
         rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
@@ -68,14 +63,20 @@ local function startRainbowEffect()
                 end
                 RBW_COL = Color3.new(currentBlackToWhiteModeColor, currentBlackToWhiteModeColor, currentBlackToWhiteModeColor)
             elseif isCustomColorMode then
-                customColorStep = customColorStep + (1 / customColorSpeed)
+                customColorStep = customColorStep + (1 / customSpeed)
                 if customColorStep >= 1 then
                     customColorStep = 0
+                    customColorIndex = customColorIndex + 1
+                    if customColorIndex > #customColors then
+                        customColorIndex = 1
+                    end
                 end
+                local currentCustomColor = customColors[customColorIndex]
+                local nextCustomColor = customColors[customColorIndex % #customColors + 1]
                 local stepColor = Color3.new(
-                    fromColor.r + (toColor.r - fromColor.r) * customColorStep,
-                    fromColor.g + (toColor.g - fromColor.g) * customColorStep,
-                    fromColor.b + (toColor.b - fromColor.b) * customColorStep
+                    currentCustomColor.r + (nextCustomColor.r - currentCustomColor.r) * customColorStep,
+                    currentCustomColor.g + (nextCustomColor.g - currentCustomColor.g) * customColorStep,
+                    currentCustomColor.b + (nextCustomColor.b - currentCustomColor.b) * customColorStep
                 )
                 RBW_COL = stepColor
             else
@@ -85,6 +86,7 @@ local function startRainbowEffect()
         isRainbowEffectOn = true
     end
 end
+
 local function stopRainbowEffect()
     if isRainbowEffectOn then
         if rgb1 then
@@ -94,23 +96,30 @@ local function stopRainbowEffect()
         isRainbowEffectOn = false
     end
 end
+
 local function smoothChangeSpeed(newSpeed)
     local currentSpeed = _G.move.dmd
     local timeToChange = 1.5 -- Transition time in seconds
     local steps = 60 -- Number of steps in the transition
+
     for i = 1, steps do
         local stepSpeed = currentSpeed + (newSpeed - currentSpeed) * (i / steps)
         _G.move.dmd = stepSpeed
+        customSpeed = stepSpeed
         timergb = stepSpeed
         wait(timeToChange / steps)
     end
+
     _G.move.dmd = newSpeed
+    customSpeed = newSpeed
     timergb = newSpeed
 end
+
 local function smoothChangeColor(newRed, newGreen, newBlue)
     local currentColor = RBW_COL
     local timeToChange = 1.5 -- Transition time in seconds
     local steps = 60 -- Number of steps in the transition
+
     for i = 1, steps do
         local stepColor = Color3.new(
             currentColor.r + (newRed - currentColor.r) * (i / steps),
@@ -120,9 +129,12 @@ local function smoothChangeColor(newRed, newGreen, newBlue)
         RBW_COL = stepColor
         wait(timeToChange / steps)
     end
+
     RBW_COL = Color3.new(newRed, newGreen, newBlue)
 end
+
 local speedChangeInterval = 5
+
 local function randomizeRainbowSpeed()
     local seedGenerator = Random.new(tick())
     while true do
@@ -166,7 +178,7 @@ Section.Newtextbox('Rainbow Speed', function(self, value)
         local speed = tonumber(value)
 
         if not _G.randomSpeed then
-            targetSpeed = speed -- Update the target speed
+            targetSpeed = speed -- Update
             smoothChangeSpeed(targetSpeed) -- Use smooth change
         end
 
@@ -220,34 +232,16 @@ local intervalTextbox = Section.Newtextbox('Speed Change Interval (seconds)', fu
     end
 end)
 
-local customColorSpeedTextbox = Section.Newtextbox('Custom Color Speed (1-300)', function(self, value)
+local customSpeedTextbox = Section.Newtextbox('Custom Speed (1-300)', function(self, value)
     if tonumber(value) then
-        customColorSpeed = math.clamp(tonumber(value), 1, 300)
-    end
-end)
-
-Section.NewToggle("Manual Color Setting", function(bool)
-    isManualColorSet = bool
-    if isManualColorSet then
-        stopRainbowEffect()
-        setManualColor()
-    else
-        startRainbowEffect()
-    end
-end)
-
-Section.NewToggle("Black To White Mode", function(bool)
-    if bool then
-        isBlackToWhiteMode = true
-        blackToWhiteStep = 0.01
-        stopRainbowEffect()
-        currentBlackToWhiteModeColor = 0
-        RBW_COL = Color3.new(0, 0, 0)
-        wait(0.5) -- Wait for a moment before starting the transition
-        startRainbowEffect()
-    else
-        isBlackToWhiteMode = false
-        startRainbowEffect()
+        local speed = math.clamp(tonumber(value), 1, 300)
+        _G.move.dmd = speed
+        customSpeed = speed
+        timergb = speed
+        if _G.randomSpeed then
+            stopRainbowEffect()
+            startRainbowEffect()
+        end
     end
 end)
 
@@ -261,6 +255,20 @@ local customColorToggle = Section.NewToggle("Custom Color Mode", function(bool)
         startRainbowEffect()
     else
         isCustomColorMode = false
+        startRainbowEffect()
+    end
+end)
+
+local blackToWhiteToggle = Section.NewToggle("Black to White Mode", function(bool)
+    if bool then
+        isBlackToWhiteMode = true
+        stopRainbowEffect()
+        currentBlackToWhiteModeColor = 0
+        RBW_COL = Color3.new(0, 0, 0)
+        wait(0.5) -- Wait for a moment before starting the transition
+        startRainbowEffect()
+    else
+        isBlackToWhiteMode = false
         startRainbowEffect()
     end
 end)
@@ -308,7 +316,33 @@ local toColorTextbox = Section.Newtextbox('To Color (R,G,B)', function(self, val
     end
 end)
 
+-- Add 6 textboxes for custom colors
+local customColorTextboxes = {}
+for i = 1, 6 do
+    customColorTextboxes[i] = Section.Newtextbox('Custom Color ' .. i .. ' (R,G,B)', function(self, value)
+        local components = {}
+        for s in value:gmatch('%d+') do
+            table.insert(components, tonumber(s))
+        end
+
+        if #components == 3 then
+            customColors[i] = Color3.new(
+                math.clamp(components[1] / 255, 0, 1),
+                math.clamp(components[2] / 255, 0, 1),
+                math.clamp(components[3] / 255, 0, 1)
+            )
+            if isCustomColorMode then
+                stopRainbowEffect()
+                customColorStep = 0
+                wait(0.5) -- Wait for a moment before starting the transition
+                startRainbowEffect()
+            end
+        end
+    end)
+end
+
 spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
+
 
 
 	local Tab = Window.NewTab("Chatbot")
@@ -317,7 +351,6 @@ spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run c
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
 
 	end)
-
 
 
 local Tab = Window.NewTab("Gamepasses")
@@ -348,38 +381,7 @@ local Button = Section.NewButton("Remove Dragon skin",function()
 end)
 local Tab = Window.NewTab("VIW")
 local Section = Tab.NewSection("Wana Be VIW")
-local Button = Section.NewButton("VIW TAG",function()
-	game.ReplicatedStorage.MasterKey:FireServer("AddVIWTag", nil, "\230\139\154\230\136\172i\235\156\146(\238\138\155\201\172XD")
-end)
-local Button = Section.NewButton("Remove Name tags",function()
-	local args = {[1] = "ChangeDesc",[2] = "",[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151\153"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-	local args = {[1] = "ChangeName",[2] = "",[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151\153"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-game.Players.LocalPlayer.Character.Head.NameTag.Main.Pack:remove()
-	game.Players.LocalPlayer.Character.Head.NameTag.Main.VIW:remove()
-end)
-local Button = Section.NewButton("Audio Player",function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/Syr0nix-Audio-Player/main/Audio%20Player'))();
-end)
-_G.autoaudiomute = false
-local EnabledToggle = Section.NewToggle("Mute VIW Music",function(bool)
-	if _G.autoaudiomute then
-		_G.autoaudiomute = false
-		return
-	else
-		_G.autoaudiomute = true
-	end
-	while _G.autoaudiomute do
-		task.wait()
-		for _,v in next, game:GetService('Players'):GetPlayers()do
-			if v.Character and v.Character.Parent ~= nil and v.Character:FindFirstChild('HumanoidRootPart') and v.Character:FindFirstChild('HumanoidRootPart'):FindFirstChild('RadioM') then
-				v.Character:FindFirstChild('HumanoidRootPart'):FindFirstChild('RadioM'):Stop()
-				v.Character:FindFirstChild('HumanoidRootPart'):FindFirstChild('RadioM').Playing = false
-			end
-		end
-	end
-end)
+
 _G.cocktuning = {
 	dmod = 1, -- mode 1-4
 	desc = 'Example Title', -- auto description text
