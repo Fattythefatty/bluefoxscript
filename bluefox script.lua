@@ -5,7 +5,7 @@ local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
 
 	local Button = Section.NewButton("Rainbow",function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbow"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbowstuff"))()
 	end)
 
 	local Tab = Window.NewTab("Chatbot")
