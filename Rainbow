@@ -556,7 +556,7 @@ spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run c
 		end
 	end)
 
-local Tab = Window.NewTab("Return")
+local Tab = Window.NewTab("Return to main")
 local Section = Tab.NewSection("Are you sure?")
 
 	local Button = Section.NewButton("This is permernant and cannot be change",function()
