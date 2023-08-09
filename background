@@ -81,7 +81,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
-	LeftPart.BackgroundColor3 = Color3.fromRGB(27,27,255)
+	LeftPart.BackgroundColor3 = Color3.fromRGB(27,255,255)
 	LeftPart.BorderSizePixel = 0
 	LeftPart.Size = UDim2.new(0, 218, 0, 451)
 
