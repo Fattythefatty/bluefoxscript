@@ -92,27 +92,16 @@ function UILibrary.Main(PrjName,HideKey)
 
 
 
-	ProjectName.Name = "ProjectName"
-ProjectName.Parent = LeftPart
-ProjectName.BackgroundColor3 = Color3.fromRGB(0, 255, 255) -- Set initial color
-ProjectName.BackgroundTransparency = 1
-ProjectName.BorderSizePixel = 0
-ProjectName.Size = UDim2.new(0, 218, 0, 40)
-ProjectName.Font = Enum.Font.GothamBold
-ProjectName.Text = PrjName
-ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
-ProjectName.TextSize = 20.000
-
-local rainbowSpeed = 1 -- Speed of the rainbow effect
-
--- Function to update the rainbow background color
-local function updateRainbowColor()
-    local hue = tick() % rainbowSpeed / rainbowSpeed
-    ProjectName.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
-end
-
--- Start the rainbow effect
-game:GetService("RunService").Heartbeat:Connect(updateRainbowColor)
+ProjectName.Name = "ProjectName"
+	ProjectName.Parent = LeftPart
+	ProjectName.BackgroundColor3 = Color3.fromRGB(00,255,255)
+	ProjectName.BackgroundTransparency = 1
+	ProjectName.BorderSizePixel = 0
+	ProjectName.Size = UDim2.new(0, 218, 0, 40)
+	ProjectName.Font = Enum.Font.GothamBold
+	ProjectName.Text = PrjName
+	ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ProjectName.TextSize = 20.000
 
 
 
