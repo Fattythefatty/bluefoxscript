@@ -1,3 +1,4 @@
+
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local InputService = game:GetService("UserInputService")
@@ -46,7 +47,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Main.Name = "Main"
 	Main.Parent = Library
-	Main.BackgroundColor3 = Color3.fromRGB(27,227,227)
+	Main.BackgroundColor3 = Color3.fromRGB(27,27,87)
 	Main.BorderSizePixel = 0
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.25, 0, 0.25, 0)
@@ -72,7 +73,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
-	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 155)
+	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 255)
 	FadeBackgroundFrame.BackgroundTransparency = 1.000
 	FadeBackgroundFrame.BorderSizePixel = 0
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
@@ -87,10 +88,9 @@ function UILibrary.Main(PrjName,HideKey)
 	UICorner_2.Parent = LeftPart
 	UICorner_2.CornerRadius = UDim.new(0,8)
 
-	local LeftPart = game.Workspace.LeftPart -- Replace this with the actual reference to the LeftPart in your game
-ProjectName.Name = "ProjectName"
+	ProjectName.Name = "ProjectName"
 	ProjectName.Parent = LeftPart
-	ProjectName.BackgroundColor3 = Color3.fromRGB(0,255,255)
+	ProjectName.BackgroundColor3 = Color3.fromRGB(31,93,255)
 	ProjectName.BackgroundTransparency = 1
 	ProjectName.BorderSizePixel = 0
 	ProjectName.Size = UDim2.new(0, 218, 0, 40)
@@ -98,6 +98,7 @@ ProjectName.Name = "ProjectName"
 	ProjectName.Text = PrjName
 	ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
 	ProjectName.TextSize = 20.000
+
 
 	Line.Name = "Line"
 	Line.Parent = ProjectName
