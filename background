@@ -1,4 +1,3 @@
-
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local InputService = game:GetService("UserInputService")
@@ -93,15 +92,9 @@ function UILibrary.Main(PrjName,HideKey)
 
 
 
-local LeftPart = -- Replace this with your UI element
-local PrjName = "Your Project Name" -- Replace this with your project name
-
-local RR, GG, BB = 255, 0, 0 -- Initial color components (Red, Green, Blue)
-
-local ProjectName = Instance.new("TextLabel")
-ProjectName.Name = "ProjectName"
+	ProjectName.Name = "ProjectName"
 ProjectName.Parent = LeftPart
-ProjectName.BackgroundColor3 = Color3.fromRGB(RR, GG, BB)
+ProjectName.BackgroundColor3 = Color3.fromRGB(0, 255, 255) -- Set initial color
 ProjectName.BackgroundTransparency = 1
 ProjectName.BorderSizePixel = 0
 ProjectName.Size = UDim2.new(0, 218, 0, 40)
@@ -110,31 +103,16 @@ ProjectName.Text = PrjName
 ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
 ProjectName.TextSize = 20.000
 
-local timergb, BackgroundRBG_COL = 5
+local rainbowSpeed = 1 -- Speed of the rainbow effect
 
-local function updateBackgroundRainbowColor()
-    local hue = tick() % timergb / timergb
-    BackgroundRBG_COL = Color3.fromHSV(hue, 1, 1)
+-- Function to update the rainbow background color
+local function updateRainbowColor()
+    local hue = tick() % rainbowSpeed / rainbowSpeed
+    ProjectName.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
 end
 
-local BackgroundRainbow = nil
-
-local function startBackgroundRainbowEffect()
-    BackgroundRainbow = game:GetService('RunService').Heartbeat:Connect(function()
-        updateBackgroundRainbowColor()
-        ProjectName.BackgroundColor3 = BackgroundRBG_COL
-    end)
-end
-
-local function stopBackgroundRainbowEffect()
-    if BackgroundRainbow then
-        BackgroundRainbow:Disconnect()
-        BackgroundRainbow = nil
-    end
-end
-
-startBackgroundRainbowEffect()
-
+-- Start the rainbow effect
+game:GetService("RunService").Heartbeat:Connect(updateRainbowColor)
 
 
 
