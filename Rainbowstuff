@@ -727,3 +727,4 @@ local Section = Tab.NewSection("Are you sure?")
 	local Button = Section.NewButton("This is permernant and cannot be change",function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/bluefox%20script.lua"))()
 	end)
+print "Yas bitch"
