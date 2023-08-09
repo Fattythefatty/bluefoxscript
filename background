@@ -5,7 +5,7 @@ local InputService = game:GetService("UserInputService")
 
 local UILibrary ={
 	["Options"] = {
-		["Size"] = 1
+		["Size"] = 0.9
 	}
 }
 
@@ -56,7 +56,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	HideMain.Name = "Main"
 	HideMain.Parent = Main
-	HideMain.BackgroundColor3 = Color3.fromRGB(0,255,255)
+	HideMain.BackgroundColor3 = Color3.fromRGB(255,255,255)
 	HideMain.BorderSizePixel = 0
 	HideMain.ClipsDescendants = true
 	HideMain.Position = UDim2.new(0, 0, 0, 0)
@@ -73,7 +73,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	FadeBackgroundFrame.Name = "FadeBackgroundFrame"
 	FadeBackgroundFrame.Parent = Main
-	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 255)
+	FadeBackgroundFrame.BackgroundColor3 = Color3.fromRGB(27,27, 87)
 	FadeBackgroundFrame.BackgroundTransparency = 1.000
 	FadeBackgroundFrame.BorderSizePixel = 0
 	FadeBackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
@@ -81,7 +81,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	LeftPart.Name = "LeftPart"
 	LeftPart.Parent = Main
-	LeftPart.BackgroundColor3 = Color3.fromRGB(27,255,255)
+	LeftPart.BackgroundColor3 = Color3.fromRGB(27,27,87)
 	LeftPart.BorderSizePixel = 0
 	LeftPart.Size = UDim2.new(0, 218, 0, 451)
 
@@ -90,7 +90,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ProjectName.Name = "ProjectName"
 	ProjectName.Parent = LeftPart
-	ProjectName.BackgroundColor3 = Color3.fromRGB(31,93,255)
+	ProjectName.BackgroundColor3 = Color3.fromRGB(31,93,93)
 	ProjectName.BackgroundTransparency = 1
 	ProjectName.BorderSizePixel = 0
 	ProjectName.Size = UDim2.new(0, 218, 0, 40)
@@ -98,7 +98,6 @@ function UILibrary.Main(PrjName,HideKey)
 	ProjectName.Text = PrjName
 	ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
 	ProjectName.TextSize = 20.000
-
 
 	Line.Name = "Line"
 	Line.Parent = ProjectName
