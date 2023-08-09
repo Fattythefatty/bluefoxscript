@@ -342,3 +342,223 @@ for i = 1, 6 do
 end
 
 spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
+
+local Tab = Window.NewTab("Steping Rainbow")
+local ToggleSection = Tab.NewSection("Toggle")
+local PartSection = Tab.NewSection("Parts")
+local partsToRainbow = {
+    "LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+    "LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+    "RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+    "LeftLowerLeg", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+    "RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+    "Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+    "Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+}
+local partToggles = {} -- Store toggles for each part
+local originalColors = {} -- Store original colors for each part
+local isNeon = {} -- Store whether each part is neon or not
+
+local function getOriginalColor(part)
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild(part) then
+        local partInstance = character[part]
+        if partInstance:IsA("BasePart") then
+            return partInstance.Color
+        end
+    end
+    return Color3.new(1, 1, 1) -- Default white color
+end
+local function makePartNeon(part)
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild(part) then
+        local partInstance = character[part]
+        if partInstance:IsA("BasePart") then
+            partInstance.Material = Enum.Material.Neon
+            isNeon[part] = true
+        end
+    end
+end
+local function makePartRainbow(part)
+    if isNeon[part] then
+        local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+        mk1:FireServer("customize", { part }, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+    end
+end
+for i, part in ipairs(partsToRainbow) do
+    local partToggle = PartSection.NewToggle("Rainbow " .. part, function(bool)
+        if bool then
+            partToggles[part] = true
+            if not isNeon[part] then
+                makePartNeon(part)
+            end
+            if rainbowEnabled then
+                makePartRainbow(part)
+            end
+        else
+            partToggles[part] = false
+            local character = game.Players.LocalPlayer.Character
+            if character and character:FindFirstChild(part) then
+                local partInstance = character[part]
+                if partInstance:IsA("BasePart") then
+                    partInstance.Material = Enum.Material.Concrete
+                    partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+                end
+            end
+        end
+    end)
+    partToggles[part] = false -- Initialize all toggles to false (disabled)
+    originalColors[part] = getOriginalColor(part) -- Store the original color
+    isNeon[part] = false -- Initialize all parts to not neon
+end
+local rainbowEnabled = false
+local selectedNeonEnabled = false
+
+local function enableRainbowEffect()
+    local delayTime = 0.05 -- Time between transitions for each part
+    while rainbowEnabled do
+        for part, enabled in pairs(partToggles) do
+            if enabled and isNeon[part] then
+                makePartRainbow(part)
+                task.wait(delayTime)
+            end
+        end
+    end
+end
+ToggleSection.NewToggle("Rainbow Toggle", function(bool)
+    rainbowEnabled = bool
+    if rainbowEnabled then
+        enableRainbowEffect()
+    end
+end)
+PartSection.NewToggle("Selected Neon", function(bool)
+    selectedNeonEnabled = bool
+    if selectedNeonEnabled then
+        for part, enabled in pairs(partToggles) do
+            if enabled and not isNeon[part] then
+                makePartNeon(part)
+            end
+        end
+    else
+        for part, enabled in pairs(partToggles) do
+            if enabled and isNeon[part] then
+                makePartNeon(part)
+                makePartRainbow(part)
+            end
+        end
+    end
+end)
+spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
+	local Tab = Window.NewTab("Smooth Rainbow")
+	local Section = Tab.NewSection("Selection")
+	local partsToRainbow = {
+		"LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+		"LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+		"RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+		"LeftLowerLeg", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+		"RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+		"Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+		"Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+	}
+	local partToggles = {} -- Store toggles for each part
+	local originalColors = {} -- Store original colors for each part
+	local isNeon = {} -- Store whether each part is neon or not
+	
+	local function getOriginalColor(part)
+		local character = game.Players.LocalPlayer.Character
+		if character and character:FindFirstChild(part) then
+			local partInstance = character[part]
+			if partInstance:IsA("BasePart") then
+				return partInstance.Color
+			end
+		end
+		return Color3.new(1, 1, 1) -- Default white color
+	end
+	local function makePartNeon(part)
+		local character = game.Players.LocalPlayer.Character
+		if character and character:FindFirstChild(part) then
+			local partInstance = character[part]
+			if partInstance:IsA("BasePart") then
+				partInstance.Material = Enum.Material.Neon
+				isNeon[part] = true
+			end
+		end
+	end
+	local function makePartRainbow(part)
+		if isNeon[part] then
+			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+			mk1:FireServer("customize", { part }, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+		end
+	end
+	for i, part in ipairs(partsToRainbow) do
+		local partToggle = Section.NewToggle("Rainbow " .. part, function(bool)
+			if bool then
+				partToggles[part] = true
+				if not isNeon[part] then
+					makePartNeon(part)
+				end
+				if rainbowEnabled then
+					makePartRainbow(part)
+				end
+			else
+				partToggles[part] = false
+				local character = game.Players.LocalPlayer.Character
+				if character and character:FindFirstChild(part) then
+					local partInstance = character[part]
+					if partInstance:IsA("BasePart") then
+						partInstance.Material = Enum.Material.Concrete
+						partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+					end
+				end
+			end
+		end)
+		partToggles[part] = false -- Initialize all toggles to false (disabled)
+		originalColors[part] = getOriginalColor(part) -- Store the original color
+		isNeon[part] = false -- Initialize all parts to not neon
+	end
+	local rainbowEnabled = false
+	
+	local function enableRainbowEffect()
+		while rainbowEnabled do
+			task.wait()
+	
+			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+			local partArgs = {}
+	
+			for part, enabled in pairs(partToggles) do
+				if enabled and isNeon[part] then
+					partArgs[#partArgs + 1] = part
+				end
+			end
+	
+			if #partArgs > 0 then
+				mk1:FireServer("customize", partArgs, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+			end
+		end
+	end
+	Section.NewToggle("Rainbow Toggle", function(bool)
+		rainbowEnabled = bool
+		if rainbowEnabled then
+			enableRainbowEffect()
+		else
+			for part, enabled in pairs(partToggles) do
+				if not enabled then
+					local character = game.Players.LocalPlayer.Character
+					if character and character:FindFirstChild(part) then
+						local partInstance = character[part]
+						if partInstance:IsA("BasePart") then
+							partInstance.Material = Enum.Material.Concrete
+							partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+						end
+					end
+				end
+			end
+		end
+	end)
+
+local Tab = Window.NewTab("ReTurn")
+local Section = Tab.NewSection("Are you sure?")
+
+	local Button = Section.NewButton("This is permernant and cannot be change",function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
+	end)
