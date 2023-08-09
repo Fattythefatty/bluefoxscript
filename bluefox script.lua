@@ -4,8 +4,8 @@ _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
 
-	local Button = Section.NewButton("ThunderBot",function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
+	local Button = Section.NewButton("Rainbow",function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbow"))()
 	end)
 
 	local Tab = Window.NewTab("Chatbot")
