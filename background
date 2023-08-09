@@ -93,13 +93,11 @@ function UILibrary.Main(PrjName,HideKey)
 
 
 
+-- Parameters
 local PrjName = "Your Project Name"
-local RR, GG, BB = 255, 0, 0 -- Initial color: Red
+local RR, GG, BB = 255, 0, 0 -- Initial color (Red)
 
-local LeftPart = Instance.new("Frame")
-LeftPart.Name = "LeftPart"
--- Set the properties for LeftPart as needed
-
+-- Create GUI element
 local ProjectName = Instance.new("TextLabel")
 ProjectName.Name = "ProjectName"
 ProjectName.Parent = LeftPart
@@ -112,46 +110,17 @@ ProjectName.Text = PrjName
 ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
 ProjectName.TextSize = 20.000
 
+-- Rainbow animation
+local rainbowInterval = 5 -- seconds per cycle
+local hue = 0
+
 local function updateBackgroundColor()
-    RR = (RR + 1) % 256
-    GG = (GG + 1) % 256
-    BB = (BB + 1) % 256
-    ProjectName.BackgroundColor3 = Color3.fromRGB(RR, GG, BB)
+    hue = (hue + (1 / rainbowInterval)) % 1
+    RR, GG, BB = Color3.fromHSV(hue, 1, 1):ToEulerAnglesXYZ()
+    ProjectName.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
 end
 
-local rgb2 = nil
-local isBackgroundRainbowEffectOn = false
-
-local function startBackgroundRainbowEffect()
-    if not isBackgroundRainbowEffectOn then
-        rgb2 = game:GetService('RunService').Heartbeat:Connect(function()
-            updateBackgroundColor()
-        end)
-        isBackgroundRainbowEffectOn = true
-    end
-end
-
-local function stopBackgroundRainbowEffect()
-    if isBackgroundRainbowEffectOn then
-        if rgb2 then
-            rgb2:Disconnect()
-            rgb2 = nil
-        end
-        isBackgroundRainbowEffectOn = false
-    end
-end
-
-startBackgroundRainbowEffect() -- Start the background rainbow effect
-
--- Set the speed of the background rainbow effect
-local backgroundRainbowSpeed = 5 -- Speed in seconds
-
-spawn(function()
-    while true do
-        wait(backgroundRainbowSpeed)
-        updateBackgroundColor()
-    end
-end)
+game:GetService("RunService").Heartbeat:Connect(updateBackgroundColor)
 
 
 
