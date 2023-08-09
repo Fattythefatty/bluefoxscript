@@ -88,16 +88,34 @@ function UILibrary.Main(PrjName,HideKey)
 	UICorner_2.Parent = LeftPart
 	UICorner_2.CornerRadius = UDim.new(0,8)
 
-	ProjectName.Name = "ProjectName"
-	ProjectName.Parent = LeftPart
-	ProjectName.BackgroundColor3 = Color3.fromRGB(31,253,255)
-	ProjectName.BackgroundTransparency = 1
-	ProjectName.BorderSizePixel = 0
-	ProjectName.Size = UDim2.new(0, 218, 0, 40)
-	ProjectName.Font = Enum.Font.GothamBold
-	ProjectName.Text = PrjName
-	ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
-	ProjectName.TextSize = 20.000
+	local LeftPart = game.Workspace.LeftPart -- Replace this with the actual reference to the LeftPart in your game
+
+local PrjName = "My Project" -- Replace this with your project name
+local RR, GG, BB = 255, 0, 0 -- Replace these values with your desired initial color
+
+local ProjectName = Instance.new("TextLabel")
+ProjectName.Name = "ProjectName"
+ProjectName.Parent = LeftPart
+ProjectName.BackgroundColor3 = Color3.fromRGB(RR, GG, BB)
+ProjectName.BackgroundTransparency = 1
+ProjectName.BorderSizePixel = 0
+ProjectName.Size = UDim2.new(0, 218, 0, 40)
+ProjectName.Font = Enum.Font.GothamBold
+ProjectName.Text = PrjName
+ProjectName.TextColor3 = Color3.fromRGB(255, 255, 255)
+ProjectName.TextSize = 20.000
+
+local rainbowSpeed = 0.1 -- Adjust this value to control the speed of the rainbow effect
+local hue = 0
+
+local function updateRainbowColor()
+    hue = (hue + rainbowSpeed) % 1
+    local r, g, b = Color3.fromHSV(hue, 1, 1):ToVector3()
+    ProjectName.BackgroundColor3 = Color3.new(r, g, b)
+end
+
+local rainbowEffect = game:GetService("RunService").Heartbeat:Connect(updateRainbowColor)
+
 
 	Line.Name = "Line"
 	Line.Parent = ProjectName
