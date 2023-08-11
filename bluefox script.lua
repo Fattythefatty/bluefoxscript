@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
+local VIPPlayers={[1186330771]=true,[632981869]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
 Window = Library.Main("Bluefox Script","RightShift")
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
