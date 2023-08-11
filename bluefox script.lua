@@ -14,6 +14,92 @@ local Section = Tab.NewSection("Stuff")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
 	end)
 
+local Tab = Window.NewTab("Age")
+local Section = Tab.NewSection("Select")
+
+local ButtonAdult = Section.NewButton("Adult", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Adult')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
+local ButtonPup = Section.NewButton("Pup", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
+local ButtonNewborn = Section.NewButton("Newborn", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Newborn')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
+
+local DetailedTab = Window.NewTab("Detailed")
+local DetailedSection = DetailedTab.NewSection("Light Settings")
+
+DetailedSection.NewButton("Apply Detailed Settings", function()
+    -- Bloom
+    game.Lighting.Bloom.Intensity = 0.7
+    
+    -- Blur
+    game.Lighting.Blur.Size = 0
+    
+    -- ColorCorrection
+    game.Lighting.ColorCorrection.TintColor = Color3.fromRGB(255, 245, 235)
+    game.Lighting.ColorCorrection.Saturation = 0.5
+    
+    -- SunRays
+    game.Lighting.SunRays.Intensity = 0.35
+    game.Lighting.SunRays.Spread = 0.75
+    
+    -- OutdoorAmbient Tween
+    local startTime = 18 -- 6:00 PM
+    local endTime = 6.333 -- 6:20 AM
+
+    local currentOutdoorAmbient = game.Lighting.OutdoorAmbient
+    local targetOutdoorAmbient = Color3.new(0, 0, 0)
+
+    local startTimePassed = false
+    local endTimePassed = false
+
+    local timeTweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear)
+
+    game:GetService("RunService").RenderStepped:Connect(function()
+        local currentTime = game.Lighting.ClockTime
+        if not startTimePassed and currentTime >= startTime then
+            startTimePassed = true
+            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = targetOutdoorAmbient }):Play()
+        elseif not endTimePassed and currentTime >= endTime then
+            endTimePassed = true
+            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = currentOutdoorAmbient }):Play()
+        end
+    end)
+    local startTime = 6.333 -- 6:00 PM
+    local endTime = 18  -- 6:20 AM
+
+    local currentOutdoorAmbient = game.Lighting.OutdoorAmbient
+    local targetOutdoorAmbient = Color3.new(155, 155, 155)
+
+    local startTimePassed = false
+    local endTimePassed = false
+
+    local timeTweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear)
+
+    game:GetService("RunService").RenderStepped:Connect(function()
+        local currentTime = game.Lighting.ClockTime
+        if not startTimePassed and currentTime >= startTime then
+            startTimePassed = true
+            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = targetOutdoorAmbient }):Play()
+        elseif not endTimePassed and currentTime >= endTime then
+            endTimePassed = true
+            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = currentOutdoorAmbient }):Play()
+        end
+    end)
+end)
+
+
 
 local Tab = Window.NewTab("Gamepasses")
 local Section = Tab.NewSection("BE FREE")
