@@ -35,69 +35,92 @@ local ButtonNewborn = Section.NewButton("Newborn", function()
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 end)
 
-
 local DetailedTab = Window.NewTab("Detailed")
-local DetailedSection = DetailedTab.NewSection("Light Settings")
+local DetailedSection = DetailedTab.NewSection("Settings")
 
-DetailedSection.NewButton("Apply Detailed Settings", function()
-    -- Bloom
-    game.Lighting.Bloom.Intensity = 0.7
-    
-    -- Blur
-    game.Lighting.Blur.Size = 0
-    
-    -- ColorCorrection
-    game.Lighting.ColorCorrection.TintColor = Color3.fromRGB(255, 245, 235)
-    game.Lighting.ColorCorrection.Saturation = 0.5
-    
-    -- SunRays
-    game.Lighting.SunRays.Intensity = 0.35
-    game.Lighting.SunRays.Spread = 0.75
-    
-    -- OutdoorAmbient Tween
-    local startTime = 18 -- 6:00 PM
-    local endTime = 6.333 -- 6:20 AM
+local Lighting = game:GetService("Lighting")
+local TweenService = game:GetService("TweenService")
 
-    local currentOutdoorAmbient = game.Lighting.OutdoorAmbient
-    local targetOutdoorAmbient = Color3.new(0, 0, 0)
+local function setLightingProperties()
+    Lighting.Bloom.Intensity = 0.7
+    Lighting.Blur.Size = 0
+    Lighting.ColorCorrection.TintColor = Color3.fromRGB(255, 245, 235)
+    Lighting.ColorCorrection.Saturation = 0.5
+    Lighting.SunRays.Intensity = 0.35
+    Lighting.SunRays.Spread = 0.75
+    Lighting.Brightness = 0
+end
 
-    local startTimePassed = false
-    local endTimePassed = false
+local function tweenAmbientColor(toColor)
+    local currentColor = Lighting.OutdoorAmbient
+    local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(Lighting, tweenInfo, {OutdoorAmbient = toColor})
+    tween:Play()
+end
 
-    local timeTweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear)
+local function updateAmbientColor()
+    local currentTime = Lighting:GetMinutesAfterMidnight()
+    local isNightTime = currentTime >= 1080 or currentTime <= 380 -- Between 6 PM and 6:20 AM
+    local targetAmbientColor = isNightTime and Color3.new(0, 0, 0) or Color3.new(0.607, 0.607, 0.607)
 
-    game:GetService("RunService").RenderStepped:Connect(function()
-        local currentTime = game.Lighting.ClockTime
-        if not startTimePassed and currentTime >= startTime then
-            startTimePassed = true
-            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = targetOutdoorAmbient }):Play()
-        elseif not endTimePassed and currentTime >= endTime then
-            endTimePassed = true
-            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = currentOutdoorAmbient }):Play()
-        end
-    end)
-    local startTime = 6.333 -- 6:00 PM
-    local endTime = 18  -- 6:20 AM
+    tweenAmbientColor(targetAmbientColor)
+end
 
-    local currentOutdoorAmbient = game.Lighting.OutdoorAmbient
-    local targetOutdoorAmbient = Color3.new(155, 155, 155)
-
-    local startTimePassed = false
-    local endTimePassed = false
-
-    local timeTweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear)
-
-    game:GetService("RunService").RenderStepped:Connect(function()
-        local currentTime = game.Lighting.ClockTime
-        if not startTimePassed and currentTime >= startTime then
-            startTimePassed = true
-            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = targetOutdoorAmbient }):Play()
-        elseif not endTimePassed and currentTime >= endTime then
-            endTimePassed = true
-            game.TweenService:Create(game.Lighting, timeTweenInfo, { OutdoorAmbient = currentOutdoorAmbient }):Play()
-        end
-    end)
+DetailedSection.NewButton("Apply Settings", function()
+    setLightingProperties()
+    updateAmbientColor()
 end)
+
+
+local Tab = Window.NewTab("weather")
+local WeatherSection = Tab.NewSection("Weather")
+
+local weatherObjects = {
+    game:GetService("Workspace").Weather.Rain,
+    game:GetService("Workspace").Weather.Snow,
+    game:GetService("Workspace").Weather.Rain2,
+    game:GetService("Workspace").Weather.Rain3,
+    game:GetService("Workspace").Weather.Snow2
+}
+
+local function EnableRandomWeather()
+    local weatherObject = weatherObjects[math.random(1, #weatherObjects)]
+    if weatherObject then
+        local lifetime = 10
+        weatherObject.Lifetime = lifetime
+        weatherObject.Enabled = true
+        wait(lifetime + math.random(30, 200))
+        weatherObject.Enabled = false
+        wait(math.random(30, 50))
+        EnableRandomWeather()
+    end
+end
+
+WeatherSection.NewButton("Start Random Weather", function()
+    EnableRandomWeather()
+end)
+
+WeatherSection.NewButton("Turn On Rain and Snow", function()
+    for _, weatherObject in pairs(weatherObjects) do
+        weatherObject.Enabled = true
+        weatherObject.Lifetime = 0
+    end
+    game.Lighting.Fog.Start = 30
+    game.Lighting.Fog.End = 120
+    game.Lighting.Fog.Color = Color3.fromRGB(180, 180, 180)
+end)
+
+WeatherSection.NewButton("Turn Off Rain and Snow", function()
+    for _, weatherObject in pairs(weatherObjects) do
+        weatherObject.Enabled = false
+    end
+    game.Lighting.Fog.Start = 0
+    game.Lighting.Fog.End = 200
+    game.Lighting.Fog.Color = Color3.fromRGB(220, 220, 220)
+end)
+
+
+
 
 
 
