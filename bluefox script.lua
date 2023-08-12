@@ -66,10 +66,17 @@ local function updateAmbientColor()
     tweenAmbientColor(targetAmbientColor)
 end
 
-DetailedSection.NewButton("Apply Settings", function()
+local function applyDetailedSettings()
     setLightingProperties()
-    updateAmbientColor()
-end)
+    if DetailedTab.Enabled then
+        tweenAmbientColor(Color3.new(0, 0, 0))
+    else
+        updateAmbientColor()
+    end
+end
+
+DetailedSection.NewButton("Apply Settings", applyDetailedSettings)
+
 
 
 local Tab = Window.NewTab("weather")
