@@ -79,6 +79,7 @@ DetailedSection.NewButton("Apply Settings", applyDetailedSettings)
 
 
 
+
 local Tab = Window.NewTab("weather")
 local WeatherSection = Tab.NewSection("Weather")
 
