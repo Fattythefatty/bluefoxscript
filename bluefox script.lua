@@ -13,6 +13,30 @@ local Section = Tab.NewSection("Stuff")
 	local Button = Section.NewButton("ThunderBot",function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
 	end)
+local EyeColorTab = Window.NewTab("Eye Color")
+local EyeColorSection = EyeColorTab.NewSection("Settings")
+
+local function changeEyeColor(newColor)
+    local player, workspace = game.Players.LocalPlayer, game:GetService("Workspace")
+    local currentEyeColor = workspace[player.Name].EyeColor
+    
+    if currentEyeColor then
+        currentEyeColor.BrickColor = BrickColor.new(newColor)
+        
+        local newEyeColor = currentEyeColor:Clone()
+        newEyeColor.BrickColor = BrickColor.new(Color3.new(0, 0, 255))
+        newEyeColor.Parent = workspace[player.Name]
+        newEyeColor.Orientation = newEyeColor.Orientation - Vector3.new(0.03, 0.03, 0)
+        
+        local anotherEyeColor = newEyeColor:Clone()
+        anotherEyeColor.Orientation = anotherEyeColor.Orientation + Vector3.new(0, 0, 0.03)
+        anotherEyeColor.Parent = workspace[player.Name]
+    end
+end
+
+EyeColorSection.NewButton("Change Eye Color", function()
+    changeEyeColor(Color3.new(math.random(), math.random(), math.random()))
+end)
 
 local Tab = Window.NewTab("Age")
 local Section = Tab.NewSection("Select")
