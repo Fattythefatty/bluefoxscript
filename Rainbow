@@ -5,5 +5,5 @@ local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTa
 local target = assert(loadstring("return " .. path))()
 
 if target:IsA("TextLabel") then
-    target.Text = "Bluefox"
+    target.Text = "(Bluefox)"
 end 
