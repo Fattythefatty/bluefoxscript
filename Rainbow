@@ -1,78 +1,9 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
-Window = Library.Main("Bluefox Script","RightShift")
-_G.Rainbowwings = false
-local Tab = Window.NewTab("Settings")
-local Section = Tab.NewSection("Stuff")
+local player = game.Players.LocalPlayer
+local username = player.Name
 
-local Tab = Window.NewTab("Teleports")
-local Section = Tab.NewSection("Forest Biome")
-local Button = Section.NewButton("Forest Biome",function()
-	local args = {[1] = "Spawn",[2] = "Forest Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Pup Adoption",function()
-	local args = {[1] = "Spawn",[2] = "Adoption"}
-game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("School",function()
-	local args = {[1] = "Spawn",[2] = "School"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Store",function()
-	local args = {[1] = "Spawn",[2] = "Store"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Jail",function()
-	local args = {[1] = "Spawn",[2] = "Jail"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Camp",function()
-	local args = {[1] = "Spawn",[2] = "Camp"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Cafe",function()
-	local args = {[1] = "Spawn",[2] = "Caf\195\169"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Section = Tab.NewSection("Redwood Biome")
-local Button = Section.NewButton("Redwood Biome",function()
-	local args = {[1] = "Spawn",[2] = "Redwood Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Restaurant",function()
-	local args = {[1] = "Spawn",[2] = "Restaurant"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Medic Centre",function()
-	local args = {[1] = "Spawn",[2] = "Medic Centre"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Section = Tab.NewSection("Snow Biome")
-local Button = Section.NewButton("Snow Biome",function()
-	local args = {[1] = "Spawn",[2] = "Snow Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Ice Lake",function()
-	local args = {[1] = "Spawn",[2] = "Ice Lake"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Ice Bath",function()
-	local args = {[1] = "Spawn",[2] = "Ice Bath"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Section = Tab.NewSection("Beach Biome")
-local Button = Section.NewButton("Beach Biome",function()
-    local args = {[1] = "Spawn",[2] = "Beach Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Volcano",function()
-	local args = {[1] = "Spawn",[2] = "Volcano"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
+local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
+local target = assert(loadstring("return " .. path))()
 
-local Tab = Window.NewTab("Return to main")
-local Section = Tab.NewSection("Are you sure?")
-
-	local Button = Section.NewButton("Return to the main script",function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/bluefox%20script.lua"))()
-	end)
+if target:IsA("TextLabel") then
+    target.Text = "Bluefox"
+end
