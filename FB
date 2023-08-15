@@ -1,4 +1,4 @@
-local chatBotPrefix = "**"
+local chatBotPrefix = "!!"
 
 local chatResponses = {
     Bloo-old = {
