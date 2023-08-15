@@ -804,7 +804,7 @@ end)
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ChatEvents = ReplicatedStorage:WaitForChild("DefaultChatSystemChatEvents")
 
-local message = "**Bloo"
+local message = "!!Bloo"
 ChatEvents.SayMessageRequest:FireServer(message, "All")
 
 
