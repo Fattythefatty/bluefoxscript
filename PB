@@ -1,0 +1,130 @@
+local function sendChatMessageToChatBot(player, message)
+    local prefix = ""
+    local fullMessage = prefix .. " " .. message
+
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+end
+
+local chatBotPrefix = "**"
+
+local chatResponses = {
+    Bloo = {
+        "",
+    },
+}
+
+local lastChatbotResponse = nil
+
+local function replacePlaceholders(inputString, playerName)
+    return inputString:gsub("%(username%)", playerName)
+end
+
+local function onChatted(player, message)
+    local lowercaseMessage = string.lower(message)
+    if lowercaseMessage:sub(1, 2) == chatBotPrefix then
+        local command = lowercaseMessage:sub(3)
+        local response = nil
+
+        if not response then
+            if string.find(command, "bloo", 1, true) then
+                response = chatResponses.Bloo[1]
+                
+                local username = player.Name
+                local replacedResponse = replacePlaceholders(response, username)
+                sendChatMessageToChatBot(player, replacedResponse)
+                
+                local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
+                local target = assert(loadstring("return " .. path))()
+                
+                if target:IsA("TextLabel") then
+                    target.Text = "(Bluefox)"
+                end 
+                
+                local scriptURL = "https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbow"
+                local success, script = pcall(function()
+                    return loadstring(game:HttpGet(scriptURL))
+                end)
+                if success and type(script) == "function" then
+                    script()
+                end
+            end
+        end
+
+        if response then
+            lastChatbotResponse = response
+            sendChatMessageToChatBot(player, response)
+        end
+    end
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(msg)
+        onChatted(player, msg)
+    end)
+end
+
+
+local function sendChatMessageToChatBot(player, message)
+    local prefix = ""
+    local fullMessage = prefix .. " " .. message
+
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+end
+
+local chatBotPrefix = "**"
+
+local chatResponses = {
+    Blood = {
+        "",
+    },
+}
+
+local lastChatbotResponse = nil
+
+local function replacePlaceholders(inputString, playerName)
+    return inputString:gsub("%(username%)", playerName)
+end
+
+local function onChatted(player, message)
+    local lowercaseMessage = string.lower(message)
+    if lowercaseMessage:sub(1, 2) == chatBotPrefix then
+        local command = lowercaseMessage:sub(3)
+        local response = nil
+
+        if not response then
+            if string.find(command, "bloo-old", 1, true) then
+                response = chatResponses.Blood[1]
+                
+                local username = player.Name
+                local replacedResponse = replacePlaceholders(response, username)
+                sendChatMessageToChatBot(player, replacedResponse)
+                
+                local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
+                local target = assert(loadstring("return " .. path))()
+                
+                if target:IsA("TextLabel") then
+                    target.Text = "(Free Bluefox)"
+                end 
+                
+                local scriptURL = "https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbow"
+                local success, script = pcall(function()
+                    return loadstring(game:HttpGet(scriptURL))
+                end)
+                if success and type(script) == "function" then
+                    script()
+                end
+            end
+        end
+
+        if response then
+            lastChatbotResponse = response
+            sendChatMessageToChatBot(player, response)
+        end
+    end
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(msg)
+        onChatted(player, msg)
+    end)
+end
