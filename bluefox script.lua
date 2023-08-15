@@ -1,5 +1,15 @@
 local VIPPlayers={[1186330771]=true,[632981869]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
 Window = Library.Main("Bluefox Script","RightShift")
+local player = game.Players.LocalPlayer
+local username = player.Name
+
+local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
+local target = assert(loadstring("return " .. path))()
+
+if target:IsA("TextLabel") then
+    target.Text = "(Bluefox)"
+end
+
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
