@@ -124,7 +124,7 @@ local function setLightingProperties()
     Lighting.SunRays.Spread = 0.75
     Lighting.Brightness = 0
 end
-
+ 
 local function tweenAmbientColor(toColor)
     local currentColor = Lighting.OutdoorAmbient
     local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
