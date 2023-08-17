@@ -798,7 +798,47 @@ local Button = Section.NewButton("Volcano",function()
 	local args = {[1] = "Spawn",[2] = "Volcano"}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
+local Tab = Window.NewTab("Invis")
+local Section = Tab.NewSection("go get milk")
 
+
+local partList = {
+ "LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+    "LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+    "RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+    "LeftLowerLeg", "lash", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+    "RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+    "Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+    "Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+}
+
+local transparencyState = {}  -- Store the transparency state of each part
+
+-- Initialize transparency state for each part
+for _, partName in ipairs(partList) do
+    transparencyState[partName] = false  -- Default transparency state
+end
+
+local function updatePartTransparency(partName)
+    local char = game:GetService('Players').LocalPlayer.Character
+    local part = char:FindFirstChild(partName)
+
+    if part then
+        if transparencyState[partName] then
+            game.ReplicatedStorage.MasterKey:FireServer("Fluff", part.Name, 1)
+        else
+            game.ReplicatedStorage.MasterKey:FireServer("Fluff", part.Name, 0)
+        end
+    end
+end
+
+-- Create toggles for each part
+for _, partName in ipairs(partList) do
+    local Toggle = Section.NewToggle(partName, function(enabled)
+        transparencyState[partName] = enabled
+        updatePartTransparency(partName)
+    end)
+end
 
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
