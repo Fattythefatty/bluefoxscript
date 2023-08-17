@@ -350,7 +350,8 @@ local EnabledToggle = Section.NewToggle("Anti AFK",function(bool)
 		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 	end)
 end)
-
+local Tab = Window.NewTab("Invis")
+local Section = Tab.NewSection("go get milk")
 local partList = {
  "LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
     "LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
@@ -837,8 +838,7 @@ local Button = Section.NewButton("Volcano",function()
 	local args = {[1] = "Spawn",[2] = "Volcano"}
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
-local Tab = Window.NewTab("Invis")
-local Section = Tab.NewSection("go get milk")
+
 
 
 
