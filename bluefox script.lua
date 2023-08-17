@@ -10,7 +10,7 @@ if target:IsA("TextLabel") then
     target.Text = "(Bluefox)"
 end
 
-_G.Rainbowwings = false
+_G.Rainbowwings = false 
 local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
 
