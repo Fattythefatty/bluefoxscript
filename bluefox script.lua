@@ -8,7 +8,7 @@ local target = assert(loadstring("return " .. path))()
 
 if target:IsA("TextLabel") then
     target.Text = "(Bluefox)"
-end
+end 
 
 _G.Rainbowwings = false 
 local Tab = Window.NewTab("Settings")
