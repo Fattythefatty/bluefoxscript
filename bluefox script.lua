@@ -1,14 +1,5 @@
 local VIPPlayers={[1186330771]=true,[632981869]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
 Window = Library.Main("Bluefox Script","RightShift")
-local player = game.Players.LocalPlayer
-local username = player.Name
-
-local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
-local target = assert(loadstring("return " .. path))()
-
-if target:IsA("TextLabel") then
-    target.Text = "(Bluefox)"
-end 
 
 _G.Rainbowwings = false 
 local Tab = Window.NewTab("Settings")
@@ -839,22 +830,6 @@ local Button = Section.NewButton("Volcano",function()
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
 
-
-
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local ChatEvents = ReplicatedStorage:WaitForChild("DefaultChatSystemChatEvents")
-
-local message = "!!Bloo"
-ChatEvents.SayMessageRequest:FireServer(message, "All")
-
-
-local function sendChatMessageToChatBot(player, message)
-    local prefix = "[ThunderBot]"
-    local fullMessage = prefix .. " " .. message
-
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
-end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
 
