@@ -1,5 +1,4 @@
-local fullMessage = "fmlk"
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+
 
 
 local chatBotPrefix = "!!"
