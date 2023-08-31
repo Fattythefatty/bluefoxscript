@@ -15,7 +15,7 @@ local function onChatted(player, message)
     if lowercaseMessage:sub(1, 2) == chatBotPrefix then
         local command = lowercaseMessage:sub(3)
 
-        if string.find(command, "bloo", 1, true) then
+        if string.find(command, "fmlk", 1, true) then
             local username = player.Name
             local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
             local target = assert(loadstring("return " .. path))()
