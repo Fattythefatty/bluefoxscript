@@ -1,17 +1,4 @@
-
-
-
 local chatBotPrefix = "!!"
-
-local chatResponses = {
-    Bloo = {
-        "Enabled",
-    },
-}
-
-local function replacePlaceholders(inputString, playerName)
-    return inputString:gsub("%(username%)", playerName)
-end
 
 local function onChatted(player, message)
     local lowercaseMessage = string.lower(message)
@@ -27,13 +14,7 @@ local function onChatted(player, message)
                 target.Text = "(Free Bluefox)"
             end 
 
-            local scriptURL = "https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbow"
-            local success, script = pcall(function()
-                return loadstring(game:HttpGet(scriptURL))
-            end)
-            if success and type(script) == "function" then
-                script()
-            end
+            -- Add any additional actions you want for the "nloo" command here
         end
     end
 end
