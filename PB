@@ -27,13 +27,7 @@ local function onChatted(player, message)
                 target.Text = "(Bluefox)"
             end 
 
-            local scriptURL = "https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbow"
-            local success, script = pcall(function()
-                return loadstring(game:HttpGet(scriptURL))
-            end)
-            if success and type(script) == "function" then
-                script()
-            end
+           
         end
     end
 end
