@@ -1,5 +1,4 @@
-local fullMessage = "nloo"
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+
 
 
 local chatBotPrefix = "!!"
