@@ -89,7 +89,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ProjectName.Name = "ProjectName"
 	ProjectName.Parent = LeftPart
-	ProjectName.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	ProjectName.BackgroundColor3 = Color3.fromRGB(0, 6, 105)
 	ProjectName.BackgroundTransparency = 1
 	ProjectName.BorderSizePixel = 0
 	ProjectName.Size = UDim2.new(0, 218, 0, 40)
@@ -121,7 +121,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 	ButtonsTab.Name = "ButtonsTab"
 	ButtonsTab.Parent = LeftPart
-	ButtonsTab.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	ButtonsTab.BackgroundColor3 = Color3.fromRGB(0, 6, 105)
 	ButtonsTab.BorderSizePixel = 0
 	ButtonsTab.Position = UDim2.new(0, 0, 0.184829056, 0)
 	ButtonsTab.Size = UDim2.new(0, 218, 0, 362)
@@ -596,7 +596,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Toggle.Name = ToggleText
 				Toggle.Parent = SectionElements
-				Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+				Toggle.BackgroundColor3 = Color3.fromRGB(0, 6, 105)
 				Toggle.BorderSizePixel = 0
 				Toggle.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Toggle.Size = UDim2.new(1, 0, 0, 40)
@@ -774,7 +774,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Slider.Name = SliderText
 				Slider.Parent = SectionElements
-				Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+				Slider.BackgroundColor3 = Color3.fromRGB(0, 6, 105)
 				Slider.BorderSizePixel = 0
 				Slider.Position = UDim2.new(0.286780387, 0, 0, 0)
 				Slider.Size = UDim2.new(1, 0, 0, 40)
@@ -959,7 +959,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				Dropdown.Name = "Dropdown"
 				Dropdown.Parent = SectionElements
-				Dropdown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+				Dropdown.BackgroundColor3 = Color3.fromRGB(0, 6, 105)
 				Dropdown.BorderSizePixel = 0
 				Dropdown.ClipsDescendants = true
 				Dropdown.Position = UDim2.new(0.286780387, 0, 0, 0)
