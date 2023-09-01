@@ -244,7 +244,7 @@ function UILibrary.Main(PrjName,HideKey)
 		Circles.Name = "Circles"
 		Circles.Parent = Main
 		Circles.AnchorPoint = Vector2.new(0.5, 0.5)
-		Circles.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+		Circles.BackgroundColor3 = Color3.fromRGB(0,0,80)
 		Circles.BackgroundTransparency = 1
 		Circles.BorderSizePixel = 0
 		Circles.ClipsDescendants = false
@@ -1051,7 +1051,7 @@ function UILibrary.Main(PrjName,HideKey)
 
 				DropdownListHeader.Name = "DropdownListHeader"
 				DropdownListHeader.Parent = Tsd
-				DropdownListHeader.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+				DropdownListHeader.BackgroundColor3 = Color3.fromRGB(0,0,80)
 				DropdownListHeader.BackgroundTransparency = 1
 				DropdownListHeader.Size = UDim2.new(0, 334, 0, 39)
 				DropdownListHeader.Font = Enum.Font.GothamSemibold
