@@ -17,7 +17,7 @@ for i,v in next, PARENT:GetChildren() do
     if v.Name == "Library" then
         v:Destroy()
     end
-end
+end 
 
 function UILibrary.Main(PrjName,HideKey)
 	local Library = Instance.new("ScreenGui")
