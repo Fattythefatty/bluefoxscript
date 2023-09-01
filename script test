@@ -100,21 +100,21 @@ function UILibrary.Main(PrjName,HideKey)
 
 	Line.Name = "Line"
 	Line.Parent = ProjectName
-	Line.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
+	Line.BackgroundColor3 = Color3.fromRGB(25, 25, 155)
 	Line.BorderSizePixel = 0
 	Line.Position = UDim2.new(0, 0, 1, 0)
 	Line.Size = UDim2.new(1, 0, 0, 1)
 
 	Line_2.Name = "Line"
 	Line_2.Parent = LeftPart
-	Line_2.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
+	Line_2.BackgroundColor3 = Color3.fromRGB(25, 25, 155)
 	Line_2.BorderSizePixel = 0
 	Line_2.Position = UDim2.new(0, 0, 0.182, 0)
 	Line_2.Size = UDim2.new(1, 0, 0, 1)
 
 	Line_3.Name = "Line"
 	Line_3.Parent = LeftPart
-	Line_3.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
+	Line_3.BackgroundColor3 = Color3.fromRGB(25, 25, 155)
 	Line_3.BorderSizePixel = 0
 	Line_3.Position = UDim2.new(1, 0, 0, 0)
 	Line_3.Size = UDim2.new(0, 1, 1, 0)
