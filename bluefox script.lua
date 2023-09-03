@@ -843,19 +843,7 @@ createButton("VIW Den Redwood 3", 266.536804, 45.2700043, 574.910095, -0.3734451
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
 
---data logger (will not take any private information)
-local HTTP_ = game:GetService('HttpService')
-local LPR = game:GetService('Players').LocalPlayer
-local url =
-	"https://discord.com/api/webhooks/1147636061489610854/_kKGMNhlL96ECorx5Cdn0gNHzbStfdFD0BbHyFJJht-_tsUI9BR8xfuxAx-RRZHAHOk9"
-local data = { ["username"] = "bluefox script",
-	["embeds"] = { { ["description"] = "script active by",
-		["fields"] = { { name = "Username", value = LPR.Name, inline = true }, { name = "Username", value = LPR.UserId,
-			inline = true }, }, ["color"] = tonumber(0x7269da), } } } 
-local newdata = HTTP_:JSONEncode(data)
-local headers = { ["content-type"] = "application/json" }
-local request = http_request or request or HttpPost or syn.request
-request({ Url = url, Body = newdata, Method = "POST", Headers = headers })
+
 
 
 game.Players.PlayerAdded:Connect(function(player)
