@@ -105,14 +105,13 @@ end)
 
 local Tab = Window.NewTab("Detailed")
 local Section = Tab.NewSection("Settings")
+
+
 local Button = Section.NewButton("Apply settings",function()
-
-
-
 local Lighting = game:GetService("Lighting")
 local TweenService = game:GetService("TweenService")
 
-local function applyDetailedSettings()
+
     local sunrays = game.Lighting.SunRays
     local s = Instance.new("DepthOfFieldEffect")
     local a = game.Lighting.Atmosphere
@@ -123,7 +122,7 @@ local function applyDetailedSettings()
     sunrays.Intensity = 0.2
     s.FarIntensity = 0.25
     s.FocusDistance = 0.435
-    s.InFocusRadius = 65
+    s.InFocusRadius = 125
     s.NearIntensity = 0.85
     
     s.Parent = game.Lighting
@@ -134,7 +133,7 @@ local function applyDetailedSettings()
     a.Glare = 1
     a.Offset = 0
     a.Decay = Color3.fromRGB(139, 23, 84)
-end
+
 
 end)
 
