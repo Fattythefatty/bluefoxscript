@@ -2,7 +2,7 @@ local function sendChatMessageToChatBot(player, message)
     local prefix = "[ThunderBot]"
     local fullMessage = prefix .. "@" .. message
 
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All") 
 end
 
 -- Chatbot script
