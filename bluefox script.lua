@@ -1,6 +1,6 @@
-local VIPPlayers={[1186330771]=true,[632981869]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/background"))()
+local VIPPlayers={[1186330771]=true,[632981869]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/script%20test"))()
 Window = Library.Main("Bluefox Script","RightShift")
-local fullMessage = "!!fmlk"
+local fullMessage = ""
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
 _G.Rainbowwings = false 
 local Tab = Window.NewTab("Settings")
@@ -39,7 +39,47 @@ end
 EyeColorSection.NewButton("Change Eye Color", function()
     changeEyeColor(Color3.new(math.random(), math.random(), math.random()))
 end)
-
+local Tab = Window.NewTab("Objects")
+local Section = Tab.NewSection("get stuff")
+local function getItem(what, items)
+	return fireclickdetector(items[what]:FindFirstChildOfClass('ClickDetector'))
+end
+local function createButton(name, item)
+	local Button = Section.NewButton(name, function()
+		local items = { [name] = workspace.ItemOnes[item] }
+		getItem(name, items)
+	end)
+end
+createButton("Raw Venison", "Raw Venison")
+createButton("Raw Porkchop", "Raw Porkchop")
+createButton("Raw Chicken Leg", "Raw Chicken Leg")
+createButton("Raw Chicken Breast", "Raw Chicken Breast")
+createButton("Raw Rabbit", "Raw Rabbit")
+createButton("Raw Beef", "Raw Beef")
+createButton("Duck", "Duck")
+createButton("Football", "Football")
+createButton("Fish", "Raw Fish")
+createButton("Ball", "Ball")
+local Button = Section.NewButton("Torch", function()
+	local items = { ['Torch'] = workspace.GroupedItems.Torch.Handle }
+	getItem('Torch', items)
+end)
+local Button = Section.NewButton("Bone", function()
+	local items = { ['Bone'] = workspace.GroupedItems.Bone }
+	getItem('Bone', items)
+end)
+local Button = Section.NewButton("TeddyBear", function()
+	local items = { ['TeddyBear'] = workspace.GroupedItems.TeddyBear }
+	getItem('TeddyBear', items)
+end)
+local Button = Section.NewButton("Stick", function()
+	local items = { ['Stick'] = workspace.GroupedItems.Stick }
+	getItem('Stick', items)
+end)
+local Button = Section.NewButton("Bunny", function()
+	local items = { ['Bunny'] = workspace.Bunnies.Bunny['Hit'] }
+	getItem('Bunny', items)
+end)
 local Tab = Window.NewTab("Age")
 local Section = Tab.NewSection("Select")
 
@@ -60,88 +100,45 @@ local ButtonNewborn = Section.NewButton("Newborn", function()
     wait(0.5) -- Add a delay of 0.1 seconds
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 end)
-local ButtonPup = Section.NewButton("lag", function()
-    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                                game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                                    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                                        game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-                                                                                                                                            game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-    wait(0.5) -- Add a delay of 0.1 seconds
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-end)
 
 
-local DetailedTab = Window.NewTab("Detailed")
-local DetailedSection = DetailedTab.NewSection("Settings")
+
+local Tab = Window.NewTab("Detailed")
+local Section = Tab.NewSection("Settings")
+local Button = Section.NewButton("Apply settings",function()
+
+
 
 local Lighting = game:GetService("Lighting")
 local TweenService = game:GetService("TweenService")
 
-local function setLightingProperties()
-    Lighting.Bloom.Intensity = 0.7
-    Lighting.Blur.Size = 0
-    Lighting.ColorCorrection.TintColor = Color3.fromRGB(255, 245, 235)
-    Lighting.ColorCorrection.Saturation = 0.5
-    Lighting.SunRays.Intensity = 0.35
-    Lighting.SunRays.Spread = 0.75
-    Lighting.Brightness = 0
-end
-
-local function tweenAmbientColor(toColor)
-    local currentColor = Lighting.OutdoorAmbient
-    local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-    local tween = TweenService:Create(Lighting, tweenInfo, {OutdoorAmbient = toColor})
-    tween:Play()
-end
-
-local function updateAmbientColor()
-    local currentTime = Lighting:GetMinutesAfterMidnight()
-    local isNightTime = currentTime >= 1080 or currentTime <= 380 -- Between 6 PM and 6:20 AM
-    local targetAmbientColor = isNightTime and Color3.new(0, 0, 0) or Color3.new(0.607, 0.607, 0.607)
-
-    tweenAmbientColor(targetAmbientColor)
-end
-
 local function applyDetailedSettings()
-    setLightingProperties()
-    if DetailedTab.Enabled then
-        tweenAmbientColor(Color3.new(0, 0, 0))
-    else
-        updateAmbientColor()
-    end
+    local sunrays = game.Lighting.SunRays
+    local s = Instance.new("DepthOfFieldEffect")
+    local a = game.Lighting.Atmosphere
+    
+    game.Lighting.OutdoorAmbient = Color3.fromRGB(0, 0, 0)
+    game.Lighting.Ambient = Color3.fromRGB(0,0,0)
+    
+    sunrays.Intensity = 0.2
+    s.FarIntensity = 0.25
+    s.FocusDistance = 0.435
+    s.InFocusRadius = 65
+    s.NearIntensity = 0.85
+    
+    s.Parent = game.Lighting
+    sunrays.Parent = game.Lighting
+    
+    a.Density = 0.1
+    a.Haze = 0.1
+    a.Glare = 1
+    a.Offset = 0
+    a.Decay = Color3.fromRGB(139, 23, 84)
 end
 
-DetailedSection.NewButton("Apply Settings", applyDetailedSettings)
+end)
+
+
 
 
 
@@ -764,78 +761,102 @@ local Button = Section.NewButton("valuable minerals under inhumane conditions. O
 end)
 local Button = Section.NewButton(" and laboring under the scorching sun.",function()
 end)
-
 local Tab = Window.NewTab("Teleports")
+local function createButton(Section, name, callback)
+	Section.NewButton(name, callback)
+end
+local function createSpawnButton(Section, name, spawnName)
+	createButton(Section, name, function()
+		local args = { [1] = "Spawn", [2] = spawnName }
+		game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
+	end)
+end
 local Section = Tab.NewSection("Forest Biome")
-local Button = Section.NewButton("Forest Biome",function()
-	local args = {[1] = "Spawn",[2] = "Forest Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
+createSpawnButton(Section, "Forest Biome", "Forest Biome")
+createSpawnButton(Section, "Pup Adoption", "Adoption")
+createButton(Section, "Medic Den", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1103.30884, 18.1427574, -114.369957,
+		-0.311288834, -0.0115207694, 0.95024544, -0.0118246786, 0.999896049, 0.00824911054, -0.950241745, -0.00866849069,
+		-0.311392784)
 end)
-local Button = Section.NewButton("Pup Adoption",function()
-	local args = {[1] = "Spawn",[2] = "Adoption"}
-game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
+createButton(Section, "Ship", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(944.030334, 18.3770428, -53.5521202,
+		-0.996551991, 0, -0.0829701647, 0, 1, 0, 0.0829701647, 0, -0.996551991)
 end)
-local Button = Section.NewButton("School",function()
-	local args = {[1] = "Spawn",[2] = "School"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Store",function()
-	local args = {[1] = "Spawn",[2] = "Store"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Jail",function()
-	local args = {[1] = "Spawn",[2] = "Jail"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Camp",function()
-	local args = {[1] = "Spawn",[2] = "Camp"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Cafe",function()
-	local args = {[1] = "Spawn",[2] = "Caf\195\169"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
+createSpawnButton(Section, "School", "School")
+createSpawnButton(Section, "Store", "Store")
+createSpawnButton(Section, "Jail", "Jail")
+createSpawnButton(Section, "Camp", "Camp")
+createSpawnButton(Section, "Cafe", "Café")
 local Section = Tab.NewSection("Redwood Biome")
-local Button = Section.NewButton("Redwood Biome",function()
-	local args = {[1] = "Spawn",[2] = "Redwood Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Restaurant",function()
-	local args = {[1] = "Spawn",[2] = "Restaurant"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Medic Centre",function()
-	local args = {[1] = "Spawn",[2] = "Medic Centre"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
+createSpawnButton(Section, "Redwood Biome", "Redwood Biome")
+createSpawnButton(Section, "Restaurant", "Restaurant")
+createSpawnButton(Section, "Medic Centre", "Medic Centre")
 local Section = Tab.NewSection("Snow Biome")
-local Button = Section.NewButton("Snow Biome",function()
-	local args = {[1] = "Spawn",[2] = "Snow Biome"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Ice Lake",function()
-	local args = {[1] = "Spawn",[2] = "Ice Lake"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
-end)
-local Button = Section.NewButton("Ice Bath",function()
-	local args = {[1] = "Spawn",[2] = "Ice Bath"}
-	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
+createSpawnButton(Section, "Snow Biome", "Snow Biome")
+createSpawnButton(Section, "Ice Lake", "Ice Lake")
+createSpawnButton(Section, "Ice Bath", "Ice Bath")
+local Button = Section.NewButton("Secret Ice Cave", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1231.13416, 145.920944, 519.690552,
+		-0.354107857, -0.935192585, 0.00472927094, 0.0165816545, -0.0113345385, -0.999798238, 0.935057521, -0.35395807,
+		0.0195207)
 end)
 local Section = Tab.NewSection("Beach Biome")
-local Button = Section.NewButton("Beach Biome",function()
-    local args = {[1] = "Spawn",[2] = "Beach Biome"}
+local function createButton(name, callback)
+	Section.NewButton(name, callback)
+end
+createButton("Beach Biome", function()
+	local args = { [1] = "Spawn", [2] = "Beach Biome" }
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
-local Button = Section.NewButton("Volcano",function()
-	local args = {[1] = "Spawn",[2] = "Volcano"}
+createButton("island 1", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(143.716675, 37.9980087, 140.57019,
+		0.913549721, -0, -0.406727046, 0, 1, -0, 0.406727046, 0, 0.913549721)
+end)
+createButton("island 2", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(163.153854, 48.6937866, 281.848389,
+		-0.707002521, -0.0519653112, 0.705299318, 4.31202352e-06, 0.997296453, 0.0734835118, -0.707211077, 0.0519560687,
+		-0.70509088)
+end)
+createButton("Secret Cave", function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(259.217712, 63.5017815, -87.6332779,
+		-0.350877404, 0.851145625, -0.390430629, 2.22027302e-05, 0.41694665, 0.908930898, 0.936421335, 0.318914741,
+		-0.146316051)
+end)
+local Button = Section.NewButton("Volcano", function()
+	local args = { [1] = "Spawn", [2] = "Volcano" }
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))
 end)
+local Section = Tab.NewSection("VIW Dens")
+local function createButton(name, x, y, z, x1, y1, z1)
+	local Button = Section.NewButton(name, function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z, x1, 0, y1, 0, 1, 0, z1, 0, x1)
+	end)
+end
+createButton("VIW Den Forest", 669.526855, 47.9800034, 242.779861, -0.120643139, 0.992695987, -0.992695987)
+createButton("VIW Den Forest 2", 519.791199, 48.2600021, -47.4920311, 0.600657463, -0.799506426, 0.799506426)
+createButton("VIW Den Redwood", 532.389893, 87.6499786, 476.836426, -0.24057126, 0.97063148, -0.97063148)
+createButton("VIW Den Redwood 2", 557.94342, 64.1299896, 619.453613, 0.996085644, -0.0883934423, 0.0883934423)
+createButton("VIW Den Redwood 3", 266.536804, 45.2700043, 574.910095, -0.373445153, 0.927652299, -0.927652299)
 
 
 
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
 
+--data logger (will not take any private information)
+local HTTP_ = game:GetService('HttpService')
+local LPR = game:GetService('Players').LocalPlayer
+local url =
+	"https://discord.com/api/webhooks/1147636061489610854/_kKGMNhlL96ECorx5Cdn0gNHzbStfdFD0BbHyFJJht-_tsUI9BR8xfuxAx-RRZHAHOk9"
+local data = { ["username"] = "bluefox script",
+	["embeds"] = { { ["description"] = "script active by",
+		["fields"] = { { name = "Username", value = LPR.Name, inline = true }, { name = "Username", value = LPR.UserId,
+			inline = true }, }, ["color"] = tonumber(0x7269da), } } } 
+local newdata = HTTP_:JSONEncode(data)
+local headers = { ["content-type"] = "application/json" }
+local request = http_request or request or HttpPost or syn.request
+request({ Url = url, Body = newdata, Method = "POST", Headers = headers })
 
 
 game.Players.PlayerAdded:Connect(function(player)
