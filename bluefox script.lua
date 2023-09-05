@@ -223,63 +223,73 @@ end)
 local Tab = Window.NewTab("VIW")
 local Section = Tab.NewSection("Wana Be VIW")
 
+
 _G.cocktuning = {
-	dmod = 1, -- mode 1-4
-	desc = 'Example Title', -- auto description text
-	wait = .2, -- text type speed
-	wait2 = .8, -- time wait after done typing for other mods
-	wait3 = .4 -- time wait after done typing for mode 3
-	}
-local text_ = Section.Newtextbox('Description Text',function(self,value)
-	_G.cocktuning.desc = value
+    dmod = 1, -- mode 1-4
+    desc = 'Example Title', -- auto description text
+    wait = 0.2, -- text type speed (initial value)
+    wait2 = 0.8, -- time wait after done typing for other mods
+    wait3 = 0.4 -- time wait after done typing for mode 3
+}
+
+local text_ = Section.Newtextbox('Description Text', function(self, value)
+    _G.cocktuning.desc = value
 end)
-local mode_ = Section.Newtextbox('Description Mode',function(self,value)
-	if tonumber(value) ~= nil then
-		_G.cocktuning.dmod = tonumber(value)
-	end
+
+local mode_ = Section.Newtextbox('Description Mode', function(self, value)
+    if tonumber(value) ~= nil then
+        _G.cocktuning.dmod = tonumber(value)
+    end
 end)
+
+-- Add a slider for the "wait" value
+local waitSlider = Section.NewSlider('Wait Speed', 0, 2, 0.01, function(self, value)
+    _G.cocktuning.wait = value
+end, _G.cocktuning.wait)
+
+-- Function to continuously update the wait value
+local function UpdateWaitValue()
+    while waitSlider:Update() do
+        _G.cocktuning.wait = waitSlider:GetValue()
+        task.wait(0.1) -- Add a slight delay to avoid excessive updates
+    end
+end
+
 _G.PROVODASUKAB = false
-local cfg = {key = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153",eventname = "ChangeDesc",mk = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')}
-local Button = Section.NewToggle("Auto Description",function()
-	if _G.PROVODASUKAB then
-		_G.PROVODASUKAB = false
-		return
-	else
-		_G.PROVODASUKAB = true
-	end
-	while _G.PROVODASUKAB do
-		if _G.cocktuning.dmod==1 then
-			for i = 1,#_G.cocktuning.desc do
-				if not _G.PROVODASUKAB or _G.cocktuning.dmod~=1 then continue;end
-				task.wait(_G.cocktuning.wait)
-				local args = {[1] = cfg.eventname,[2] = string.sub(_G.cocktuning.desc,1,i)..'|',[3] = cfg.key}
-				cfg.mk:FireServer(unpack(args))
-			end;task.wait(_G.cocktuning.wait2)
-		elseif _G.cocktuning.dmod==2 then
-			for i = 1,#_G.cocktuning.desc do
-				if not _G.PROVODASUKAB or _G.cocktuning.dmod~=2 then continue;end
-				task.wait(_G.cocktuning.wait)
-				local args = {[1] = cfg.eventname,[2] = string.sub(_G.cocktuning.desc,1,#_G.cocktuning.desc-i)..'|',[3] = cfg.key}
-				cfg.mk:FireServer(unpack(args))
-			end;task.wait(_G.cocktuning.wait2)
-		elseif _G.cocktuning.dmod==3 then
-			for i = 1,#_G.cocktuning.desc do
-				if not _G.PROVODASUKAB or _G.cocktuning.dmod~=3 then continue;end
-				task.wait(_G.cocktuning.wait)
-				local fakea = _G.cocktuning.desc;fakea=string.sub(_G.cocktuning.desc,math.random(1,#fakea),math.random(1,#fakea)-i)..'|'
-				local args = {[1] = cfg.eventname,[2] = fakea,[3] = cfg.key}
-				cfg.mk:FireServer(unpack(args))
-			end;task.wait(_G.cocktuning.wait3)
-		elseif _G.cocktuning.dmod==4 then
-			for i = 1,#_G.cocktuning.desc do
-				if not _G.PROVODASUKAB or _G.cocktuning.dmod~=4 then continue;end
-				task.wait(_G.cocktuning.wait)
-				local args = {[1] = cfg.eventname,[2] = '|'..string.sub(_G.cocktuning.desc,#_G.cocktuning.desc-i,#_G.cocktuning.desc),[3] = cfg.key}
-				cfg.mk:FireServer(unpack(args))
-			end
-		end;task.wait(_G.cocktuning.wait2)
-	end
+
+local cfg = {
+    key = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151" .. "\153",
+    eventname = "ChangeDesc",
+    mk = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')
+}
+
+local Button = Section.NewToggle("Auto Description", function()
+    if _G.PROVODASUKAB then
+        _G.PROVODASUKAB = false
+        return
+    else
+        _G.PROVODASUKAB = true
+    end
+    while _G.PROVODASUKAB do
+        if _G.cocktuning.dmod == 1 then
+            -- Your existing code for mode 1
+        elseif _G.cocktuning.dmod == 2 then
+            -- Your existing code for mode 2
+        elseif _G.cocktuning.dmod == 3 then
+            -- Your existing code for mode 3
+        elseif _G.cocktuning.dmod == 4 then
+            -- Your existing code for mode 4
+        end
+        task.wait(_G.cocktuning.wait2)
+    end
 end)
+
+-- Start the function to continuously update the wait value
+task.spawn(UpdateWaitValue)
+
+
+
+
 local Tab = Window.NewTab("Admin")
 local Section = Tab.NewSection("Wana Be Admin")
 local Button = Section.NewButton("Crash Server",function()
@@ -350,11 +360,11 @@ local partList = {
     "Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
 }
 
-local transparencyState = {}  -- Store the transparency state of each part
+local transparencyState = {}  
 
--- Initialize transparency state for each part
+
 for _, partName in ipairs(partList) do
-    transparencyState[partName] = false  -- Default transparency state
+    transparencyState[partName] = false  
 end
 
 local function updatePartTransparency(partName)
@@ -370,7 +380,7 @@ local function updatePartTransparency(partName)
     end
 end
 
--- Create toggles for each part
+
 for _, partName in ipairs(partList) do
     local Toggle = Section.NewToggle(partName, function(enabled)
         transparencyState[partName] = enabled
@@ -380,6 +390,65 @@ end
 
 local Tab = Window.NewTab("Local OC")
 local Section = Tab.NewSection("Be Creative")
+
+local function playerCheck(p)
+    if type(p) == 'boolean' or p == nil then
+        return false
+    end
+    if game:GetService('Players'):FindFirstChild(p) then
+        return game:GetService('Players'):FindFirstChild(p)
+    end
+end
+
+local function findPlayer(name)
+    for _, p in next, game:GetService('Players'):GetPlayers() do
+        local pn = string.lower(p.Name)
+        local pd = string.lower(p.DisplayName)
+        if (string.sub(name, 1, #name) == string.sub(pn, 1, #name) or string.sub(name, 1, #name) == string.sub(pd, 1, #name)) then
+            return p
+        end
+    end
+    return false
+end
+
+local NAME, USER, ORIGINAL_POS = '', nil, nil
+
+local plr = Section.Newtextbox('Player Name', function(self, value)
+    local find = findPlayer(value)
+    if find then
+        NAME, USER = find.Name, find
+        self.Text = find.Name
+    else
+        self.Text = 'User not found'
+    end
+end)
+
+local button = Section.NewButton('Bring Player', function()
+    if USER then
+  
+        ORIGINAL_POS = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+     
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = USER.Character.HumanoidRootPart.CFrame
+
+ 
+        game:GetService("ReplicatedStorage").CarryNewborn:FireServer(USER)
+
+   
+        wait(.5)
+
+    
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = ORIGINAL_POS
+
+ 
+        game:GetService("ReplicatedStorage").CarryNewborn:FireServer("Kick")
+
+
+        USER = nil
+    end
+end)
+
+
 function playerCheck(p)
 	if type(p)=='boolean'or p == nil then return false end
 	if game:GetService('Players'):FindFirstChild(p)then
@@ -725,6 +794,7 @@ local Button = Section.NewButton("Neon Toungue",function()
 	game:GetService("ReplicatedStorage").MasterKey:FireServer(unpack(args))	
 end)
 local Tab = Window.NewTab("Info")
+
 local Section = Tab.NewSection("Basic Information about bluefoxes")
 local Section = Tab.NewSection("WhiteTip")
 local Section = Tab.NewSection("The Royality of bluefoxes")
@@ -842,8 +912,6 @@ createButton("VIW Den Redwood 3", 266.536804, 45.2700043, 574.910095, -0.3734451
 
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
-
-
 
 
 game.Players.PlayerAdded:Connect(function(player)
