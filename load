@@ -33,7 +33,7 @@ end
 
 -- List of allowed scrambled IDs
 local allowedIDs = {
-    "ggbjgxw0x0", -- Add more allowed IDs here
+    "s", -- Add more allowed IDs here
 }
 
 -- Find the current player's ID
