@@ -58,7 +58,7 @@ if player then
     if isAllowed then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/bluefox%20script.lua"))()
     else
-        print("Scrambled ID is not allowed.")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/bluefox%20script.lua"))()
     end
 else
     print("Player not found.")
