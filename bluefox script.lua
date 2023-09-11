@@ -222,70 +222,103 @@ local Button = Section.NewButton("Remove Dragon skin",function()
 end)
 local Tab = Window.NewTab("VIW")
 local Section = Tab.NewSection("Wana Be VIW")
-
-
+_G.SpamLights = false
+local EnabledToggle = Section.NewToggle("SpamLights!", function(bool)
+	if _G.SpamLights then
+		_G.SpamLights = false
+		return
+	else
+		_G.SpamLights = true
+	end
+	while _G.SpamLights do
+		for _, L in next, workspace.Models:GetDescendants() do
+			if L:IsA("ClickDetector") then
+				fireclickdetector(L)
+			end
+		end
+		task.wait(0.1)
+	end
+end)
 _G.cocktuning = {
-    dmod = 1, -- mode 1-4
-    desc = 'Example Title', -- auto description text
-    wait = 0.2, -- text type speed (initial value)
-    wait2 = 0.8, -- time wait after done typing for other mods
-    wait3 = 0.4 -- time wait after done typing for mode 3
+	dmod = 1,            -- mode 1-4
+	desc = 'Example Title', -- auto description text
+	wait = .2,           -- text type speed
+	wait2 = .8,          -- time wait after done typing for other mods
+	wait3 = .4           -- time wait after done typing for mode 3
 }
-
 local text_ = Section.Newtextbox('Description Text', function(self, value)
-    _G.cocktuning.desc = value
+	_G.cocktuning.desc = value
 end)
-
 local mode_ = Section.Newtextbox('Description Mode', function(self, value)
-    if tonumber(value) ~= nil then
-        _G.cocktuning.dmod = tonumber(value)
-    end
+	if tonumber(value) ~= nil then
+		_G.cocktuning.dmod = tonumber(value)
+	end
 end)
+--[[
+Usage:
+    to change mod or text u should just change in _G.cocktuning
+    Example:
+        dmod = 2,
+        desc = 'SOME ANOTHER TEXT TO WHAT U WANT'
 
--- Add a slider for the "wait" value
-local waitSlider = Section.NewSlider('Wait Speed', 0, 2, 0.01, function(self, value)
-    _G.cocktuning.wait = value
-end, _G.cocktuning.wait)
+    DO NOT TOUCH FUCKING WAITS IN _G.cocktuning IF YOU DONT KNOW WHAT THEY MEAN!!
+    Cause I don't want to be like sucker when y'all use my script wrongly.. :sob:
 
--- Function to continuously update the wait value
-local function UpdateWaitValue()
-    while waitSlider:Update() do
-        _G.cocktuning.wait = waitSlider:GetValue()
-        task.wait(0.1) -- Add a slight delay to avoid excessive updates
-    end
-end
-
+    Mady by: Unix
+    Included to syronix script.
+--]]
 _G.PROVODASUKAB = false
-
 local cfg = {
-    key = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151" .. "\153",
-    eventname = "ChangeDesc",
-    mk = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')
-}
-
+	key = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151" ..
+		"\153", eventname = "ChangeDesc", mk = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey') }
 local Button = Section.NewToggle("Auto Description", function()
-    if _G.PROVODASUKAB then
-        _G.PROVODASUKAB = false
-        return
-    else
-        _G.PROVODASUKAB = true
-    end
-    while _G.PROVODASUKAB do
-        if _G.cocktuning.dmod == 1 then
-            -- Your existing code for mode 1
-        elseif _G.cocktuning.dmod == 2 then
-            -- Your existing code for mode 2
-        elseif _G.cocktuning.dmod == 3 then
-            -- Your existing code for mode 3
-        elseif _G.cocktuning.dmod == 4 then
-            -- Your existing code for mode 4
-        end
-        task.wait(_G.cocktuning.wait2)
-    end
+	if _G.PROVODASUKAB then
+		_G.PROVODASUKAB = false
+		return
+	else
+		_G.PROVODASUKAB = true
+	end
+	while _G.PROVODASUKAB do
+		if _G.cocktuning.dmod == 1 then
+			for i = 1, #_G.cocktuning.desc do
+				if not _G.PROVODASUKAB or _G.cocktuning.dmod ~= 1 then continue; end
+				task.wait(_G.cocktuning.wait)
+				local args = { [1] = cfg.eventname, [2] = string.sub(_G.cocktuning.desc, 1, i) .. '|', [3] = cfg.key }
+				cfg.mk:FireServer(unpack(args))
+			end
+			; task.wait(_G.cocktuning.wait2)
+		elseif _G.cocktuning.dmod == 2 then
+			for i = 1, #_G.cocktuning.desc do
+				if not _G.PROVODASUKAB or _G.cocktuning.dmod ~= 2 then continue; end
+				task.wait(_G.cocktuning.wait)
+				local args = { [1] = cfg.eventname, [2] = string.sub(_G.cocktuning.desc, 1, #_G.cocktuning.desc - i) .. '|',
+					[3] = cfg.key }
+				cfg.mk:FireServer(unpack(args))
+			end
+			; task.wait(_G.cocktuning.wait2)
+		elseif _G.cocktuning.dmod == 3 then
+			for i = 1, #_G.cocktuning.desc do
+				if not _G.PROVODASUKAB or _G.cocktuning.dmod ~= 3 then continue; end
+				task.wait(_G.cocktuning.wait)
+				local fakea = _G.cocktuning.desc; fakea = string.sub(_G.cocktuning.desc, math.random(1, #fakea),
+					math.random(1, #fakea) - i) .. '|'
+				local args = { [1] = cfg.eventname, [2] = fakea, [3] = cfg.key }
+				cfg.mk:FireServer(unpack(args))
+			end
+			; task.wait(_G.cocktuning.wait3)
+		elseif _G.cocktuning.dmod == 4 then
+			for i = 1, #_G.cocktuning.desc do
+				if not _G.PROVODASUKAB or _G.cocktuning.dmod ~= 4 then continue; end
+				task.wait(_G.cocktuning.wait)
+				local args = { [1] = cfg.eventname,
+					[2] = '|' .. string.sub(_G.cocktuning.desc, #_G.cocktuning.desc - i, #_G.cocktuning.desc),
+					[3] = cfg.key }
+				cfg.mk:FireServer(unpack(args))
+			end
+		end
+		; task.wait(_G.cocktuning.wait2)
+	end
 end)
-
--- Start the function to continuously update the wait value
-task.spawn(UpdateWaitValue)
 
 
 
