@@ -325,6 +325,9 @@ end)
 
 local Tab = Window.NewTab("Admin")
 local Section = Tab.NewSection("Wana Be Admin")
+local Button = Section.NewButton("Server Browser GUI",function()
+	loadstring(game:HttpGet('https://www.scriptblox.com/raw/Server-Browser_80', true))();
+end)
 local Button = Section.NewButton("Crash Server",function()
     loadstring(game:HttpGet("https://pastebin.com/raw/c4vRHDfj"))()
 end)
