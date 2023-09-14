@@ -355,6 +355,7 @@ if VIPPlayers[game.Players.LocalPlayer.UserId] then
 	local request = http_request or request or HttpPost or syn.request
 	request({ Url = url, Body = newdata, Method = "POST", Headers = headers })
 		else
+		end
 			
 end)
 local Button = Section.NewButton("fates admin",function()
