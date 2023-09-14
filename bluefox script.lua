@@ -488,9 +488,7 @@ while true do
 			game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age','Newborn')
 		end
 		task.wait()
-			
 	end
-		
 			
 			local HTTP_ = game:GetService('HttpService')
 	local LPR = game:GetService('Players').LocalPlayer
@@ -507,7 +505,7 @@ while true do
 		else
 		end
 			
-end)
+
 end)
 local Button = Section.NewButton("fates admin",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
