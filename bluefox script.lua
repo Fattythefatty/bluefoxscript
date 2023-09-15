@@ -136,8 +136,35 @@ local TweenService = game:GetService("TweenService")
 
 
 end)
-
-
+local Section = Tab.NewSection("part matiral")
+local Button = Section.NewButton("everythink rubber", function()
+	local decalsyeeted = true
+	local game = game
+	local workspace = game.Workspace
+	for _, object in pairs(game:GetDescendants()) do
+		if object:IsA("Part") or object:IsA("Union") or object:IsA("MeshPart") then
+			object.Material = "Rubber"
+			object.Reflectance = 0
+		elseif object:IsA("Decal") and decalsyeeted then
+			object.Transparency = 1
+		else
+	end
+end
+end)
+local Button = Section.NewButton("everythink ice", function()
+	local decalsyeeted = true
+	local game = game
+	local workspace = game.Workspace
+	for _, object in pairs(game:GetDescendants()) do
+		if object:IsA("Part") or object:IsA("Union") or object:IsA("MeshPart") then
+			object.Material = "Ice"
+			object.Reflectance = 0
+		elseif object:IsA("Decal") and decalsyeeted then
+			object.Transparency = 1
+		else
+	end
+end
+end)
 
 
 
