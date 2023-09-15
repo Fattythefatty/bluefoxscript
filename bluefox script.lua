@@ -1,4 +1,4 @@
-local VIPPlayers={[1186330771]=true,[1573649720]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/script%20test"))()
+local VIPPlayers={[1186330771]=true,[1573649720]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/script%20test"))()
 Window = Library.Main("Bluefox Script","RightShift")
 local fullMessage = "!!fmlk"
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
@@ -7,13 +7,13 @@ local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
 
 	local Button = Section.NewButton("Rainbow",function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/Rainbowstuff"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/Fattythefatty/main/Rainbowstuff"))()
 	end)
 
 	local Tab = Window.NewTab("Chatbot")
 	local Section = Tab.NewSection("Have a friend :3")
 	local Button = Section.NewButton("ThunderBot",function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/test"))()
 	end)
 local EyeColorTab = Window.NewTab("Eye Color")
 local EyeColorSection = EyeColorTab.NewSection("Settings")
@@ -548,7 +548,7 @@ local Button = Section.NewButton("Chat Logger",function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/Chatlogger/main/e'))()
 end)
 local Button = Section.NewButton("Spy chat",function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/spy%20script'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/spy%20script'))()
 end)
 local Button = Section.NewButton("Teleport all",function()
 	for i,v in pairs(game.Players:GetChildren()) do
@@ -1153,7 +1153,7 @@ createButton("VIW Den Redwood 3", 266.536804, 45.2700043, 574.910095, -0.3734451
 
 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/tag"))()
 
 
 game.Players.PlayerAdded:Connect(function(player)
