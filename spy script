@@ -19,7 +19,7 @@ Config = {
 
 -- Customizing Log Output
 PrivateProperties = {
-	Color = Color3.fromRGB(0,255,255); 
+	Color = Color3.fromRGB(200,255,120); 
 	Font = Enum.Font.SourceSansBold;
 	TextSize = 18;
 }
