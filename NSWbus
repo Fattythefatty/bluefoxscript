@@ -1,1 +1,170 @@
+local VIPPlayers={[1186330771]=true,[632981869]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/script%20test"))()
+Window = Library.Main("Bluefox Script","RightShift")
+local fullMessage = ""
 
+	local Tab = Window.NewTab("Chatbot")
+	local Section = Tab.NewSection("Have a friend :3")
+	local Button = Section.NewButton("ThunderBot",function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/test"))()
+	end)
+
+local Tab = Window.NewTab("Detailed")
+local Section = Tab.NewSection("Settings")
+
+local Button = Section.NewButton("Apply settings",function()
+local Lighting = game:GetService("Lighting")
+local TweenService = game:GetService("TweenService")
+
+    local sunrays = game.Lighting.SunRays
+    local s = Instance.new("DepthOfFieldEffect")
+    local a = game.Lighting.Atmosphere
+    
+    game.Lighting.OutdoorAmbient = Color3.fromRGB(0, 0, 0)
+    game.Lighting.Ambient = Color3.fromRGB(0,0,0)
+    
+    sunrays.Intensity = 0.2
+    s.FarIntensity = 0.25
+    s.FocusDistance = 0.435
+    s.InFocusRadius = 125
+    s.NearIntensity = 0.85
+    s.Parent = game.Lighting
+    sunrays.Parent = game.Lighting
+    a.Density = 0.1
+    a.Haze = 0.1
+    a.Glare = 1
+    a.Offset = 0
+    a.Decay = Color3.fromRGB(139, 23, 84)
+
+end)
+local Button = Section.NewButton("everythink rubber", function()
+	local decalsyeeted = true
+	local game = game
+	local workspace = game.Workspace
+	for _, object in pairs(game:GetDescendants()) do
+		if object:IsA("Part") or object:IsA("Union") or object:IsA("MeshPart") then
+			object.Material = "Rubber"
+			object.Reflectance = 0
+		elseif object:IsA("Decal") and decalsyeeted then
+			object.Transparency = 1
+		else
+	end
+end
+end)
+local Button = Section.NewButton("everythink ice", function()
+	local decalsyeeted = true
+	local game = game
+	local workspace = game.Workspace
+	for _, object in pairs(game:GetDescendants()) do
+		if object:IsA("Part") or object:IsA("Union") or object:IsA("MeshPart") then
+			object.Material = "Ice"
+			object.Reflectance = 0
+		elseif object:IsA("Decal") and decalsyeeted then
+			object.Transparency = 1
+		else
+	end
+end
+end)
+
+local Tab = Window.NewTab("Admin")
+local Section = Tab.NewSection("Wana Be Admin")
+local Button = Section.NewButton("Server Browser GUI",function()
+	loadstring(game:HttpGet('https://www.scriptblox.com/raw/Server-Browser_80', true))();
+end)
+local Button = Section.NewButton("fates admin",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
+end)
+local Button = Section.NewButton("Inf Yeld",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+local Button = Section.NewButton("Strong Admin",function()
+_G.CustomUI = false
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/BloodyBurns/Hex/main/Iv%20Admin%20v3.lua'),true))()
+end)
+local Button = Section.NewButton("Chat Logger",function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/Chatlogger/main/e'))()
+end)
+local Button = Section.NewButton("Teleport all",function()
+	for i,v in pairs(game.Players:GetChildren()) do
+		game:GetService("ReplicatedStorage").CarryNewborn:FireServer(v)
+		wait(0.2)
+		local G_1 = "Spawn"
+		local G_2 = "Adoption"
+		game:GetService("ReplicatedStorage").MasterKey:FireServer(G_1, G_2)
+		wait(0.2)
+		local G_1 = "Kick Eggs"
+		game:GetService("ReplicatedStorage").CarryNewborn:FireServer(G_1)
+		wait(0.2)
+	end
+end)
+
+local Button = Section.NewButton("Anti Fling",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/Anti-Fling/main/Anti%20Fling'))();
+end)
+_G.AntiAFK = false
+local EnabledToggle = Section.NewToggle("Anti AFK",function(bool)
+	if _G.AntiAFK then
+		_G.AntiAFK = false
+		print("Anti AFK Is Disabled")
+		return
+	else
+		_G.AntiAFK = true
+	end
+	print("Anti AFK Is Enable")
+	local vu = game:GetService("VirtualUser")
+	game:GetService("Players").LocalPlayer.Idled:connect(function()
+		vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		wait(1)
+		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	end)
+end)
+
+local Button = Section.NewButton("Explorer",function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/DEX-Synapse-Edition/main/DEX'))();
+end)
+
+local Tab = Window.NewTab("Info")
+
+local Section = Tab.NewSection("Basic Information about bluefoxes")
+local Section = Tab.NewSection("WhiteTip")
+local Section = Tab.NewSection("The Royality of bluefoxes")
+local Section = Tab.NewSection(" ")
+local Section = Tab.NewSection("Gray Tail Tip")
+local Section = Tab.NewSection("The Commanding bluefoxes that help")
+local Section = Tab.NewSection(" ")
+local Section = Tab.NewSection("Red Tail Tip")
+local Section = Tab.NewSection("The bluefoxes that help people with changing to a bluefox")
+local Section = Tab.NewSection(" ")
+local Section = Tab.NewSection("Orange Tail Tip")
+local Section = Tab.NewSection("The bluefoxes that thunder can freely talk to when be meets them  (no filter)")
+local Section = Tab.NewSection(" ")
+local Section = Tab.NewSection("Green Tail Tip")
+local Section = Tab.NewSection("The king's chair")
+local Section = Tab.NewSection(" ")
+local Section = Tab.NewSection("Yellow Tail Tip")
+local Section = Tab.NewSection("The public bluefox chairs")
+local Section = Tab.NewSection(" ")
+local Section = Tab.NewSection("Blue Tail Tip")
+local Section = Tab.NewSection("Civilian bluefoxes")
+local Button = Section.NewButton("By ThatMrAlexei",function()
+end)
+local Button = Section.NewButton("In 1623, as the Skarus Union sought to expand its economic and industrial prowess, it turned its gaze upon the natural resources ",function()
+end)
+local Button = Section.NewButton("abundant in the territories where the Bluefoxes dwelled. Ignoring their sentience and ecological significance, the authorities ",function()
+end)
+local Button = Section.NewButton("subjected these gentle beings to captivity and forced them into    slave labor. Separated from their families and habitats, the Bluefoxes",function()
+end)
+local Button = Section.NewButton("were made to toil ceaselessly in various areas throughout the     Skarus Union. Some were forced to work in mines, extracting ",function()
+end)
+local Button = Section.NewButton("valuable minerals under inhumane conditions. Others were enslaved on vast plantations, tending to crops and laboring tending to crops",function()
+end)
+local Button = Section.NewButton(" and laboring under the scorching sun.",function()
+end)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/bluefoxscript/main/tag"))()
+
+game.Players.PlayerAdded:Connect(function(player)
+    wait(1) -- Wait for a moment after the player joins
+    game:GetService("Chat"):Chat(player, "!!fmlk")
+end)
+
+print "Oh Daddy UwU | no i dont care about it just what i did to it | i ait answering questions :> | UWU yddaD hO"
