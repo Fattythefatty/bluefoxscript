@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/thunderisdead/Fattythefatty/main/background"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/background"))()
 Window = Library.Main("Bluefox Script","RightShift")
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
@@ -22,24 +22,6 @@ local function updateRainbowColor()
 end
 
 local rgb1 = nil
-Window = Library.Main("Bluefox Script","RightShift")
-_G.Rainbowwings = false
-local Tab = Window.NewTab("Settings")
-local Section = Tab.NewSection("Stuff")
-
-
-_G.move = {
-    dmd = 15,
-}
-
-local timergb, RBW_COL = _G.move.dmd
-
-local function updateRainbowColor()
-    local hue = tick() % timergb / timergb
-    if hue == 0 then
-        -- Generate random RGB components when the hue is zero (black)
-        RBW_COL = Color3.new(math.random(), math.random(), math.random())
-    else
 local isRainbowEffectOn = false
 local isManualColorSet = false
 local currentSpeedSetting = "set" -- "set" or "random"
