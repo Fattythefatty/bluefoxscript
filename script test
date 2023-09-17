@@ -5,7 +5,7 @@ local Tab = Window.NewTab("Settings")
 local Section = Tab.NewSection("Stuff")
 
 
-_G.move = {
+_G.move = { 
     dmd = 15,
 }
 
