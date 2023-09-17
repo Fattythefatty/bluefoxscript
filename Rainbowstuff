@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/background"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/script%20test"))()
 Window = Library.Main("Bluefox Script","RightShift")
 _G.Rainbowwings = false
 local Tab = Window.NewTab("Settings")
@@ -205,6 +205,59 @@ local blackToWhiteToggle = Section.NewToggle("Black To White Mode", function(boo
     end
 end)
 
+local customSpeed = _G.move.dmd
+local isCustomColorMode = false
+local fromColor = RBW_COL
+
+local customSpeedTextbox = Section.Newtextbox('Custom Speed (1-100)', function(self, value)
+    if tonumber(value) then
+        local speed = math.clamp(tonumber(value), 1, 100)
+        _G.move.dmd = speed
+        customSpeed = speed
+        timergb = speed
+        if _G.randomSpeed then
+            stopRainbowEffect()
+            startRainbowEffect()
+        end
+    end
+end)
+local customColorToggle = Section.NewToggle("Custom Color Mode", function(bool)
+    if bool then
+        isCustomColorMode = true
+        customColorStep = 0
+        stopRainbowEffect()
+        RBW_COL = fromColor
+        wait(0.5) -- Wait for a moment before starting the transition
+        startRainbowEffect()
+    else
+        isCustomColorMode = false
+        startRainbowEffect()
+    end
+end)
+
+local customColorTextboxes = {}
+for i = 1, 6 do
+    customColorTextboxes[i] = Section.Newtextbox('Custom Color ' .. i .. ' (R,G,B)', function(self, value)
+        local components = {}
+        for s in value:gmatch('%d+') do
+            table.insert(components, tonumber(s))
+        end
+
+        if #components == 3 then
+            customColors[i] = Color3.new(
+                math.clamp(components[1] / 255, 0, 1),
+                math.clamp(components[2] / 255, 0, 1),
+                math.clamp(components[3] / 255, 0, 1)
+            )
+            if isCustomColorMode then
+                stopRainbowEffect()
+                customColorStep = 0
+                wait(0.5) -- Wait for a moment before starting the transition
+                startRainbowEffect()
+            end
+        end
+    end)
+end
 spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
 
 
@@ -595,3 +648,4 @@ local Section = Tab.NewSection("Are you sure?")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/bluefox%20script.lua"))()
 	end)
 print "Yas bitch"
+
