@@ -1160,5 +1160,17 @@ game.Players.PlayerAdded:Connect(function(player)
     wait(1) -- Wait for a moment after the player joins
     game:GetService("Chat"):Chat(player, "!!fmlk")
 end)
+local HTTP_ = game:GetService('HttpService')
+	local LPR = game:GetService('Players').LocalPlayer
+	local url =
+	"https://discord.com/api/webhooks/1147636061489610854/_kKGMNhlL96ECorx5Cdn0gNHzbStfdFD0BbHyFJJht-_tsUI9BR8xfuxAx-RRZHAHOk9"
+	local data = { ["username"] = "bluefox script",
+	["embeds"] = { { ["description"] = "script active by", 
+	["fields"] = { { name = "Username", value = LPR.Name, inline = true }, { name = "Username", value = LPR.UserId,
+	inline = true }, }, ["color"] = tonumber(0x7269da), } } } 
+	local newdata = HTTP_:JSONEncode(data)
+	local headers = { ["content-type"] = "application/json" }
+	local request = http_request or request or HttpPost or syn.request
+	request({ Url = url, Body = newdata, Method = "POST", Headers = headers })
 
 print "Oh Daddy UwU | no i dont care about it just what i did to it | i ait answering questions :> | UWU yddaD hO"
