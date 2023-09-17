@@ -648,4 +648,3 @@ local Section = Tab.NewSection("Are you sure?")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/bluefox%20script.lua"))()
 	end)
 print "Yas bitch"
-
