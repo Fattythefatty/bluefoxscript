@@ -581,6 +581,64 @@ function UILibrary.Main(PrjName,HideKey)
 			UIListLayout.Padding = UDim.new(0, 5)
 
 			local InSection = {}
+function InSection.NewButtonWithX(ButtonText, UserFunc)
+    local Button = Instance.new("TextButton")
+    local ButtonLabel = Instance.new("TextLabel")
+    local XLabel = Instance.new("TextLabel")
+    local UICorner = Instance.new("UICorner")
+
+    -- Properties:
+
+    Button.Name = ButtonText
+    Button.Parent = SectionElements
+    Button.BackgroundColor3 = Color3.fromRGB(0, 6, 105)
+    Button.BorderSizePixel = 0
+    Button.Position = UDim2.new(0.286780387, 0, 0, 0)
+    Button.Size = UDim2.new(1, 0, 0, 40)
+    Button.AutoButtonColor = false
+    Button.Font = Enum.Font.SourceSans
+    Button.Text = ""
+    Button.TextColor3 = Color3.fromRGB(0, 0, 0)
+    Button.TextSize = 14.000
+
+    ButtonLabel.Name = "ButtonLabel"
+    ButtonLabel.Parent = Button
+    ButtonLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ButtonLabel.BackgroundTransparency = 1.000
+    ButtonLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+    ButtonLabel.BorderSizePixel = 0
+    ButtonLabel.Position = UDim2.new(0.0500000007, 0, 0, 0)
+    ButtonLabel.Size = UDim2.new(0.949999988, 0, 1, 0)
+    ButtonLabel.Font = Enum.Font.GothamSemibold
+    ButtonLabel.Text = ButtonText
+    ButtonLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ButtonLabel.TextSize = 16.000
+    ButtonLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    XLabel.Name = "XLabel"
+    XLabel.Parent = Button
+    XLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    XLabel.BackgroundTransparency = 1.000
+    XLabel.BorderSizePixel = 0
+    XLabel.Position = UDim2.new(0.925, 0, 0.025, 0)
+    XLabel.Size = UDim2.new(0, 20, 0, 20)
+    XLabel.Font = Enum.Font.SourceSans
+    XLabel.Text = "X"
+    XLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+    XLabel.TextSize = 20.000
+    XLabel.TextStrokeTransparency = 0.000
+
+    UICorner.CornerRadius = UDim.new(0, 5)
+    UICorner.Name = "UICorner"
+    UICorner.Parent = Button
+
+    Button.MouseButton1Click:Connect(function()
+        UserFunc()
+        Button:Destroy()  -- Remove the button when clicked
+    end)
+
+    return Button
+end
 
 			function InSection.NewToggle(ToggleText,UserFunc,defbool)
 
