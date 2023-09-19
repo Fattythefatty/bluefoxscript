@@ -711,6 +711,9 @@ local Button = Section.NewButton("Save 3",function()
 	local args = {[1] = "SaveFile1Colours",[2] = "3",[3] = "\195\137,\203\1561\194\181\195\154+t\226\149\165\195\1304\194\180\195\134\195\138\226\134\168\226\149\147"}
 	game:GetService("ReplicatedStorage").Save:InvokeServer(unpack(args))
 end)
+local Button = Section.NewButton("Syr0nix Custom (Uncomfermed safe)", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/Syr0nix-Customs/main/Syr0nix%20Customs'))();
+end)
 local Button = Section.NewButton("Explorer",function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/Syr0nix/DEX-Synapse-Edition/main/DEX'))();
 end)
