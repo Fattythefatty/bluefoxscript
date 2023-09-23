@@ -10,35 +10,78 @@ local Section = Tab.NewSection("Stuff")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/Rainbowstuff"))()
 	end)
 
-	local Tab = Window.NewTab("Chatbot")
+	local Tab = Window.NewTab("Other stuff")
 	local Section = Tab.NewSection("Have a friend :3")
 	local Button = Section.NewButton("ThunderBot",function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/test"))()
 	end)
-local EyeColorTab = Window.NewTab("Eye Color")
-local EyeColorSection = EyeColorTab.NewSection("Settings")
+local Section = Tab.NewSection("Select")
 
-local function changeEyeColor(newColor)
-    local player, workspace = game.Players.LocalPlayer, game:GetService("Workspace")
-    local currentEyeColor = workspace[player.Name].EyeColor
-    
-    if currentEyeColor then
-        currentEyeColor.BrickColor = BrickColor.new(newColor)
-        
-        local newEyeColor = currentEyeColor:Clone()
-        newEyeColor.BrickColor = BrickColor.new(Color3.new(0, 0, 255))
-        newEyeColor.Parent = workspace[player.Name]
-        newEyeColor.Orientation = newEyeColor.Orientation - Vector3.new(0.03, 0.03, 0)
-        
-        local anotherEyeColor = newEyeColor:Clone()
-        anotherEyeColor.Orientation = anotherEyeColor.Orientation + Vector3.new(0, 0, 0.03)
-        anotherEyeColor.Parent = workspace[player.Name]
+local ButtonAdult = Section.NewButton("Adult", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Adult')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
+local ButtonPup = Section.NewButton("Pup", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
+local ButtonNewborn = Section.NewButton("Newborn", function()
+    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Newborn')
+    wait(0.5) -- Add a delay of 0.1 seconds
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+local WeatherSection = Tab.NewSection("Weather")
+
+local weatherObjects = {
+    game:GetService("Workspace").Weather.Rain,
+    game:GetService("Workspace").Weather.Snow,
+    game:GetService("Workspace").Weather.Rain2,
+    game:GetService("Workspace").Weather.Rain3,
+    game:GetService("Workspace").Weather.Snow2
+}
+
+local function EnableRandomWeather()
+    local weatherObject = weatherObjects[math.random(1, #weatherObjects)]
+    if weatherObject then
+        local lifetime = 10
+        weatherObject.Lifetime = lifetime
+        weatherObject.Enabled = true
+        wait(lifetime + math.random(30, 200))
+        weatherObject.Enabled = false
+        wait(math.random(30, 50))
+        EnableRandomWeather()
     end
 end
 
-EyeColorSection.NewButton("Change Eye Color", function()
-    changeEyeColor(Color3.new(math.random(), math.random(), math.random()))
+WeatherSection.NewButton("Start Random Weather", function()
+    EnableRandomWeather()
 end)
+
+WeatherSection.NewButton("Turn On Rain and Snow", function()
+    for _, weatherObject in pairs(weatherObjects) do
+        weatherObject.Enabled = true
+        weatherObject.Lifetime = 0
+    end
+    game.Lighting.Fog.Start = 30
+    game.Lighting.Fog.End = 120
+    game.Lighting.Fog.Color = Color3.fromRGB(180, 180, 180)
+end)
+
+WeatherSection.NewButton("Turn Off Rain and Snow", function()
+    for _, weatherObject in pairs(weatherObjects) do
+        weatherObject.Enabled = false
+    end
+    game.Lighting.Fog.Start = 0
+    game.Lighting.Fog.End = 200
+    game.Lighting.Fog.Color = Color3.fromRGB(220, 220, 220)
+end)
+
+
+
 local Tab = Window.NewTab("Objects")
 local Section = Tab.NewSection("get stuff")
 local function getItem(what, items)
@@ -80,26 +123,7 @@ local Button = Section.NewButton("Bunny", function()
 	local items = { ['Bunny'] = workspace.Bunnies.Bunny['Hit'] }
 	getItem('Bunny', items)
 end)
-local Tab = Window.NewTab("Age")
-local Section = Tab.NewSection("Select")
 
-local ButtonAdult = Section.NewButton("Adult", function()
-    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Adult')
-    wait(0.5) -- Add a delay of 0.1 seconds
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-end)
-
-local ButtonPup = Section.NewButton("Pup", function()
-    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Pup')
-    wait(0.5) -- Add a delay of 0.1 seconds
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-end)
-
-local ButtonNewborn = Section.NewButton("Newborn", function()
-    game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age', 'Newborn')
-    wait(0.5) -- Add a delay of 0.1 seconds
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-end)
 
 
 
@@ -165,62 +189,6 @@ local Button = Section.NewButton("everythink ice", function()
 	end
 end
 end)
-
-
-
-
-local Tab = Window.NewTab("weather")
-local WeatherSection = Tab.NewSection("Weather")
-
-local weatherObjects = {
-    game:GetService("Workspace").Weather.Rain,
-    game:GetService("Workspace").Weather.Snow,
-    game:GetService("Workspace").Weather.Rain2,
-    game:GetService("Workspace").Weather.Rain3,
-    game:GetService("Workspace").Weather.Snow2
-}
-
-local function EnableRandomWeather()
-    local weatherObject = weatherObjects[math.random(1, #weatherObjects)]
-    if weatherObject then
-        local lifetime = 10
-        weatherObject.Lifetime = lifetime
-        weatherObject.Enabled = true
-        wait(lifetime + math.random(30, 200))
-        weatherObject.Enabled = false
-        wait(math.random(30, 50))
-        EnableRandomWeather()
-    end
-end
-
-WeatherSection.NewButton("Start Random Weather", function()
-    EnableRandomWeather()
-end)
-
-WeatherSection.NewButton("Turn On Rain and Snow", function()
-    for _, weatherObject in pairs(weatherObjects) do
-        weatherObject.Enabled = true
-        weatherObject.Lifetime = 0
-    end
-    game.Lighting.Fog.Start = 30
-    game.Lighting.Fog.End = 120
-    game.Lighting.Fog.Color = Color3.fromRGB(180, 180, 180)
-end)
-
-WeatherSection.NewButton("Turn Off Rain and Snow", function()
-    for _, weatherObject in pairs(weatherObjects) do
-        weatherObject.Enabled = false
-    end
-    game.Lighting.Fog.Start = 0
-    game.Lighting.Fog.End = 200
-    game.Lighting.Fog.Color = Color3.fromRGB(220, 220, 220)
-end)
-
-
-
-
-
-
 local Tab = Window.NewTab("Gamepasses")
 local Section = Tab.NewSection("BE FREE")
 local Button = Section.NewButton("Wings",function()
