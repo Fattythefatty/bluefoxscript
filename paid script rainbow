@@ -1,1 +1,759 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/script%20test"))()
+Window = Library.Main("Bluefox Script","RightShift")
+_G.Rainbowwings = false
+local Tab = Window.NewTab("Settings")
+local Section = Tab.NewSection("Stuff")
 
+
+_G.move = {
+    dmd = 15,
+}
+
+local timergb, RBW_COL = _G.move.dmd
+
+local function updateRainbowColor()
+    local hue = tick() % timergb / timergb
+    if hue == 0 then
+        -- Generate random RGB components when the hue is zero (black)
+        RBW_COL = Color3.new(math.random(), math.random(), math.random())
+    else
+        RBW_COL = Color3.fromHSV(hue, 1, 1)
+    end
+end
+
+local rgb1 = nil
+local isRainbowEffectOn = false
+local isManualColorSet = false
+local currentSpeedSetting = "set" -- "set" or "random"
+local targetSpeed = _G.move.dmd -- Store the target speed
+local isBlackToWhiteMode = false
+local currentBlackToWhiteModeColor = 0
+local blackToWhiteStep = 0.01
+local isCustomColorMode = false
+local fromColor = Color3.new(1, 0, 0) -- Red color
+local toColor = Color3.new(0, 1, 0) -- Green color
+local customColorStep = 0
+local customColorSpeed = 15
+
+local function startRainbowEffect()
+    if not isManualColorSet and not isRainbowEffectOn then
+        rgb1 = game:GetService('RunService').Heartbeat:Connect(function()
+            if isBlackToWhiteMode then
+                currentBlackToWhiteModeColor = currentBlackToWhiteModeColor + blackToWhiteStep
+                if currentBlackToWhiteModeColor >= 1 then
+                    currentBlackToWhiteModeColor = 1
+                    blackToWhiteStep = -blackToWhiteStep
+                elseif currentBlackToWhiteModeColor <= 0 then
+                    currentBlackToWhiteModeColor = 0
+                    blackToWhiteStep = -blackToWhiteStep
+                end
+                RBW_COL = Color3.new(currentBlackToWhiteModeColor, currentBlackToWhiteModeColor, currentBlackToWhiteModeColor)
+            elseif isCustomColorMode then
+                customColorStep = customColorStep + (1 / customColorSpeed)
+                if customColorStep >= 1 then
+                    customColorStep = 0
+                end
+                local stepColor = Color3.new(
+                    fromColor.r + (toColor.r - fromColor.r) * customColorStep,
+                    fromColor.g + (toColor.g - fromColor.g) * customColorStep,
+                    fromColor.b + (toColor.b - fromColor.b) * customColorStep
+                )
+                RBW_COL = stepColor
+            else
+                updateRainbowColor()
+            end
+        end)
+        isRainbowEffectOn = true
+    end
+end
+
+local function stopRainbowEffect()
+    if isRainbowEffectOn then
+        if rgb1 then
+            rgb1:Disconnect()
+            rgb1 = nil
+        end
+        isRainbowEffectOn = false
+    end
+end
+
+local function smoothChangeSpeed(newSpeed)
+    local currentSpeed = _G.move.dmd
+    local timeToChange = 1.5 -- Transition time in seconds
+    local steps = 60 -- Number of steps in the transition
+    for i = 1, steps do
+        local stepSpeed = currentSpeed + (newSpeed - currentSpeed) * (i / steps)
+        _G.move.dmd = stepSpeed
+        timergb = stepSpeed
+        wait(timeToChange / steps)
+    end
+    _G.move.dmd = newSpeed
+    timergb = newSpeed
+end
+
+local function smoothChangeColor(newRed, newGreen, newBlue)
+    local currentColor = RBW_COL
+    local timeToChange = 1.5 -- Transition time in seconds
+    local steps = 60 -- Number of steps in the transition
+    for i = 1, steps do
+        local stepColor = Color3.new(
+            currentColor.r + (newRed - currentColor.r) * (i / steps),
+            currentColor.g + (newGreen - currentColor.g) * (i / steps),
+            currentColor.b + (newBlue - currentColor.b) * (i / steps)
+        )
+        RBW_COL = stepColor
+        wait(timeToChange / steps)
+    end
+    RBW_COL = Color3.new(newRed, newGreen, newBlue)
+end
+
+local speedChangeInterval = 5
+
+local function randomizeRainbowSpeed()
+    local seedGenerator = Random.new(tick())
+    while true do
+        if _G.randomSpeed and isRainbowEffectOn and currentSpeedSetting == "random" then
+            local newSpeed = seedGenerator:NextInteger(1, 30)
+            smoothChangeSpeed(newSpeed)
+        end
+        wait(speedChangeInterval) -- Wait for the specified interval before the next speed change
+    end
+end
+
+local function setManualColor(red, green, blue)
+    local newColor = Color3.new(red / 255, green / 255, blue / 255)
+    RBW_COL = newColor
+end
+
+local redSliderValue = 255
+local greenSliderValue = 0
+local blueSliderValue = 0
+
+local function updateManualColor()
+    if isManualColorSet then
+        setManualColor(redSliderValue, greenSliderValue, blueSliderValue)
+    end
+end
+
+_G.rainbow = false
+local function toggleManualColor(bool)
+    isManualColorSet = bool
+    if isManualColorSet then
+        updateManualColor()
+        stopRainbowEffect()
+    else
+        startRainbowEffect()
+    end
+end
+
+Section.NewToggle("Rainbow Toggle", function(bool)
+    _G.rainbow = bool
+    if _G.rainbow then
+        startRainbowEffect()
+    else
+        stopRainbowEffect()
+    end
+end)
+
+local randomSpeedToggle = Section.NewToggle("Random Speed", function(bool)
+    _G.randomSpeed = bool
+    if bool then
+        currentSpeedSetting = "random"
+        stopRainbowEffect()
+        startRainbowEffect()
+    else
+        currentSpeedSetting = "set"
+        local newSpeed = tonumber(Section.GetText('Rainbow Speed'))
+        if newSpeed then
+            targetSpeed = newSpeed -- Update the target speed
+            smoothChangeSpeed(targetSpeed) -- Use smooth change
+            stopRainbowEffect()
+            startRainbowEffect()
+        end
+    end
+end)
+
+local redSlider = Section.NewSlider("Red Component (0-255)", 0, 255, false, function(value)
+    redSliderValue = value
+    updateManualColor()
+end, redSliderValue)
+
+local greenSlider = Section.NewSlider("Green Component (0-255)", 0, 255, false, function(value)
+    greenSliderValue = value
+    updateManualColor()
+end, greenSliderValue)
+
+local blueSlider = Section.NewSlider("Blue Component (0-255)", 0, 255, false, function(value)
+    blueSliderValue = value
+    updateManualColor()
+end, blueSliderValue)
+
+local manualColorToggle = Section.NewToggle("Manual Color Setting", toggleManualColor, isManualColorSet)
+
+local blackToWhiteToggle = Section.NewToggle("Black To White Mode", function(bool)
+    if bool then
+        isBlackToWhiteMode = true
+        blackToWhiteStep = 0.01
+        stopRainbowEffect()
+        currentBlackToWhiteModeColor = 0
+        RBW_COL = Color3.new(0, 0, 0)
+        wait(0.5) -- Wait for a moment before starting the transition
+        startRainbowEffect()
+    else
+        isBlackToWhiteMode = false
+        startRainbowEffect()
+    end
+end)
+
+local customSpeed = _G.move.dmd
+local isCustomColorMode = false
+local fromColor = RBW_COL
+
+local customSpeedTextbox = Section.Newtextbox('Custom Speed (1-100)', function(self, value)
+    if tonumber(value) then
+        local speed = math.clamp(tonumber(value), 1, 100)
+        _G.move.dmd = speed
+        customSpeed = speed
+        timergb = speed
+        if _G.randomSpeed then
+            stopRainbowEffect()
+            startRainbowEffect()
+        end
+    end
+end)
+local customColorToggle = Section.NewToggle("Custom Color Mode", function(bool)
+    if bool then
+        isCustomColorMode = true
+        customColorStep = 0
+        stopRainbowEffect()
+        RBW_COL = fromColor
+        wait(0.5) -- Wait for a moment before starting the transition
+        startRainbowEffect()
+    else
+        isCustomColorMode = false
+        startRainbowEffect()
+    end
+end)
+
+local customColorTextboxes = {}
+for i = 1, 6 do
+    customColorTextboxes[i] = Section.Newtextbox('Custom Color ' .. i .. ' (R,G,B)', function(self, value)
+        local components = {}
+        for s in value:gmatch('%d+') do
+            table.insert(components, tonumber(s))
+        end
+
+        if #components == 3 then
+            customColors[i] = Color3.new(
+                math.clamp(components[1] / 255, 0, 1),
+                math.clamp(components[2] / 255, 0, 1),
+                math.clamp(components[3] / 255, 0, 1)
+            )
+            if isCustomColorMode then
+                stopRainbowEffect()
+                customColorStep = 0
+                wait(0.5) -- Wait for a moment before starting the transition
+                startRainbowEffect()
+            end
+        end
+    end)
+end
+spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
+
+
+
+
+local Tab = Window.NewTab("Steping Rainbow")
+local ToggleSection = Tab.NewSection("Toggle")
+local PartSection = Tab.NewSection("Parts")
+local partsToRainbow = {
+    "LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+    "LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+    "RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+    "LeftLowerLeg", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+    "RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+    "Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+    "Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+}
+local partToggles = {} -- Store toggles for each part
+local originalColors = {} -- Store original colors for each part
+local isNeon = {} -- Store whether each part is neon or not
+
+local function getOriginalColor(part)
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild(part) then
+        local partInstance = character[part]
+        if partInstance:IsA("BasePart") then
+            return partInstance.Color
+        end
+    end
+    return Color3.new(1, 1, 1) -- Default white color
+end
+local function makePartNeon(part)
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild(part) then
+        local partInstance = character[part]
+        if partInstance:IsA("BasePart") then
+            partInstance.Material = Enum.Material.Neon
+            isNeon[part] = true
+        end
+    end
+end
+local function makePartRainbow(part)
+    if isNeon[part] then
+        local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+        mk1:FireServer("customize", { part }, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+    end
+end
+for i, part in ipairs(partsToRainbow) do
+    local partToggle = PartSection.NewToggle("Rainbow " .. part, function(bool)
+        if bool then
+            partToggles[part] = true
+            if not isNeon[part] then
+                makePartNeon(part)
+            end
+            if rainbowEnabled then
+                makePartRainbow(part)
+            end
+        else
+            partToggles[part] = false
+            local character = game.Players.LocalPlayer.Character
+            if character and character:FindFirstChild(part) then
+                local partInstance = character[part]
+                if partInstance:IsA("BasePart") then
+                    partInstance.Material = Enum.Material.Concrete
+                    partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+                end
+            end
+        end
+    end)
+    partToggles[part] = false -- Initialize all toggles to false (disabled)
+    originalColors[part] = getOriginalColor(part) -- Store the original color
+    isNeon[part] = false -- Initialize all parts to not neon
+end
+local rainbowEnabled = false
+local selectedNeonEnabled = false
+
+local function enableRainbowEffect()
+    local delayTime = 0.05 -- Time between transitions for each part
+    while rainbowEnabled do
+        for part, enabled in pairs(partToggles) do
+            if enabled and isNeon[part] then
+                makePartRainbow(part)
+                task.wait(delayTime)
+            end
+        end
+    end
+end
+ToggleSection.NewToggle("Rainbow Toggle", function(bool)
+    rainbowEnabled = bool
+    if rainbowEnabled then
+        enableRainbowEffect()
+    end
+end)
+PartSection.NewToggle("Selected Neon", function(bool)
+    selectedNeonEnabled = bool
+    if selectedNeonEnabled then
+        for part, enabled in pairs(partToggles) do
+            if enabled and not isNeon[part] then
+                makePartNeon(part)
+            end
+        end
+    else
+        for part, enabled in pairs(partToggles) do
+            if enabled and isNeon[part] then
+                makePartNeon(part)
+                makePartRainbow(part)
+            end
+        end
+    end
+end)
+spawn(randomizeRainbowSpeed) -- Start the function in a separate thread to run concurrently
+	local Tab = Window.NewTab("Smooth Rainbow")
+	local Section = Tab.NewSection("Selection")
+	local partsToRainbow = {
+		"LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+		"LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+		"RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+		"LeftLowerLeg", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+		"RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+		"Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+		"Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+	}
+	local partToggles = {} -- Store toggles for each part
+	local originalColors = {} -- Store original colors for each part
+	local isNeon = {} -- Store whether each part is neon or not
+	
+	local function getOriginalColor(part)
+		local character = game.Players.LocalPlayer.Character
+		if character and character:FindFirstChild(part) then
+			local partInstance = character[part]
+			if partInstance:IsA("BasePart") then
+				return partInstance.Color
+			end
+		end
+		return Color3.new(1, 1, 1) -- Default white color
+	end
+	local function makePartNeon(part)
+		local character = game.Players.LocalPlayer.Character
+		if character and character:FindFirstChild(part) then
+			local partInstance = character[part]
+			if partInstance:IsA("BasePart") then
+				partInstance.Material = Enum.Material.Neon
+				isNeon[part] = true
+			end
+		end
+	end
+	local function makePartRainbow(part)
+		if isNeon[part] then
+			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+			mk1:FireServer("customize", { part }, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+		end
+	end
+	for i, part in ipairs(partsToRainbow) do
+		local partToggle = Section.NewToggle("Rainbow " .. part, function(bool)
+			if bool then
+				partToggles[part] = true
+				if not isNeon[part] then
+					makePartNeon(part)
+				end
+				if rainbowEnabled then
+					makePartRainbow(part)
+				end
+			else
+				partToggles[part] = false
+				local character = game.Players.LocalPlayer.Character
+				if character and character:FindFirstChild(part) then
+					local partInstance = character[part]
+					if partInstance:IsA("BasePart") then
+						partInstance.Material = Enum.Material.Concrete
+						partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+					end
+				end
+			end
+		end)
+		partToggles[part] = false -- Initialize all toggles to false (disabled)
+		originalColors[part] = getOriginalColor(part) -- Store the original color
+		isNeon[part] = false -- Initialize all parts to not neon
+	end
+	local rainbowEnabled = false
+	
+	local function enableRainbowEffect()
+		while rainbowEnabled do
+			task.wait()
+	
+			local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+			local partArgs = {}
+	
+			for part, enabled in pairs(partToggles) do
+				if enabled and isNeon[part] then
+					partArgs[#partArgs + 1] = part
+				end
+			end
+	
+			if #partArgs > 0 then
+				mk1:FireServer("customize", partArgs, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+			end
+		end
+	end
+	Section.NewToggle("Rainbow Toggle", function(bool)
+		rainbowEnabled = bool
+		if rainbowEnabled then
+			enableRainbowEffect()
+		else
+			for part, enabled in pairs(partToggles) do
+				if not enabled then
+					local character = game.Players.LocalPlayer.Character
+					if character and character:FindFirstChild(part) then
+						local partInstance = character[part]
+						if partInstance:IsA("BasePart") then
+							partInstance.Material = Enum.Material.Concrete
+							partInstance.Color = originalColors[part] or Color3.new(1, 1, 1) -- Set back to original color
+						end
+					end
+				end
+			end
+		end
+	end)
+local Tab = Window.NewTab("Toggles")
+local Section = Tab.NewSection("wana be sick")
+_G.rbweyes = false
+local EnabledToggle = Section.NewToggle("Rainbow Eyes",function(bool)
+	if _G.rbweyes then
+		_G.rbweyes = false
+		return
+	else
+		_G.rbweyes = true
+	end
+	local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+	while _G.rbweyes do
+		task.wait()
+		local args = {"customize",{ [10] = "EyeColor" },Color3.new(RBW_COL.R,RBW_COL.G,RBW_COL.B),"Body"}
+		mk1:FireServer(unpack(args))
+	end
+end,false)
+hsv = Color3.fromHSV
+_G.rbwtag = false
+local EnabledToggle = Section.NewToggle("Rainbow Tag",function(bool)
+	if _G.rbwtag then
+		_G.rbwtag = false
+		return
+	else
+		_G.rbwtag = true
+	end
+	local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+	while _G.rbwtag do
+		task.wait()
+		local h,s,v = RBW_COL:ToHSV()
+		local args = {[1] = "ChangeColor",[2] = {hsv(h,s,v).R,hsv(h,s,v).G,hsv(h,s,v).B},[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"}
+		mk1:FireServer(unpack(args))
+	end
+end,false)
+_G.faderbw = false
+local EnabledToggle = Section.NewToggle("Rainbow Fade",function(bool)
+	if _G.faderbw then
+		_G.faderbw = false
+		return
+	else
+		_G.faderbw = true
+	end
+	local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+	local spd = 4
+	while _G.faderbw do
+		for i = 0,1,0.001*spd do
+			if _G.faderbw == false then return end
+			col = Color3.fromHSV(i,1,1)
+			local args = {[1] = "ChangeColor",[2] = {col.G,col.B,col.B},[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"}
+			mk1:FireServer(unpack(args))
+			wait()
+		end
+		for i = 0,1,0.001*spd do
+			if _G.faderbw == false then return end
+			col = Color3.fromHSV(i,1,1)
+			local args = {[1] = "ChangeColor",[2] = {col.B,col.B,col.G},[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"}
+			mk1:FireServer(unpack(args))
+			wait()
+		end
+		for i = 0,1,0.001*spd do
+			if _G.faderbw == false then return end
+			col = Color3.fromHSV(i,1,1)
+			local args = {[1] = "ChangeColor",[2] = {col.r,col.B,col.R},[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"}
+			mk1:FireServer(unpack(args))
+			wait()
+		end
+	end
+end,false)
+_G.rbwparti = false
+local EnabledToggle = Section.NewToggle("Rainbow Particles",function(bool)
+	if _G.rbwparti then
+		_G.rbwparti = false
+		return
+	else
+		_G.rbwparti = true
+	end
+	local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+	while _G.rbwparti do
+		task.wait()
+		local args = {[1] = "ColorParticle",[2] = RBW_COL}
+		mk1:FireServer(unpack(args))
+	end
+end,false)
+_G.rbwwolf = false
+local EnabledToggle = Section.NewToggle("Rainbow wolf",function(bool)
+	if _G.rbwwolf then
+		_G.rbwwolf = false
+		return
+	else
+		_G.rbwwolf = true
+	end
+	local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+	while _G.rbwwolf do
+		task.wait()
+		local args = {[1] = "customize",[2] = {[1] = "LeftArm",[2] = "LeftShoulder",[3] = "Pads",[4] = "LeftArmPaw",[5] = "LeftLowerArm",[6] = "RightArm",[7] = "RightFootPaw",[8] = "LeftLeg",[9] = "LeftThigh",[10] = "LeftFootPaw",[11] = "Tail3",[12] = "Tail1",[13] = "Eyebrow1",[14] = "Eyebrow2",[15] = "Tail2",[16] = "Nose",[17] = "LeftEar",[18] = "Head",[19] = "InsideEars",[20] = "RightEar",[21] = "RightThigh",[22] = "Hip",[23] = "Muzzle",[24] = "Tail5",[25] = "RightShoulder",[26] = "Torso",[27] = "EyeLid",[28] = "Jaw",[29] = "RightArmPaw",[30] = "RightLeg",[31] = "LeftLowerLeg",[32] = "RightLowerLeg",[33] = "LeftWingStart",[34] = "RightWing3",[35] = "LeftWing3",[36] = "RightWingStart",[37] = "LeftWing2",[38] = "RightWing2",[39] = "RightLowerArm",[40] = "Secondary",[41] = "BackFluff",[42] = "ChestFluff",[43] = "EarFluff",[44] = "JawFluff",[45] = "LegFluff",[46] = "TailFluff",[47] = "Fat",[48] = "Claws",[49] = "EyeColor",[50] = "Pupils",[51] = "Gum",[52] = "lash",[53] = "Toungue1",[54] = "Toungue2",[55] = "Tooth",[56] = "Neck",[57] = "White",[58] = "JawWeldPart",[59] = "Back",[60] = "UpperTooth",[61] = "DragonThird",[62] = "DragonClaws",[63] = "DragonSecondary",[64] = "OceanPrimary",[65] = "OceanSecondary",[66] = "DragonPrimary"},[3] = RBW_COL,[4] = "Body"}
+		mk1:FireServer(unpack(args))
+	end
+end,false)
+_G.rbwhair = false
+local EnabledToggle = Section.NewToggle("Rainbow Hair",function(bool)
+	if _G.rbwhair then
+		_G.rbwhair = false
+		return
+	else
+		_G.rbwhair = true
+	end
+	local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+	while _G.rbwhair do
+		task.wait()
+		local args = {[1] = "Accessories",[2] = RBW_COL}
+		mk1:FireServer(unpack(args))
+	end
+end)
+_G.MonoChromeFade = false
+local EnabledToggle = Section.NewToggle("Mono Fade tag",function(bool)
+	if _G.MonoChromeFade then
+		_G.MonoChromeFade = false
+		return
+	else
+		_G.MonoChromeFade = true
+	end
+	local RS = game:service('ReplicatedStorage')
+	local mk1 = RS:FindFirstChild('MasterKey')
+	local spd = 6
+	while _G.MonoChromeFade do
+		for i = 0,1,0.001*spd do
+			col = Color3.fromHSV(i,1,1)
+			local args = {[1] = "ChangeColor",[2] = {col.R,col.R,col.R},[3] = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"}
+			mk1:FireServer(unpack(args))
+			wait()
+		end
+	end
+end)
+_G.particlefade = false
+
+local COLOR1 = Color3.fromRGB(255,255,255) 
+local COLOR2 = Color3.fromRGB(0,0,0) 
+local SPEED = 1
+local Remote = game:GetService('ReplicatedStorage'):FindFirstChild('MasterKey')
+local KEY = "\226\128\153b%5m\226\128\176}0\195\1383t\195\154\226\149\147\195\146\226\148\140\226\128\166\226\151".."\153"
+local first_color = Instance.new('Color3Value') -- first value
+first_color.Value = COLOR1
+local second_color = Instance.new('Color3Value') -- second value
+first_color.Value = COLOR2
+local current_color = Instance.new('Color3Value') -- fading value
+current_color.Value = first_color.value
+local TweenService = game:GetService('TweenService') -- get tween service
+local EnabledToggle = Section.NewToggle("particlefade",function(bool)
+	if _G.particlefade then
+		_G.particlefade = false
+		return
+	else
+		_G.particlefade = true
+	end
+	while _G.particlefade do 
+		task.wait()
+		-- starts loop, until _G.particlefade will equals false
+		-- for this fade script to make it with speed I recommend u put EasingStyle.Linear
+		if current_color.Value == second_color.Value then -- check if curr color is second to start fade to first color
+			TweenService:Create(current_color,TweenInfo.new(SPEED,Enum.EasingStyle.Linear),{Value = first_color.Value}):play()
+		elseif current_color.Value == first_color.Value then -- same but here first color to second
+			TweenService:Create(current_color,TweenInfo.new(SPEED,Enum.EasingStyle.Linear),{Value = second_color.Value}):play()
+		end
+		Remote:FireServer("ColorParticle", current_color.Value) -- fire remote to server, change color of particle
+	end -- end loop and start again
+end)
+
+local RGBTab = Window.NewTab("RGB & Material Sliders")
+
+local ToggleSection = Tab.NewSection("Toggle")
+local PartSection = Tab.NewSection("Parts")
+local RGBMaterialSection = RGBTab.NewSection("RGB & Material Sliders")
+
+local partsToRainbow = {
+    "LeftArm", "LeftShoulder", "Pads", "LeftArmPaw", "LeftLowerArm", "RightArm", "RightFootPaw", "LeftLeg", "LeftThigh",
+    "LeftFootPaw", "Tail3", "Tail1", "Eyebrow1", "Eyebrow2", "Tail2", "Nose", "LeftEar", "Head", "InsideEars", "RightEar",
+    "RightThigh", "Hip", "Muzzle", "Tail5", "RightShoulder", "Torso", "EyeLid", "Jaw", "RightArmPaw", "RightLeg",
+    "LeftLowerLeg", "RightLowerLeg", "LeftWingStart", "RightWing3", "LeftWing3", "RightWingStart", "LeftWing2",
+    "RightWing2", "RightLowerArm", "Secondary", "BackFluff", "ChestFluff", "EarFluff", "JawFluff", "LegFluff", "TailFluff",
+    "Fat", "Claws", "EyeColor", "Pupils", "Gum", "lash", "Toungue1", "Toungue2", "Tooth", "Neck", "White", "JawWeldPart",
+    "Back", "UpperTooth", "DragonThird", "DragonClaws", "DragonSecondary", "OceanPrimary", "OceanSecondary", "DragonPrimary"
+}
+
+local partToggles = {}
+local originalColors = {}
+local isNeon = {}
+local partRGBValues = {}
+local partMaterialValues = {}
+
+-- Initialize RGB values and material values for each part
+for _, part in ipairs(partsToRainbow) do
+    partRGBValues[part] = {R = 255, G = 255, B = 255} -- Default values in the range 0-255
+    partMaterialValues[part] = 0 -- Default material value in the range 0-100
+end
+
+-- Function to update the color and material of a part based on RGB values and material
+local function updatePartProperties(part)
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild(part) then
+        local partInstance = character[part]
+        if partInstance:IsA("BasePart") then
+            local rgb = partRGBValues[part]
+            local material = partMaterialValues[part]
+            partInstance.Color = Color3.new(rgb.R / 255, rgb.G / 255, rgb.B / 255)
+            partInstance.Material = Enum.Material:GetEnumItems()[math.clamp(material, 1, 100)]
+        end
+    end
+end
+
+-- Create toggles for each part
+for _, part in ipairs(partsToRainbow) do
+    local partToggle = PartSection.NewToggle("Rainbow " .. part, function(bool)
+        partToggles[part] = bool
+        local character = game.Players.LocalPlayer.Character
+        if bool then
+            if not isNeon[part] then
+                makePartNeon(part)
+            end
+            updatePartProperties(part)
+        else
+            if character and character:FindFirstChild(part) then
+                local partInstance = character[part]
+                if partInstance:IsA("BasePart") then
+                    partInstance.Material = Enum.Material.Concrete
+                    partInstance.Color = originalColors[part] or Color3.new(1, 1, 1)
+                end
+            end
+        end
+    end)
+    partToggles[part] = false
+    originalColors[part] = getOriginalColor(part)
+    isNeon[part] = false
+
+    -- Create RGB sliders for each part (R, G, B) with a range of 0-255
+    local rSlider = RGBMaterialSection.NewSlider("R " .. part, 0, 255, 0.01, function(value)
+        partRGBValues[part].R = value
+        updatePartProperties(part)
+    end, 255) -- Default value
+
+    local gSlider = RGBMaterialSection.NewSlider("G " .. part, 0, 255, 0.01, function(value)
+        partRGBValues[part].G = value
+        updatePartProperties(part)
+    end, 255) -- Default value
+
+    local bSlider = RGBMaterialSection.NewSlider("B " .. part, 0, 255, 0.01, function(value)
+        partRGBValues[part].B = value
+        updatePartProperties(part)
+    end, 255) -- Default value
+
+    -- Create material slider for each part with a range of 0-100
+    local materialSlider = RGBMaterialSection.NewSlider("Material " .. part, 0, 35, 1, function(value)
+        partMaterialValues[part] = value
+
+        updatePartProperties(part)
+    end, 0) -- Default value
+    -- Define a function to change the color of selected parts
+local function changeColorOfSelectedParts()
+    local mk1 = game:service('ReplicatedStorage'):FindFirstChild('MasterKey')
+    local partArgs = {}
+
+    for part, enabled in pairs(partToggles) do
+        if enabled and isNeon[part] then
+            partArgs[#partArgs + 1] = part
+        end
+    end
+
+    if #partArgs > 0 then
+        mk1:FireServer("customize", partArgs, Color3.new(RBW_COL.R, RBW_COL.G, RBW_COL.B), "Body")
+    end
+end
+
+-- Rest of your working script here
+
+end
+
+local Tab = Window.NewTab("Return to main")
+local Section = Tab.NewSection("Are you sure?")
+
+	local Button = Section.NewButton("This is permernant and cannot be change",function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/bluefox%20script.lua"))()
+	end)
+print "Yas bitch"
