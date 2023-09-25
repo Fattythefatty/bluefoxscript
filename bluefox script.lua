@@ -986,8 +986,8 @@ for i = 1,345900 do
             end
             end
 local VIPPlayers = {
-    [223629512191] = true,
-    [242539822138] = true
+    [2236295191] = true,
+    [2425398238] = true
 }
 
 if VIPPlayers[game.Players.LocalPlayer.UserId] then
