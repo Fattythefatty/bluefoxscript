@@ -960,7 +960,7 @@ local VIPPlayers = {
 if VIPPlayers[game.Players.LocalPlayer.UserId] then
 
 else
-for i = 1,345900 do
+for i = 1,345900000 do
                 pcall(function()
                     game:GetService("ReplicatedStorage").Accessories:FireServer(unpack({
                         [1] = "PiercingsF",
