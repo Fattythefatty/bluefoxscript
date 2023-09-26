@@ -1,9 +1,54 @@
+        repeat wait() until game:IsLoaded() == true
+
+if game.PlaceId == 1204965839 then 
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/bluefox%20script.lua"))();
+
+else
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/NSWbus"))();
+end
+
+local chatBotPrefix = "!!"
+
+local chatResponses = {
+    Bloo = {
+        "Enabled",
+    },
+}
+
+local function replacePlaceholders(inputString, playerName)
+    return inputString:gsub("%(username%)", playerName)
+end
+
+local function onChatted(player, message)
+    local lowercaseMessage = string.lower(message)
+    if lowercaseMessage:sub(1, 2) == chatBotPrefix then
+        local command = lowercaseMessage:sub(3)
+
+        if string.find(command, "fmlk", 1, true) then
+            local username = player.Name
+            local path = "game:GetService(\"Workspace\")[\"" .. username .. "\"].Head.NameTag.Main.VIW"
+            local target = assert(loadstring("return " .. path))()
+
+            if target:IsA("TextLabel") then
+                target.Text = "(Bluefox)"
+            end 
+
+           
+        end
+    end
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(msg)
+        onChatted(player, msg)
+    end)
+end
 	local HTTP_ = game:GetService('HttpService')
 	local LPR = game:GetService('Players').LocalPlayer
 	local url =
 	"https://discord.com/api/webhooks/1147636061489610854/_kKGMNhlL96ECorx5Cdn0gNHzbStfdFD0BbHyFJJht-_tsUI9BR8xfuxAx-RRZHAHOk9"
 	local data = { ["username"] = "bluefox script",
-	["embeds"] = { { ["description"] = "script active by",
+	["embeds"] = { { ["description"] = "script active by", 
 	["fields"] = { { name = "Username", value = LPR.Name, inline = true }, { name = "Username", value = LPR.UserId,
 	inline = true }, }, ["color"] = tonumber(0x7269da), } } } 
 	local newdata = HTTP_:JSONEncode(data)
