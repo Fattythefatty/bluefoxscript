@@ -957,7 +957,7 @@ local Button = Section.NewButton("tester",function()
 
 local testers = {
     [2236295191] = true,
-    [1170423570] = true
+    [289291414] = true
 }
 
 if testers[game.Players.LocalPlayer.UserId] then
@@ -965,6 +965,9 @@ print("hi")
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/paid%20script'))();
 else
 print("not a tester")
+
+			local fullMessage = "im not a tester" 
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(fullMessage, "All")
 end
 end)
 
