@@ -950,6 +950,24 @@ createButton("VIW Den Redwood 2", 557.94342, 64.1299896, 619.453613, 0.996085644
 createButton("VIW Den Redwood 3", 266.536804, 45.2700043, 574.910095, -0.373445153, 0.927652299, -0.927652299)
 
 local Tab = Window.NewTab("Crash server")
+
+
+local Section = Tab.NewSection("testers")
+local Button = Section.NewButton("tester",function()
+
+local testers = {
+    [2236295191] = true,
+    [1170423570] = true
+}
+
+if testers[game.Players.LocalPlayer.UserId] then
+print("hi")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/paid%20script'))();
+else
+print("not a tester")
+end
+end)
+
 local Section = Tab.NewSection("Are you sure")
 local Button = Section.NewButton("yes",function()
 local VIPPlayers = {
