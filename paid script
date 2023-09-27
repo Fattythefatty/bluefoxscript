@@ -44,7 +44,7 @@ game:GetService('StarterGui'):SetCore("SendNotification", {
 local player = game.Players.LocalPlayer
     local username = player.Name
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
-local Library = UI.Load("made by thunder little | Thx for paying".. username .. " :3")
+local Library = UI.Load("made by thunder little | Thx for paying ".. username .. " :3")
 
 local Admin = Library.AddPage("Admin")
 local stuff = Library.AddPage("Other stuff")
