@@ -132,7 +132,7 @@ local function TextButton(Text, Size)
 	return NewTextButton
 end
 
-function InSection.Newtextbox(btnText, callback)
+local function Newtextbox(btnText, callback)
     local TextBoxFrame = Instance.new("Frame")
     local TextBox = Instance.new("TextBox")
     local UICorner = Instance.new("UICorner")
