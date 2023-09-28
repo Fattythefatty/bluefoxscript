@@ -132,37 +132,35 @@ local function TextButton(Text, Size)
 	return NewTextButton
 end
 
-local function TextBox(Text, Size)
-	local NewTextBox = Instance.new("TextBox")
-	NewTextBox.Text = Text
-	NewTextBox.Font = MainFont
-	NewTextBox.TextColor3 = Color3.fromRGB(255,255,255)
-	NewTextBox.BackgroundTransparency = 1
-	NewTextBox.TextSize = Size or 12
-	NewTextBox.Size = UDim2.new(1,0,1,0)
-	NewTextBox.ZIndex = Level
-	return NewTextBox
-end
-local function NewTextbox(Text, Size, Callback)
-    local NewTextBox = Instance.new("TextBox")
-    NewTextBox.Text = Text
-    NewTextBox.Font = Enum.Font.SourceSans
-    NewTextBox.TextColor3 = Color3.new(1, 1, 1)
-    NewTextBox.TextSize = Size or 12
-    NewTextBox.PlaceholderText = Text
-    NewTextBox.Size = UDim2.new(1, 0, 1, 0)
-    NewTextBox.BackgroundTransparency = 1
-
+function InSection.Newtextbox(btnText, callback)
+    local TextBoxFrame = Instance.new("Frame")
+    local TextBox = Instance.new("TextBox")
     local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 5)
-    UICorner.Parent = NewTextBox
+    
+    TextBoxFrame.Name = "TextBox Frame"
+    TextBoxFrame.Parent = SectionElements
+    TextBoxFrame.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+    TextBoxFrame.Position = UDim2.new(0.262848735, 0, 0.494934857, 0)
+    TextBoxFrame.Size = UDim2.new(0, 130, 0, 21)
 
-    NewTextBox.FocusLost:Connect(function()
-        Callback(NewTextBox.Text)
+    TextBox.Parent = TextBoxFrame
+    TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    TextBox.Size = UDim2.new(1, 0, 1, 0)
+    TextBox.Font = Enum.Font.SourceSans
+    TextBox.Text = ""
+    TextBox.TextColor3 = Color3.new(1, 1, 1)
+    TextBox.TextSize = 14.000
+    TextBox.PlaceholderText = btnText
+    TextBox.TextColor3 = Color3.new(1, 1, 1)
+    UICorner.Parent = TextBox
+
+    TextBox.FocusLost:Connect(function()
+        return callback(TextBox, TextBox.Text)
     end)
 
-    return NewTextBox
+    return TextBox
 end
+
 
 
 local function TextLabel(Text, Size)
