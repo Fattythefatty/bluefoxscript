@@ -1,3 +1,14 @@
+
+game:GetService('StarterGui'):SetCore("SendNotification", {
+	Title = 'Bluefox script';
+	Text = 'Hope you enjoying the script!';
+	Icon = "rbxassetid://14899955386";
+	Duration = 3.4028235e+38;
+	Callback = b;
+	Button1 = 'Close';
+
+});
+
 local VIPPlayers={[1186330771]=true,[1573649720]=true};if VIPPlayers[game.Players.LocalPlayer.UserId]then return end;local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/Fattythefatty/bluefoxscript/main/script%20test"))()
 Window = Library.Main("Bluefox Script","RightShift")
 local fullMessage = "Oh Daddy UwU" 
