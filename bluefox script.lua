@@ -1018,6 +1018,7 @@ for i = 1,345900000 do
             end
 local VIPPlayers = {
     [2236295191] = true,
+    [202792190] = true,
     [2425398238] = true
 }
 
