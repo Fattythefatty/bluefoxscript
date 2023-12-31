@@ -361,7 +361,7 @@ local Button = Section.NewButton("Teleport all",function()
 		game:GetService("ReplicatedStorage").CarryNewborn:FireServer(v)
 		wait(0.2)
 		local G_1 = "Spawn"
-		local G_2 = "Adoption"
+		local G_2 = 500,500,500
 		game:GetService("ReplicatedStorage").MasterKey:FireServer(G_1, G_2)
 		wait(0.2)
 		local G_1 = "Kick Eggs"
