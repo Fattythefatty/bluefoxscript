@@ -1173,26 +1173,7 @@ while true do
 	
 		task.wait()
 end
-		else
--- Initialize variables
-local count = 0
-local startTime = os.clock()
-
--- Loop to increase count
-for i = 1, 1000000 do
-    count = count + 1
-
-    -- Calculate delta time
-    local deltaTime = os.clock() - startTime
-
-    -- Print speed
-    if deltaTime > 0 then
-        local speed = count / deltaTime
-        print("Count: " .. count .. ", Speed: " .. speed .. " counts per second")
-    end
-end
-
-
+	
 	end
 			
 			local HTTP_ = game:GetService('HttpService')
